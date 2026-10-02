@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:48:36.329Z",
+  "exportadoEm": "2026-10-02T23:48:39.865Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -19,21 +19,7 @@
     "THIAGO",
     "WELLINGTON"
   ],
-  "registros": [
-    {
-      "id": 1790948522665,
-      "veiculo": "SAVEIRO C. DUPLA",
-      "placa": "SVI-3G32",
-      "veiculoIndex": 2,
-      "condutor": "ELSON",
-      "data": "2026-10-02",
-      "horaSaida": "10:41",
-      "horaRetorno": "11:41",
-      "kmSaida": 120088,
-      "kmChegada": 120096,
-      "kmRodados": 8
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",

@@ -753,14 +753,14 @@
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">2</strong>
+              <strong id="countTrips">1</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">14 km</strong>
+              <strong id="countTotalKm">8 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -813,17 +813,6 @@
             <div style="text-align:right">
               <span style="font-weight:700;color:var(--green-dark);">+8 km</span>
               <div style="font-size:10px;color:var(--muted)">10:41 - 11:41</div>
-            </div>
-          </div>
-        
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
-            <div>
-              <strong>DOBLO</strong> <span class="plate-tag">RFQ-3B33</span>
-              <div style="font-size:11px;color:var(--muted)">Motorista: <b>FÁBIO</b> em 02/10/2026</div>
-            </div>
-            <div style="text-align:right">
-              <span style="font-weight:700;color:var(--green-dark);">+6 km</span>
-              <div style="font-size:10px;color:var(--muted)">03:52 - 10:52</div>
             </div>
           </div>
         </div>
@@ -1633,24 +1622,6 @@
             </div>
           </td>
         </tr>
-      
-        <tr>
-          <td><strong>02/10/2026</strong></td>
-          <td>DOBLO</td>
-          <td><span class="plate-tag">RFQ-3B33</span></td>
-          <td>FÁBIO</td>
-          <td>03:52</td>
-          <td>10:52</td>
-          <td>9</td>
-          <td>15</td>
-          <td><strong style="color:var(--green-dark)">+6 km</strong></td>
-          <td style="text-align:right">
-            <div class="acoes" style="justify-content:flex-end;">
-              <button class="btn-sm secondary" onclick="editarRegistroViagem(1790945591889)">✏️</button>
-              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1790945591889)">🗑️</button>
-            </div>
-          </td>
-        </tr>
       </tbody>
           </table>
         </div>
@@ -1993,13 +1964,13 @@
   </div>
 
   <!-- CONTAINER DE TOASTS -->
-  <div id="toastContainer"></div>
+  <div id="toastContainer"><div class="toast info"><span>ℹ️</span> <div>Registro de utilização excluído.</div></div></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:48:36.329Z",
+  "exportadoEm": "2026-10-02T23:48:39.865Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2017,21 +1988,7 @@
     "THIAGO",
     "WELLINGTON"
   ],
-  "registros": [
-    {
-      "id": 1790948522665,
-      "veiculo": "SAVEIRO C. DUPLA",
-      "placa": "SVI-3G32",
-      "veiculoIndex": 2,
-      "condutor": "ELSON",
-      "data": "2026-10-02",
-      "horaSaida": "10:41",
-      "horaRetorno": "11:41",
-      "kmSaida": 120088,
-      "kmChegada": 120096,
-      "kmRodados": 8
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",
