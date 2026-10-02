@@ -1,0 +1,12 @@
+{
+  "name": "controle-veiculos",
+  "version": "1.0.0",
+  "description": "Sistema de Gestão de Frota e Controle de Veículos - Grupo Solutions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["frota", "veiculos", "quilometragem", "revisao"],
+  "author": "Grupo Solutions",
+  "license": "ISC"
+}
