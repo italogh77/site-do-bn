@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:48:39.865Z",
+  "exportadoEm": "2026-10-02T23:51:45.552Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -169,13 +169,6 @@
       "kmRevisao": 90000
     },
     {
-      "modelo": "YVUVJ",
-      "placa": "JJI-7890",
-      "condutor": "FÁBIO",
-      "kmAtual": 38686860,
-      "kmRevisao": 606060
-    },
-    {
       "modelo": "ITALO E LINDO",
       "placa": "ABC-1234",
       "condutor": "WELLINGTON",
@@ -190,7 +183,6 @@
     "TYZ-9G82",
     "TYT-6A92",
     "SIF-3D08",
-    "JJI-7890",
     "ABC-1234"
   ]
 }

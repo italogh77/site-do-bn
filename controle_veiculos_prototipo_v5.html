@@ -3,11 +3,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#2c9520">
-  <title>Grupo Solutions — Controle de Veículos</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232c9520'/%3E%3Cstop offset='100%25' stop-color='%23185c12'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Crect x='2' y='2' width='60' height='60' rx='13' fill='none' stroke='%2371e363' stroke-width='1.8' stroke-opacity='0.45'/%3E%3Ctext x='32' y='43' font-family='sans-serif' font-size='31' font-weight='900' fill='%23ffffff' text-anchor='middle' letter-spacing='-1'%3EGS%3C/text%3E%3Ccircle cx='50' cy='16' r='4.5' fill='%2371e363'/%3E%3C/svg%3E">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
-  <link rel="alternate icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <title>Grupo Solutions — Controle de Veículos &amp; Gestão de Frota</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
@@ -670,7 +666,7 @@
     }
   </style>
 </head>
-<body data-page="historico">
+<body data-page="veiculos">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -683,10 +679,10 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
+      <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
       <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
@@ -712,7 +708,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
+        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
       </div>
       <div class="topbar-right">
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
@@ -726,8 +722,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Histórico Completo</h1>
-        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
+        <h1 id="pageTitle">Veículos Cadastrados</h1>
+        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -757,14 +753,14 @@
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">1</strong>
+              <strong id="countTrips">0</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">8 km</strong>
+              <strong id="countTotalKm">0 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -808,18 +804,7 @@
               <h3>⏱️ Últimas Utilizações</h3>
               <a href="#historico">Histórico completo ↗</a>
             </div>
-            <div id="dashboardRecentTrips">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
-            <div>
-              <strong>SAVEIRO C. DUPLA</strong> <span class="plate-tag">SVI-3G32</span>
-              <div style="font-size:11px;color:var(--muted)">Motorista: <b>ELSON</b> em 02/10/2026</div>
-            </div>
-            <div style="text-align:right">
-              <span style="font-weight:700;color:var(--green-dark);">+8 km</span>
-              <div style="font-size:10px;color:var(--muted)">10:41 - 11:41</div>
-            </div>
-          </div>
-        </div>
+            <div id="dashboardRecentTrips"><p style="color:var(--muted)">Nenhuma utilização registrada.</p></div>
           </div>
         </div>
 
@@ -932,7 +917,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos" hidden="">
+      <section id="veiculos">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1569,7 +1554,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico">
+      <section id="historico" hidden="">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1608,25 +1593,7 @@
                 <th style="text-align:right">Ações</th>
               </tr>
             </thead>
-            <tbody id="listaHistoricoTabela">
-        <tr>
-          <td><strong>02/10/2026</strong></td>
-          <td>SAVEIRO C. DUPLA</td>
-          <td><span class="plate-tag">SVI-3G32</span></td>
-          <td>ELSON</td>
-          <td>10:41</td>
-          <td>11:41</td>
-          <td>120.088</td>
-          <td>120.096</td>
-          <td><strong style="color:var(--green-dark)">+8 km</strong></td>
-          <td style="text-align:right">
-            <div class="acoes" style="justify-content:flex-end;">
-              <button class="btn-sm secondary" onclick="editarRegistroViagem(1790948522665)">✏️</button>
-              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1790948522665)">🗑️</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+            <tbody id="listaHistoricoTabela"><tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted);">Nenhum registro encontrado.</td></tr></tbody>
           </table>
         </div>
       </section>
@@ -1908,7 +1875,7 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
+    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
@@ -1968,13 +1935,13 @@
   </div>
 
   <!-- CONTAINER DE TOASTS -->
-  <div id="toastContainer"><div class="toast info"><span>ℹ️</span> <div>Registro de utilização excluído.</div></div></div>
+  <div id="toastContainer"></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:48:39.865Z",
+  "exportadoEm": "2026-10-02T23:51:45.552Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2142,13 +2109,6 @@
       "kmRevisao": 90000
     },
     {
-      "modelo": "YVUVJ",
-      "placa": "JJI-7890",
-      "condutor": "FÁBIO",
-      "kmAtual": 38686860,
-      "kmRevisao": 606060
-    },
-    {
       "modelo": "ITALO E LINDO",
       "placa": "ABC-1234",
       "condutor": "WELLINGTON",
@@ -2163,7 +2123,6 @@
     "TYZ-9G82",
     "TYT-6A92",
     "SIF-3D08",
-    "JJI-7890",
     "ABC-1234"
   ]
 }</script>
