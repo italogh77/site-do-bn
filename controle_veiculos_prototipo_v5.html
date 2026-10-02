@@ -666,7 +666,7 @@
     }
   </style>
 </head>
-<body data-page="sincronizacao">
+<body data-page="registro">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -680,12 +680,12 @@
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
       <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Veículos da frota</a>
-      <a href="#registro" data-route="registro"><span class="icon">↗</span>Saída e retorno</a>
+      <a href="#registro" data-route="registro" class="active"><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico"><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores"><span class="icon">♙</span>Condutores</a>
-      <a href="#pastas" data-route="pastas"><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -708,22 +708,24 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
+        <span>Frota / <strong id="crumb">Saída e Retorno</strong></span>
       </div>
       <div class="topbar-right">
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
           <span class="dot pulsing"></span>
           <span id="repoPillText">Repositório: <strong>italogh77/site-do-bn</strong></span>
         </div>
-        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()" disabled=""><span>⏳</span> Enviando...</button>
+        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()">
+          <span>🚀</span> Subir para o GitHub
+        </button>
       </div>
     </div>
 
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">GitHub &amp; Backup</h1>
-        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
+        <h1 id="pageTitle">Saída e Retorno</h1>
+        <p id="pageSubtitle">Registre a utilização dos veículos com verificação de KM.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -991,7 +993,7 @@
       </section>
 
       <!-- 3. SAÍDA E RETORNO (REGISTRAR UTILIZAÇÃO) -->
-      <section id="registro" hidden="">
+      <section id="registro">
         <div class="section-header">
           <div>
             <h2 id="tituloRegistro">Registrar Saída e Retorno</h2>
@@ -1004,16 +1006,12 @@
           <form id="formRegistro" class="grid-form">
             <div class="field">
               <label for="regVeiculo">Veículo *</label>
-              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()">
-                <option value="">Selecione o veículo...</option>
-              </select>
+              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()"><option value="">Selecione o veículo...</option><option value="0">DOBLO — RFQ-3B33 (KM Atual: 15)</option><option value="1">MONTANA — SYE-8I88 (KM Atual: 0)</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32 (KM Atual: 120.096)</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12 (KM Atual: 0)</option><option value="4">KANGOO — BAA-6A34 (KM Atual: 0)</option><option value="5">ARGO — RVQ-0G22 (KM Atual: 0)</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84 (KM Atual: 0)</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83 (KM Atual: 12.293)</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10 (KM Atual: 0)</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36 (KM Atual: 0)</option><option value="10">TORO — SVS-8A24 (KM Atual: 0)</option><option value="11">UNO VIVACE — NWR-9J47 (KM Atual: 0)</option><option value="12">UNO WAY — LKY-9I36 (KM Atual: 0)</option><option value="13">ARGO — TEE-0547 (KM Atual: 42.732)</option><option value="14">STRADA — TDF-3E47 (KM Atual: 35.147)</option><option value="15">KWID — RMQ-1J45 (KM Atual: 0)</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82 (KM Atual: 8.770)</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05 (KM Atual: 0)</option><option value="18">SAVEIRO — SUF-8G01 (KM Atual: 12.293)</option><option value="19">HB20 — TYT-6A92 (KM Atual: 5.448)</option><option value="20">SPIN — SIF-3D08 (KM Atual: 82.786)</option><option value="21">YVUVJ — JJI-7890 (KM Atual: 38.686.860)</option></select>
             </div>
 
             <div class="field">
               <label for="regCondutor">Condutor *</label>
-              <select id="regCondutor" required="">
-                <option value="">Selecione o condutor...</option>
-              </select>
+              <select id="regCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select>
             </div>
 
             <div class="field">
@@ -1192,9 +1190,7 @@
         <div class="form-box">
           <div class="field" style="max-width:400px;">
             <label for="filtroVeiculoPasta">Selecione o Veículo para abrir a pasta:</label>
-            <select id="filtroVeiculoPasta" onchange="renderPastaSelecionada()">
-              <option value="">Selecione um veículo...</option>
-            </select>
+            <select id="filtroVeiculoPasta" onchange="renderPastaSelecionada()"><option value="">Selecione um veículo...</option><option value="0">DOBLO — RFQ-3B33</option><option value="1">MONTANA — SYE-8I88</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12</option><option value="4">KANGOO — BAA-6A34</option><option value="5">ARGO — RVQ-0G22</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36</option><option value="10">TORO — SVS-8A24</option><option value="11">UNO VIVACE — NWR-9J47</option><option value="12">UNO WAY — LKY-9I36</option><option value="13">ARGO — TEE-0547</option><option value="14">STRADA — TDF-3E47</option><option value="15">KWID — RMQ-1J45</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05</option><option value="18">SAVEIRO — SUF-8G01</option><option value="19">HB20 — TYT-6A92</option><option value="20">SPIN — SIF-3D08</option><option value="21">YVUVJ — JJI-7890</option></select>
           </div>
         </div>
 
@@ -1204,7 +1200,7 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao">
+      <section id="sincronizacao" hidden="">
         <div class="section-header">
           <div>
             <h2>GitHub &amp; Sincronização de Dados</h2>
@@ -1223,7 +1219,7 @@
               </p>
             </div>
             <div style="text-align:right;">
-              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()" disabled="">⏳ Enviando para o GitHub...</button>
+              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()">🚀 Subir Alterações para o GitHub Agora</button>
             </div>
           </div>
 
@@ -1286,16 +1282,16 @@
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
     <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Frota</a>
-    <a href="#registro" data-route="registro"><span class="icon">⊕</span>Registrar</a>
+    <a href="#registro" data-route="registro" class="active"><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
   </nav>
 
   <!-- MODAL DE CADASTRO / EDIÇÃO DE VEÍCULO -->
-  <div id="modalVeiculo" class="modal-overlay">
+  <div id="modalVeiculo" class="modal-overlay open">
     <div class="modal-window">
       <div class="modal-header">
-        <h3 id="modalVeiculoTitulo">Cadastrar Veículo</h3>
+        <h3 id="modalVeiculoTitulo">Cadastrar Novo Veículo</h3>
         <button class="modal-close" onclick="fecharModalVeiculo()">✕</button>
       </div>
       <div class="modal-body">
@@ -1322,9 +1318,7 @@
 
           <div class="field full-width">
             <label for="modalCondutor">Condutor Padrão *</label>
-            <select id="modalCondutor" required="">
-              <option value="">Selecione o condutor...</option>
-            </select>
+            <select id="modalCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select>
           </div>
 
           <div class="field">
@@ -1347,13 +1341,13 @@
   </div>
 
   <!-- CONTAINER DE TOASTS -->
-  <div id="toastContainer"></div>
+  <div id="toastContainer"><div class="toast success"><span>✅</span> <div>Veículo ITALO E LINDO (ABC-1234) cadastrado com sucesso!</div></div></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T13:44:02.024Z",
+  "exportadoEm": "2026-10-02T23:45:46.876Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -1553,6 +1547,13 @@
       "condutor": "FÁBIO",
       "kmAtual": 38686860,
       "kmRevisao": 606060
+    },
+    {
+      "modelo": "ITALO E LINDO",
+      "placa": "ABC-1234",
+      "condutor": "WELLINGTON",
+      "kmAtual": 1000,
+      "kmRevisao": 10000
     }
   ],
   "placasAlugados": [
@@ -1562,7 +1563,8 @@
     "TYZ-9G82",
     "TYT-6A92",
     "SIF-3D08",
-    "JJI-7890"
+    "JJI-7890",
+    "ABC-1234"
   ]
 }</script>
 
