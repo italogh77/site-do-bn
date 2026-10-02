@@ -6,7 +6,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { exec, execSync } = require('child_process');
+const { exec } = require('child_process');
 
 const PORT = process.env.PORT || 3000;
 const REPO_NAME = 'italogh77/site-do-bn';
@@ -59,11 +59,15 @@ function getGitEnv() {
 function runGit(command) {
   return new Promise((resolve, reject) => {
     const env = getGitEnv();
-    exec(command, { cwd: __dirname, env }, (err, stdout, stderr) => {
+    console.log(`[GIT EXEC] ${command}`);
+    exec(command, { cwd: __dirname, env, encoding: 'utf8', maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
       if (err) {
+        console.warn(`[GIT WARN/ERR] ${command} ->`, stderr || stdout || err.message);
         reject(new Error(stderr.trim() || stdout.trim() || err.message));
       } else {
-        resolve(stdout.trim());
+        const out = stdout.trim() || stderr.trim();
+        console.log(`[GIT OK] ${command} ->`, out ? out.slice(0, 120) : 'vazio');
+        resolve(out);
       }
     });
   });
@@ -74,15 +78,17 @@ function parseJsonBody(req) {
     let body = '';
     req.on('data', chunk => {
       body += chunk;
-      if (body.length > 10 * 1024 * 1024) { // Limite de 10MB
+      if (body.length > 10 * 1024 * 1024) {
         reject(new Error('Corpo da requisição muito grande'));
       }
     });
     req.on('end', () => {
+      if (!body || !body.trim()) return resolve({});
       try {
-        resolve(body ? JSON.parse(body) : {});
+        resolve(JSON.parse(body));
       } catch (e) {
-        reject(new Error('JSON inválido'));
+        console.warn('[JSON PARSE ERR]', e.message, 'BODY:', body.slice(0, 100));
+        resolve({});
       }
     });
     req.on('error', reject);
@@ -102,7 +108,6 @@ const MIME_TYPES = {
 };
 
 const server = http.createServer(async (req, res) => {
-  // CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -116,7 +121,7 @@ const server = http.createServer(async (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   const pathname = parsedUrl.pathname;
 
-  // Rotas de API
+  // Status
   if (pathname === '/api/status') {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
@@ -128,10 +133,11 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Status Git
   if (pathname === '/api/git-status') {
     try {
-      const statusOutput = await runGit('git status --porcelain');
-      const branchStatus = await runGit('git status -sb');
+      const statusOutput = await runGit('git status --porcelain').catch(() => '');
+      const branchStatus = await runGit('git status -sb').catch(() => '');
       const hasChanges = statusOutput.trim().length > 0;
       const ahead = branchStatus.includes('ahead');
       const behind = branchStatus.includes('behind');
@@ -152,6 +158,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Salvar no disco e opcionalmente subir para o Git
   if (pathname === '/api/salvar' && req.method === 'POST') {
     try {
       const data = await parseJsonBody(req);
@@ -169,9 +176,9 @@ const server = http.createServer(async (req, res) => {
       let pushResult = null;
       if (autoPush) {
         try {
-          await runGit('git add index.html controle_veiculos_prototipo_v5.html dados.json');
+          await runGit('git add -A');
           const hora = new Date().toLocaleString('pt-BR');
-          await runGit(`git commit -m "Atualizações salvas pelo site em ${hora}"`);
+          await runGit(`git commit -m "Atualizacoes salvas pelo site em ${hora}"`).catch(() => {});
           await runGit(`git push origin ${BRANCH_NAME}`);
           pushResult = 'Sincronizado com o GitHub!';
         } catch (gitErr) {
@@ -186,19 +193,21 @@ const server = http.createServer(async (req, res) => {
         pushResult
       }));
     } catch (e) {
+      console.error('[ERRO /api/salvar]', e);
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: e.message }));
     }
     return;
   }
 
+  // Push explícito para o GitHub
   if (pathname === '/api/git-push' && req.method === 'POST') {
     try {
       const data = await parseJsonBody(req);
-      const mensagem = data.message || `Atualizações realizadas no site em ${new Date().toLocaleString('pt-BR')}`;
+      const hora = new Date().toLocaleString('pt-BR');
+      const mensagem = data.message || `Atualizacoes realizadas no site em ${hora}`;
 
-      // Salva html/dados se enviados no payload
-      if (data.html) {
+      if (data.html && typeof data.html === 'string') {
         fs.writeFileSync(path.join(__dirname, 'index.html'), data.html, 'utf8');
         fs.writeFileSync(path.join(__dirname, 'controle_veiculos_prototipo_v5.html'), data.html, 'utf8');
       }
@@ -209,17 +218,11 @@ const server = http.createServer(async (req, res) => {
       // Adiciona arquivos modificados
       await runGit('git add -A');
 
-      // Verifica se há algo para commitar
-      const status = await runGit('git status --porcelain');
-      if (status) {
-        await runGit(`git commit -m "${mensagem.replace(/"/g, '\\"')}"`);
-      }
-
-      // Puxa eventuais alterações antes do push
-      try {
-        await runGit(`git pull --rebase origin ${BRANCH_NAME}`);
-      } catch (pullErr) {
-        // Ignora se não houver rebase limpo
+      // Commita se houver alterações
+      const status = await runGit('git status --porcelain').catch(() => '');
+      if (status && status.trim().length > 0) {
+        const limpaMsg = mensagem.replace(/["\\]/g, ' ');
+        await runGit(`git commit -m "${limpaMsg}"`);
       }
 
       // Envia para o repositório remoto
@@ -233,6 +236,7 @@ const server = http.createServer(async (req, res) => {
         details: pushOut
       }));
     } catch (e) {
+      console.error('[ERRO /api/git-push]', e);
       res.writeHead(500, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({
         success: false,
@@ -242,6 +246,7 @@ const server = http.createServer(async (req, res) => {
     return;
   }
 
+  // Pull do repositório
   if (pathname === '/api/git-pull' && req.method === 'POST') {
     try {
       const pullOut = await runGit(`git pull origin ${BRANCH_NAME}`);
@@ -264,7 +269,6 @@ const server = http.createServer(async (req, res) => {
   // Servir arquivos estáticos
   let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
 
-  // Se pedir controle_veiculos_prototipo_v5.html ou index.html
   if (!fs.existsSync(filePath)) {
     filePath = path.join(__dirname, 'index.html');
   }
