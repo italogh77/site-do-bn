@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#2c9520"><title>Controle de Veículos — Prévia v5</title><style>
+:root{--green:#2c9520;--ink:#202522;--muted:#737b76;--line:#e5eae5;--pale:#edf8e9;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#f6f8f5;font-synthesis:none}*{box-sizing:border-box}body{margin:0;font-size:14px;line-height:1.5}button,input,select{font:inherit}button,a,input,select{-webkit-tap-highlight-color:transparent}a{color:var(--green);text-decoration:none}button,.primary{border:1px solid var(--green);background:var(--green);color:white;padding:11px 17px;border-radius:9px;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px}button:hover,.primary:hover{filter:brightness(.94)}button:focus-visible,a:focus-visible{outline:3px solid #95c78a;outline-offset:3px}.secondary,button[onclick="limparFormulario()"]{background:white;border:1px solid var(--line);color:var(--ink)}h1,h2,h3,p{margin-top:0}h1{font-size:32px;letter-spacing:-1.1px;line-height:1.2;margin-bottom:10px}h2{font-size:18px;letter-spacing:-.4px;margin-bottom:18px}h3{font-size:16px}p{color:var(--muted)}aside{position:fixed;inset:0 auto 0 0;width:225px;background:white;border-right:1px solid var(--line);padding:32px 20px;display:flex;flex-direction:column;z-index:30}.brand{font-weight:850;line-height:1.05;font-size:23px;letter-spacing:-1px;color:var(--ink)}.brand strong{display:block;color:var(--green)}.navlabel{font-size:10px;color:var(--muted);letter-spacing:1.4px;margin:43px 12px 14px}nav{display:grid;gap:5px}nav a{display:flex;gap:13px;color:#525b54;padding:12px;border-radius:8px;font-size:13px;font-weight:500}nav a span{font-size:19px;line-height:20px;width:21px;text-align:center}nav a.active{background:var(--pale);color:#28701d;font-weight:650}.storage{margin-top:auto;padding:20px 10px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.storage b{color:#4e6651;font-weight:500}.dot{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:6px}.workspace{margin-left:225px;padding:30px 36px;max-width:1800px}.topbar{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:32px}.badge{border:1px solid var(--line);border-radius:30px;padding:4px 10px;background:white}.hero{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:24px}.hero p{margin:0}.hero .primary{white-space:nowrap}main{display:grid;grid-template-columns:minmax(0,1fr);gap:22px}section{min-width:0;background:white;border:1px solid var(--line);border-radius:14px;padding:24px}section[hidden]{display:none!important}#inicio{border:0;padding:0;background:transparent;grid-column:1/-1}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.stat{display:flex;gap:18px;align-items:center;background:white;border:1px solid var(--line);padding:22px;border-radius:13px}.stat-icon{background:var(--pale);color:var(--green);width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:24px}.stat strong{font-size:29px;line-height:1.1;display:block;letter-spacing:-1px}.stat small{display:block;color:var(--muted);margin-top:7px;font-size:12px}.section-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}.section-top h2{margin:0}.section-top a{font-size:12px;white-space:nowrap}table{width:100%;border-collapse:collapse;font-size:12px}th{color:#687069;background:#f6f8f6;text-align:left;font-weight:500;font-size:11px;padding:12px}td{padding:16px 12px;border-bottom:1px solid #edf0ed;text-align:left}tr:last-child td{border-bottom:0}tbody tr:hover{background:#fbfdf9}.table-wrap{overflow-x:auto;max-width:100%}.status-revisao{display:inline-block;border-radius:6px;padding:4px 7px;font-size:10px;white-space:nowrap;font-weight:600}.status-ok{background:#e9f7e3;color:#2d7a21}.status-atencao{background:#fff3d0;color:#846107}.status-vencida{background:#ffe6e6;color:#ad2828}.plate-tag{display:inline-block;padding:3px 7px;background:#f0f2f3;border-radius:5px;white-space:nowrap;font-size:11px;font-weight:500}.cadastro{border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:18px}.cadastro h3{margin-bottom:15px}form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}form .field{min-width:0}form .field:first-child,form .field:nth-child(2){grid-column:1/-1}label{display:block;margin-bottom:6px;font-size:12px;color:#4c554d}input,select{width:100%;min-width:0;max-width:100%;height:43px;border:1px solid #dce3db;border-radius:7px;background:white;padding:9px;color:var(--ink)}input:focus,select:focus{outline:2px solid #bbddb4;outline-offset:1px}input[type=file]{height:auto}.botoes{display:flex;gap:8px;flex-wrap:wrap;grid-column:1/-1}.botoes button{font-size:12px}form>button{grid-column:1/-1}#registro .cadastro{border:0;padding:0;margin:0}#registro h2{margin-bottom:20px}#registro p:empty{display:none}#registro p{margin:16px 0 0;font-size:12px;color:var(--green)}.acoes button,.acoes-revisao button{font-size:11px;padding:7px 10px;min-height:36px;margin:2px}.acoes-revisao{display:flex;flex-wrap:wrap;gap:5px}.btn-excluir-revisao{color:#a52c2c;background:#fff2f2;border-color:#f1d7d7}.btn-editar-revisao{background:#28332a;border-color:#28332a}.placa{display:inline-block;background:#f4f6f4;border:1px solid var(--line);border-radius:6px;padding:7px 10px;white-space:nowrap}.placa-pais{font-size:8px;color:var(--green);letter-spacing:2px}.placa-numero{font-size:17px;font-weight:700;letter-spacing:1px}.revisao-card{margin-top:18px;padding:20px;background:#f9fbf8;border-radius:12px}.review-summary{border-top:1px solid var(--line);margin-top:22px;padding-top:22px}.review-line{display:flex;justify-content:space-between;gap:15px;align-items:center}.review-line p{font-size:12px;margin:6px 0}.progress{height:6px;background:#e9ede8;border-radius:9px;overflow:hidden;margin-top:16px}.progress i{height:100%;background:var(--green);display:block;border-radius:9px}.overview-note{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px}.overview-note h2{margin-bottom:4px;font-size:16px}.overview-note p{margin:0;font-size:12px}.overview-note .botoes{flex-shrink:0}.mobile-head,.bottom-nav,.shade{display:none}footer{font-size:11px;color:#949b94;text-align:center;margin-top:30px}body[data-page=inicio] main{grid-template-columns:minmax(0,1fr) 330px}body[data-page=inicio] #registro{grid-column:2;grid-row:2}body[data-page=inicio] #overview{grid-column:1;grid-row:2}#mensagemCadastro,#mensagemEdicaoVeiculo,#mensagemSincronizacao{color:var(--green);margin-top:14px}#condutores table{margin-top:20px}#formCondutor{max-width:560px}.empty{padding:25px;text-align:center;color:var(--muted)}
+@media(min-width:1500px){.workspace{padding:35px 55px}body[data-page=inicio] main{grid-template-columns:minmax(0,1fr) 365px}}
+@media(max-width:1150px){aside{width:190px;padding:28px 12px}.workspace{margin-left:190px;padding:25px 22px}body[data-page=inicio] main{grid-template-columns:minmax(0,1fr)}body[data-page=inicio] #registro,body[data-page=inicio] #overview{grid-column:auto;grid-row:auto}.overview-note{flex-wrap:wrap}}
+@media(max-width:700px){body{font-size:13px}aside{width:255px;transform:translateX(-100%);transition:transform .2s}body.menu-open aside{transform:translateX(0)}body.menu-open .shade{display:block;position:fixed;inset:0;background:#17251966;z-index:29;border:0;border-radius:0}.workspace{margin:0;padding:0 18px 85px}.mobile-head{display:flex;align-items:center;justify-content:space-between;padding:22px 0 25px}.mobile-head .brand{font-size:19px}.menu-btn{background:white;color:var(--ink);border-color:var(--line);font-size:21px;padding:8px 13px}.topbar{display:none}h1{font-size:27px;letter-spacing:-.9px}.hero{display:block;margin-bottom:22px}.hero p{font-size:13px}.hero .primary{width:100%;margin-top:20px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat{padding:17px 12px;gap:10px}.stat-icon{width:34px;height:34px;font-size:20px;flex-shrink:0}.stat strong{font-size:25px}.stat small{font-size:10px}.stat:last-child{display:none}main{gap:16px}section{padding:18px;border-radius:12px}#overview{background:transparent;border:0;padding:4px 0}#overview table,#tabelaVeiculos{display:block}#overview thead,#tabelaVeiculos thead{display:none}#overview tbody,#tabelaVeiculos tbody{display:grid;gap:12px}#overview tr,#tabelaVeiculos tr{display:grid;grid-template-columns:1fr 1fr;background:white;border:1px solid var(--line);border-radius:12px;padding:15px;position:relative}#overview td,#tabelaVeiculos td{padding:5px 0;border:0;display:block;font-size:13px}#overview td:before,#tabelaVeiculos td:before{content:attr(data-label);display:block;color:var(--muted);font-size:10px;font-weight:400;margin-bottom:4px}#overview td:first-child,#tabelaVeiculos td:first-child{grid-column:1/-1;font-weight:700;padding-right:60px}#overview td:first-child:before,#overview td:nth-child(2):before,#tabelaVeiculos td:first-child:before,#tabelaVeiculos td:nth-child(2):before{display:none}#overview td:nth-child(2),#tabelaVeiculos td:nth-child(2){grid-column:1/-1}#overview td:nth-child(3),#tabelaVeiculos td:nth-child(3){grid-column:1/-1;font-size:11px;color:var(--muted);margin-bottom:8px}#overview td:nth-child(3):before,#tabelaVeiculos td:nth-child(3):before{display:inline;margin-right:6px}#overview td:last-child,#tabelaVeiculos td:last-child{position:absolute;right:12px;top:16px;padding:0}#overview td:last-child:before,#tabelaVeiculos td:last-child:before{display:none}.status-revisao{font-size:8px;padding:4px 5px}.review-summary{background:white;border:1px solid var(--line);padding:18px;border-radius:12px;margin-top:16px}.review-summary h3{font-size:14px}#veiculos{background:transparent;border:0;padding:0}.overview-note{padding:18px}.overview-note .botoes{width:100%}.overview-note .botoes button{flex:1}.bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;height:70px;padding:7px 8px max(7px,env(safe-area-inset-bottom));background:#fffffffa;border-top:1px solid var(--line);justify-content:space-around;z-index:20}.bottom-nav a,.bottom-nav button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;font-size:10px;color:#7a817b;background:transparent;border:0;padding:3px 12px;font-weight:500}.bottom-nav span{font-size:23px;height:28px}.bottom-nav .active{color:var(--green)}.cadastro{padding:16px}#revisoes .cadastro{overflow:hidden}table:not(#tabelaVeiculos){min-width:0}.table-wrap>table:not(#tabelaVeiculos){min-width:650px}#overview .table-wrap>table{min-width:0}.hero .primary{min-height:46px}footer{line-height:1.8}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="sincronizacao" class="">
+<button class="shade" aria-label="Fechar menu" onclick="closeMenu()"></button><aside id="menu"><a class="brand" href="#inicio">GRUPO<strong>SOLUTIONS</strong></a><div class="navlabel">GESTÃO DE FROTA</div><nav aria-label="Navegação principal"><a href="#inicio" data-route="inicio" class=""><span aria-hidden="true">⌂</span>Visão geral</a><a href="#veiculos" data-route="veiculos" class=""><span aria-hidden="true">▤</span>Veículos</a><a href="#registro" data-route="registro" class=""><span aria-hidden="true">↗</span>Saída e retorno</a><a href="#revisoes" data-route="revisoes"><span aria-hidden="true">◷</span>Revisões</a><a href="#historico" data-route="historico" class=""><span aria-hidden="true">↶</span>Histórico</a><a href="#condutores" data-route="condutores"><span aria-hidden="true">♙</span>Condutores</a><a href="#pastas" data-route="pastas"><span aria-hidden="true">▱</span>Pastas por veículo</a><a href="#sincronizacao" data-route="sincronizacao" class="active" aria-current="page"><span aria-hidden="true">⇅</span>Backup e dados</a></nav><div class="storage"><b><span class="dot"></span>Salvo neste aparelho</b><p>Use o backup para transferir seus dados entre aparelhos.</p></div></aside>
+<div class="workspace"><div class="mobile-head"><a class="brand" href="#inicio">GRUPO<strong>SOLUTIONS</strong></a><button class="menu-btn" aria-controls="menu" aria-expanded="false" aria-label="Abrir menu" onclick="toggleMenu()">☰</button></div><div class="topbar"><span>Frota / <span id="crumb">Backup e dados</span></span><span class="badge">Prévia interativa · v5</span></div><div id="avisoArquivo" role="status" aria-live="polite" style="padding: 10px 14px; margin-bottom: 20px; border: 1px solid var(--line); border-radius: 9px; background: white; font-size: 12px; color: rgb(51, 92, 42);">Arquivo não vinculado. Vincule este HTML para continuar salvando nele.</div><header class="hero"><div><h1 id="pageTitle">Backup e dados</h1><p id="pageSubtitle">Organização e controle da utilização dos veículos.</p></div><a class="primary" href="#registro">＋ Registrar utilização</a></header><main>
+<section id="inicio" hidden=""><div class="stats"><div class="stat"><span class="stat-icon" aria-hidden="true">▤</span><div><strong id="countVehicles">22</strong><small>Veículos cadastrados</small></div></div><div class="stat"><span class="stat-icon" aria-hidden="true">⚿</span><div><strong id="countRentals">7</strong><small>Veículos alugados</small></div></div><div class="stat"><span class="stat-icon" aria-hidden="true">↗</span><div><strong id="countTrips">2</strong><small>Utilizações registradas</small></div></div></div></section>
+<section id="overview" hidden=""><div class="section-top"><h2>Veículos cadastrados</h2><a href="#veiculos">Ver todos ↗</a></div><div class="table-wrap"><table><thead><tr><th>Veículo</th><th>Placa</th><th>Condutor</th><th>KM atual</th><th>Próxima revisão</th><th>Status</th></tr></thead><tbody id="overviewRows"><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa"><span class="plate-tag">TYZ-4G83</span></td><td data-label="Condutor">FÁBIO</td><td data-label="KM atual">12.293 km</td><td data-label="Próxima revisão">20.000 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">ARGO</td><td data-label="Placa"><span class="plate-tag">TEE-0547</span></td><td data-label="Condutor">WELLINGTON</td><td data-label="KM atual">42.732 km</td><td data-label="Próxima revisão">50.500 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">STRADA</td><td data-label="Placa"><span class="plate-tag">TDF-3E47</span></td><td data-label="Condutor">NORBERTO</td><td data-label="KM atual">35.147 km</td><td data-label="Próxima revisão">40.000 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa"><span class="plate-tag">TYZ-9G82</span></td><td data-label="Condutor">JOÃO VÍCTOR</td><td data-label="KM atual">8.770 km</td><td data-label="Próxima revisão">10.000 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">HB20</td><td data-label="Placa"><span class="plate-tag">TYT-6A92</span></td><td data-label="Condutor">JEAN</td><td data-label="KM atual">5.448 km</td><td data-label="Próxima revisão">10.000 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr></tbody></table></div><div class="review-summary" id="nextReview"><h3>Revisões dos alugados</h3><div class="review-line"><div><b>YVUVJ</b><p><span class="plate-tag">JJI-7890</span> · 38.686.860 / 606.060 km</p><p>Revisão vencida</p></div><a href="#revisoes">Ver revisão ↗</a></div><div class="progress"><i style="width:100%"></i></div></div></section>
+<section id="veiculos" hidden="">
+    <div class="section-top"><h2>Veículos cadastrados</h2><button type="button" onclick="abrirCadastroVeiculo()">＋ Cadastrar veículo</button></div>
+<details id="cadastroNovoVeiculo" class="cadastro" style="margin-bottom:24px" open=""><summary style="cursor:pointer;font-weight:600">Cadastrar veículo</summary>
+<p style="margin-top:12px">Adicione um veículo à frota. Se for alugado, ele também aparecerá no acompanhamento de revisões.</p>
+<form id="formNovoVeiculo">
+<div class="field"><label for="novoModeloVeiculo">Modelo</label><input id="novoModeloVeiculo" maxlength="80" placeholder="Ex.: Fiat Strada" required=""></div>
+<div class="field"><label for="novaPlacaVeiculo">Placa</label><input id="novaPlacaVeiculo" maxlength="8" placeholder="ABC-1D23 ou ABC-1234" style="text-transform:uppercase" autocomplete="off" required=""></div>
+<div class="field"><label for="novoCondutorVeiculo">Condutor padrão</label><select id="novoCondutorVeiculo" required=""><option value="">Selecione o condutor</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select><small style="color:var(--muted)">Falta um nome? <a href="#condutores">Cadastre o condutor</a>.</small></div>
+<div class="field"><label for="novoTipoVeiculo">Tipo de veículo</label><select id="novoTipoVeiculo" required=""><option value="proprio">Próprio</option><option value="alugado">Alugado</option></select></div>
+<div class="field"><label for="novoKmVeiculo">Quilometragem atual</label><input id="novoKmVeiculo" type="number" min="0" step="1" placeholder="Ex.: 35000" required=""></div>
+<div class="field"><label for="novaRevisaoVeiculo">KM da próxima revisão</label><input id="novaRevisaoVeiculo" type="number" min="0" step="1" placeholder="Ex.: 40000" required=""></div>
+<div class="botoes"><button type="submit">Salvar veículo</button><button type="button" class="secondary" onclick="cancelarCadastroVeiculo()">Cancelar</button></div>
+</form><p id="mensagemNovoVeiculo" role="status" aria-live="polite" style="margin: 14px 0px 0px; color: var(--green);">YVUVJ — JJI-7890 cadastrado com sucesso! Disponível também na área de revisões.</p></details>
+
+    <div class="table-wrap"><table id="tabelaVeiculos">
+        <thead>
+            <tr>
+                <th>Veículo</th>
+                <th>Placa</th>
+                <th>Condutor padrão</th>
+                <th>KM atual</th>
+                <th>Próxima revisão</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="listaVeiculos"><tr><td data-label="Veículo">DOBLO</td><td data-label="Placa">RFQ-3B33</td><td data-label="Condutor padrão">FERNANDO</td><td data-label="KM atual">15</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">MONTANA</td><td data-label="Placa">SYE-8I88</td><td data-label="Condutor padrão">GALPÃO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">SVI-3G32</td><td data-label="Condutor padrão">GALPÃO</td><td data-label="KM atual">120.096</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-vencida">REVISÃO VENCIDA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">SUB-3D12</td><td data-label="Condutor padrão">ALVINHO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">KANGOO</td><td data-label="Placa">BAA-6A34</td><td data-label="Condutor padrão">ADRIANO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">ARGO</td><td data-label="Placa">RVQ-0G22</td><td data-label="Condutor padrão">ADÉLIO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. SIMPLES</td><td data-label="Placa">QPC-2C84</td><td data-label="Condutor padrão">ADÉLIO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">TYZ-4G83</td><td data-label="Condutor padrão">FÁBIO</td><td data-label="KM atual">12.293</td><td data-label="Próxima revisão">20.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">LTY-6A10</td><td data-label="Condutor padrão">ELSON</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">EJL-1I36</td><td data-label="Condutor padrão">RAPHAEL</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">TORO</td><td data-label="Placa">SVS-8A24</td><td data-label="Condutor padrão">MARCO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">UNO VIVACE</td><td data-label="Placa">NWR-9J47</td><td data-label="Condutor padrão">THIAGO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">UNO WAY</td><td data-label="Placa">LKY-9I36</td><td data-label="Condutor padrão">HELITON</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">ARGO</td><td data-label="Placa">TEE-0547</td><td data-label="Condutor padrão">WELLINGTON</td><td data-label="KM atual">42.732</td><td data-label="Próxima revisão">50.500</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">STRADA</td><td data-label="Placa">TDF-3E47</td><td data-label="Condutor padrão">NORBERTO</td><td data-label="KM atual">35.147</td><td data-label="Próxima revisão">40.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">KWID</td><td data-label="Placa">RMQ-1J45</td><td data-label="Condutor padrão">NORBERTO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">TYZ-9G82</td><td data-label="Condutor padrão">JOÃO VÍCTOR</td><td data-label="KM atual">8.770</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO C. SIMPLES</td><td data-label="Placa">EOC-4J05</td><td data-label="Condutor padrão">ADÉLIO</td><td data-label="KM atual">0</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SAVEIRO</td><td data-label="Placa">SUF-8G01</td><td data-label="Condutor padrão">GALPÃO</td><td data-label="KM atual">12.293</td><td data-label="Próxima revisão">20.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">HB20</td><td data-label="Placa">TYT-6A92</td><td data-label="Condutor padrão">JEAN</td><td data-label="KM atual">5.448</td><td data-label="Próxima revisão">10.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">SPIN</td><td data-label="Placa">SIF-3D08</td><td data-label="Condutor padrão">JEAN</td><td data-label="KM atual">82.786</td><td data-label="Próxima revisão">90.000</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td></tr><tr><td data-label="Veículo">YVUVJ</td><td data-label="Placa">JJI-7890</td><td data-label="Condutor padrão">FÁBIO</td><td data-label="KM atual">38.686.860</td><td data-label="Próxima revisão">606.060</td><td data-label="Status"><span class="status-revisao status-vencida">REVISÃO VENCIDA</span></td></tr></tbody>
+    </table></div>
+</section>
+<section id="registro" hidden="">
+    <h2>Registrar Saída e Retorno</h2>
+
+    <div class="cadastro">
+
+        <form id="formRegistro">
+
+            <div class="field"><label for="veiculo">Veículo:</label>
+            <select id="veiculo" required=""><option value="">Selecione o veículo</option><option value="0">DOBLO - RFQ-3B33</option><option value="1">MONTANA - SYE-8I88</option><option value="2">SAVEIRO C. DUPLA - SVI-3G32</option><option value="3">SAVEIRO C. DUPLA - SUB-3D12</option><option value="4">KANGOO - BAA-6A34</option><option value="5">ARGO - RVQ-0G22</option><option value="6">SAVEIRO C. SIMPLES - QPC-2C84</option><option value="7">SAVEIRO C. DUPLA - TYZ-4G83</option><option value="8">SAVEIRO C. DUPLA - LTY-6A10</option><option value="9">SAVEIRO C. DUPLA - EJL-1I36</option><option value="10">TORO - SVS-8A24</option><option value="11">UNO VIVACE - NWR-9J47</option><option value="12">UNO WAY - LKY-9I36</option><option value="13">ARGO - TEE-0547</option><option value="14">STRADA - TDF-3E47</option><option value="15">KWID - RMQ-1J45</option><option value="16">SAVEIRO C. DUPLA - TYZ-9G82</option><option value="17">SAVEIRO C. SIMPLES - EOC-4J05</option><option value="18">SAVEIRO - SUF-8G01</option><option value="19">HB20 - TYT-6A92</option><option value="20">SPIN - SIF-3D08</option><option value="21">YVUVJ - JJI-7890</option></select></div>
+
+            
+
+            <div class="field"><label for="condutor">Condutor:</label>
+            <select id="condutor" required=""><option value="">Selecione o condutor</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select></div>
+
+            
+
+            <div class="field"><label for="data">Data:</label>
+            <input type="date" id="data" required=""></div>
+
+            
+
+            <div class="field"><label for="horaSaida">Horário de saída:</label>
+            <input type="time" id="horaSaida" required=""></div>
+
+            
+
+            <div class="field"><label for="horaRetorno">Horário de retorno:</label>
+            <input type="time" id="horaRetorno" required=""></div>
+
+            
+
+            <div class="field"><label for="kmSaida">KM de saída:</label>
+            <input type="number" id="kmSaida" min="0" required=""></div>
+
+            
+
+            <div class="field"><label for="kmChegada">KM de chegada:</label>
+            <input type="number" id="kmChegada" min="0" required=""></div>
+
+            
+
+            <div class="botoes">
+                <button type="submit">Registrar utilização</button>
+                <button type="button" onclick="limparFormulario()">Limpar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <p id="mensagem">Registro salvo com sucesso!</p>
+</section>
+<section id="pastas" hidden="">
+    <h2>Registros por veículo</h2>
+    <p>Selecione um veículo para abrir a pasta de registros. Cada veículo mantém seu histórico separado.</p>
+    <div class="cadastro">
+        <div class="field"><label for="filtroVeiculo">Pasta do veículo:</label>
+        <select id="filtroVeiculo" onchange="renderPastaVeiculo()"><option value="">Selecione o veículo</option><option value="0">DOBLO - RFQ-3B33</option><option value="1">MONTANA - SYE-8I88</option><option value="2">SAVEIRO C. DUPLA - SVI-3G32</option><option value="3">SAVEIRO C. DUPLA - SUB-3D12</option><option value="4">KANGOO - BAA-6A34</option><option value="5">ARGO - RVQ-0G22</option><option value="6">SAVEIRO C. SIMPLES - QPC-2C84</option><option value="7">SAVEIRO C. DUPLA - TYZ-4G83</option><option value="8">SAVEIRO C. DUPLA - LTY-6A10</option><option value="9">SAVEIRO C. DUPLA - EJL-1I36</option><option value="10">TORO - SVS-8A24</option><option value="11">UNO VIVACE - NWR-9J47</option><option value="12">UNO WAY - LKY-9I36</option><option value="13">ARGO - TEE-0547</option><option value="14">STRADA - TDF-3E47</option><option value="15">KWID - RMQ-1J45</option><option value="16">SAVEIRO C. DUPLA - TYZ-9G82</option><option value="17">SAVEIRO C. SIMPLES - EOC-4J05</option><option value="18">SAVEIRO - SUF-8G01</option><option value="19">HB20 - TYT-6A92</option><option value="20">SPIN - SIF-3D08</option><option value="21">YVUVJ - JJI-7890</option></select></div>
+        <div class="botoes">
+            <button type="button" onclick="abrirPastaSelecionada()">Abrir pasta</button>
+        </div>
+        <p id="statusPasta">Selecione um veículo para abrir a pasta.</p>
+        <div class="table-wrap"><table id="tabelaPasta">
+            <thead>
+                <tr>
+                    <th>Data</th><th>Condutor</th><th>Saída</th><th>Retorno</th>
+                    <th>KM saída</th><th>KM chegada</th><th>KM rodados</th>
+                </tr>
+            </thead>
+            <tbody id="pastaBody"></tbody>
+        </table></div>
+    </div>
+</section>
+<section id="sincronizacao">
+    <h2>Salvamento e sincronização</h2><div class="cadastro" style="margin:0 0 24px;border-color:#b8d9ad;background:#f7fcf4"><h3>Salvar automaticamente no mesmo HTML</h3><p>Toque em <b>Vincular este HTML</b>, selecione este arquivo no aparelho e autorize a gravação. Cada cadastro ou alteração salva no sistema também será gravada nele. Antes de enviar o arquivo para outro celular, aguarde <b>Arquivo atualizado</b>.</p><p>Ao reabrir, vincule novamente. Use uma aba por arquivo. O recurso depende do navegador e da forma de abertura do HTML; se não houver suporte, o aviso abaixo informará que o arquivo não está sendo atualizado.</p><div class="botoes"><button id="btnVincularArquivo" type="button" onclick="vincularArquivoAtual()">Vincular este HTML</button><button id="btnSalvarArquivo" type="button" class="secondary" onclick="salvarNoArquivoAgora()">Salvar agora</button><button type="button" class="secondary" onclick="desvincularArquivo()">Desvincular</button></div><p id="statusArquivo" role="status" aria-live="polite" style="margin: 16px 0px 0px; color: rgb(51, 92, 42);">Arquivo não vinculado. Vincule este HTML para continuar salvando nele.</p></div>
+    <p>Todos os cadastros ficam salvos neste navegador. Exporte um backup JSON completo ou baixe uma cópia do HTML com os dados atuais incorporados. Importar um backup completo substitui os dados da cópia aberta; backups antigos mesclam apenas registros e condutores.</p>
+    <div class="botoes">
+        <button type="button" onclick="exportarDados()">Exportar dados</button>
+        <button type="button" onclick="document.getElementById('arquivoImportacao').click()">Importar e sincronizar</button>
+        <button type="button" onclick="salvarBackupAutomatico()">Criar backup local</button>
+        <button type="button" onclick="restaurarBackupLocal()">Restaurar backup local</button>
+        <button type="button" onclick="baixarHtmlComDados()">Baixar HTML com dados</button>
+    </div>
+    <input type="file" id="arquivoImportacao" accept=".json,application/json" style="display:none" onchange="importarDados(event)">
+    <p id="mensagemSincronizacao">Não foi possível importar: arquivo de backup inválido.</p>
+</section>
+<section id="revisoes" hidden="">
+    <h2>Revisão dos carros alugados</h2>
+    <p>Somente os veículos alugados abaixo aparecem nesta área. O sistema compara o KM atual com o KM da próxima revisão e avisa quando estiver perto ou quando já estiver vencido.</p>
+
+    <div class="cadastro">
+        <h3>Veículo selecionado</h3>
+        <div class="field"><label for="filtroRevisao">Carro:</label>
+        <select id="filtroRevisao" onchange="renderRevisaoSelecionada()"><option value="">Selecione o veículo alugado</option><option value="7">SAVEIRO C. DUPLA - TYZ-4G83</option><option value="13">ARGO - TEE-0547</option><option value="14">STRADA - TDF-3E47</option><option value="16">SAVEIRO C. DUPLA - TYZ-9G82</option><option value="19">HB20 - TYT-6A92</option><option value="20">SPIN - SIF-3D08</option><option value="21">YVUVJ - JJI-7890</option></select></div>
+
+        <div id="painelRevisaoSelecionada"></div>
+    </div>
+
+    <div class="cadastro">
+        <h3>Carros alugados — acompanhamento de revisão</h3>
+        <div class="table-wrap"><table class="tabela-revisoes">
+            <thead>
+                <tr>
+                    <th>Placa</th>
+                    <th>Veículo</th>
+                    <th>KM atual</th>
+                    <th>Próxima revisão</th>
+                    <th>Falta</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="listaRevisoes"><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">TYZ-4G83</div></div></td><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="KM atual">12.293</td><td data-label="Próxima revisão">20.000</td><td data-label="Falta">7.707 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(7)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(7)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">TEE-0547</div></div></td><td data-label="Veículo">ARGO</td><td data-label="KM atual">42.732</td><td data-label="Próxima revisão">50.500</td><td data-label="Falta">7.768 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(13)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(13)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">TDF-3E47</div></div></td><td data-label="Veículo">STRADA</td><td data-label="KM atual">35.147</td><td data-label="Próxima revisão">40.000</td><td data-label="Falta">4.853 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(14)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(14)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">TYZ-9G82</div></div></td><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="KM atual">8.770</td><td data-label="Próxima revisão">10.000</td><td data-label="Falta">1.230 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(16)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(16)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">TYT-6A92</div></div></td><td data-label="Veículo">HB20</td><td data-label="KM atual">5.448</td><td data-label="Próxima revisão">10.000</td><td data-label="Falta">4.552 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(19)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(19)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">SIF-3D08</div></div></td><td data-label="Veículo">SPIN</td><td data-label="KM atual">82.786</td><td data-label="Próxima revisão">90.000</td><td data-label="Falta">7.214 km</td><td data-label="Status"><span class="status-revisao status-ok">EM DIA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(20)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(20)">Excluir</button></div></td></tr><tr style="cursor: pointer;"><td data-label="Placa"><div class="placa"><div class="placa-pais">BRASIL</div><div class="placa-numero">JJI-7890</div></div></td><td data-label="Veículo">YVUVJ</td><td data-label="KM atual">38.686.860</td><td data-label="Próxima revisão">606.060</td><td data-label="Falta">Vencida em 38.080.800 km</td><td data-label="Status"><span class="status-revisao status-vencida">REVISÃO VENCIDA</span></td><td data-label="Ações"><div class="acoes-revisao"><button type="button" class="btn-editar-revisao" onclick="editarVeiculoAlugado(21)">Editar</button><button type="button" class="btn-excluir-revisao" onclick="excluirVeiculoAlugado(21)">Excluir</button></div></td></tr></tbody>
+        </table></div>
+    </div>
+
+    <div class="cadastro">
+        <h3>Editar veículo / revisão</h3>
+        <p>Use o botão <b>Editar</b> da lista para alterar placa, modelo, KM atual ou KM da próxima revisão. O botão <b>Excluir</b> retira o veículo apenas da lista de alugados; o veículo e o histórico continuam no sistema.</p>
+        <form id="formEditarVeiculo">
+            <div class="field"><label for="editarVeiculo">Veículo:</label>
+            <select id="editarVeiculo" required=""><option value="">Selecione o veículo alugado</option><option value="7">SAVEIRO C. DUPLA - TYZ-4G83</option><option value="13">ARGO - TEE-0547</option><option value="14">STRADA - TDF-3E47</option><option value="16">SAVEIRO C. DUPLA - TYZ-9G82</option><option value="19">HB20 - TYT-6A92</option><option value="20">SPIN - SIF-3D08</option><option value="21">YVUVJ - JJI-7890</option></select></div>
+
+            <div class="field"><label for="editarModelo">Modelo:</label>
+            <input type="text" id="editarModelo" required=""></div>
+
+            <div class="field"><label for="editarPlaca">Placa:</label>
+            <input class="placa-editar" type="text" id="editarPlaca" maxlength="8" placeholder="ABC-1D23" required=""></div>
+
+            <div class="field"><label for="editarKmAtual">KM atual:</label>
+            <input type="number" id="editarKmAtual" min="0" required=""></div>
+
+            <div class="field"><label for="editarKmRevisao">KM da próxima revisão:</label>
+            <input type="number" id="editarKmRevisao" min="0" required=""></div>
+
+            <button type="submit">Salvar alterações</button>
+        </form>
+        <p id="mensagemEdicaoVeiculo"></p>
+    </div>
+</section>
+<section id="historico" hidden="">
+    <h2>Histórico de Utilização</h2>
+
+    <div class="table-wrap"><table id="tabelaHistorico">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Veículo</th>
+                <th>Placa</th>
+                <th>Condutor</th>
+                <th>Saída</th>
+                <th>Retorno</th>
+                <th>KM saída</th>
+                <th>KM chegada</th>
+                <th>KM rodados</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody id="historicoBody"><tr><td data-label="Data">02/10/2026</td><td data-label="Veículo">SAVEIRO C. DUPLA</td><td data-label="Placa">SVI-3G32</td><td data-label="Condutor">ELSON</td><td data-label="Saída">10:41</td><td data-label="Retorno">11:41</td><td data-label="KM saída">120088</td><td data-label="KM chegada">120096</td><td data-label="KM rodados">8 km</td><td class="acoes" data-label="Ações"><button onclick="editarRegistro(1790948522665)">Editar</button><button onclick="excluirRegistro(1790948522665)">Excluir</button></td></tr><tr><td data-label="Data">02/10/2026</td><td data-label="Veículo">DOBLO</td><td data-label="Placa">RFQ-3B33</td><td data-label="Condutor">FÁBIO</td><td data-label="Saída">03:52</td><td data-label="Retorno">10:52</td><td data-label="KM saída">9</td><td data-label="KM chegada">15</td><td data-label="KM rodados">6 km</td><td class="acoes" data-label="Ações"><button onclick="editarRegistro(1790945591889)">Editar</button><button onclick="excluirRegistro(1790945591889)">Excluir</button></td></tr></tbody>
+    </table></div>
+</section>
+<section id="condutores" hidden="">
+    <h2>Adicionar Condutor</h2>
+
+    <p>Cadastre novos condutores para aparecerem na opção de registro.</p>
+
+    <div class="cadastro">
+
+        <form id="formCondutor">
+
+            <div class="field"><label for="novoCondutor">Nome do condutor:</label>
+            <input type="text" id="novoCondutor" placeholder="Ex: João" required=""></div>
+
+            <br>
+
+            <button type="submit">Adicionar Condutor</button>
+
+        </form>
+
+    </div>
+
+    <p id="mensagemCadastro"></p>
+
+    <div class="table-wrap"><table>
+        <thead>
+            <tr>
+                <th>Condutor</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+
+        <tbody id="listaCondutores"><tr><td data-label="Condutor">ADÉLIO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('ADÉLIO')">Excluir</button></td></tr><tr><td data-label="Condutor">ADRIANO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('ADRIANO')">Excluir</button></td></tr><tr><td data-label="Condutor">ALVINHO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('ALVINHO')">Excluir</button></td></tr><tr><td data-label="Condutor">ELSON</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('ELSON')">Excluir</button></td></tr><tr><td data-label="Condutor">FÁBIO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('FÁBIO')">Excluir</button></td></tr><tr><td data-label="Condutor">FERNANDO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('FERNANDO')">Excluir</button></td></tr><tr><td data-label="Condutor">GALPÃO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('GALPÃO')">Excluir</button></td></tr><tr><td data-label="Condutor">HELITON</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('HELITON')">Excluir</button></td></tr><tr><td data-label="Condutor">JEAN</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('JEAN')">Excluir</button></td></tr><tr><td data-label="Condutor">JOÃO VÍCTOR</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('JOÃO VÍCTOR')">Excluir</button></td></tr><tr><td data-label="Condutor">MARCO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('MARCO')">Excluir</button></td></tr><tr><td data-label="Condutor">NORBERTO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('NORBERTO')">Excluir</button></td></tr><tr><td data-label="Condutor">RAPHAEL</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('RAPHAEL')">Excluir</button></td></tr><tr><td data-label="Condutor">THIAGO</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('THIAGO')">Excluir</button></td></tr><tr><td data-label="Condutor">WELLINGTON</td><td class="acoes" data-label="Ação"><button onclick="removerCondutor('WELLINGTON')">Excluir</button></td></tr></tbody>
+    </table></div>
+</section>
+<section id="overviewBackup" class="overview-note" hidden=""><div><h2>Backup e dados</h2><p>Exporte e importe seus registros entre aparelhos.</p></div><div class="botoes"><button class="secondary" onclick="exportarDados()">↧ Exportar dados</button><a href="#sincronizacao" class="primary">Gerenciar backups</a></div></section>
+</main><footer>GRUPO SOLUTIONS · Controle de Veículos<br>Prévia v5 — Dados armazenados neste navegador.</footer></div>
+<nav class="bottom-nav" aria-label="Navegação móvel"><a href="#inicio" data-route="inicio" class=""><span>⌂</span>Início</a><a href="#veiculos" data-route="veiculos" class=""><span>▤</span>Veículos</a><a href="#registro" data-route="registro" class=""><span>⊕</span>Registrar</a><button onclick="toggleMenu()" aria-label="Mais opções"><span>•••</span>Mais</button></nav><script id="dadosIncorporados" type="application/json">{"versao":2,"aplicativo":"Controle de Veículos","exportadoEm":"2026-10-02T13:44:02.024Z","condutores":["FERNANDO","GALPÃO","ALVINHO","ADRIANO","ADÉLIO","FÁBIO","ELSON","RAPHAEL","MARCO","THIAGO","HELITON","WELLINGTON","NORBERTO","JOÃO VÍCTOR","JEAN"],"registros":[{"id":1790945591889,"veiculo":"DOBLO","placa":"RFQ-3B33","veiculoIndex":0,"condutor":"FÁBIO","data":"2026-10-02","horaSaida":"03:52","horaRetorno":"10:52","kmSaida":9,"kmChegada":15,"kmRodados":6},{"id":1790948522665,"veiculo":"SAVEIRO C. DUPLA","placa":"SVI-3G32","veiculoIndex":2,"condutor":"ELSON","data":"2026-10-02","horaSaida":"10:41","horaRetorno":"11:41","kmSaida":120088,"kmChegada":120096,"kmRodados":8}],"veiculos":[{"modelo":"DOBLO","placa":"RFQ-3B33","condutor":"FERNANDO","kmAtual":15,"kmRevisao":10000},{"modelo":"MONTANA","placa":"SYE-8I88","condutor":"GALPÃO","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO C. DUPLA","placa":"SVI-3G32","condutor":"GALPÃO","kmAtual":120096,"kmRevisao":10000},{"modelo":"SAVEIRO C. DUPLA","placa":"SUB-3D12","condutor":"ALVINHO","kmAtual":0,"kmRevisao":10000},{"modelo":"KANGOO","placa":"BAA-6A34","condutor":"ADRIANO","kmAtual":0,"kmRevisao":10000},{"modelo":"ARGO","placa":"RVQ-0G22","condutor":"ADÉLIO","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO C. SIMPLES","placa":"QPC-2C84","condutor":"ADÉLIO","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO C. DUPLA","placa":"TYZ-4G83","condutor":"FÁBIO","kmAtual":12293,"kmRevisao":20000},{"modelo":"SAVEIRO C. DUPLA","placa":"LTY-6A10","condutor":"ELSON","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO C. DUPLA","placa":"EJL-1I36","condutor":"RAPHAEL","kmAtual":0,"kmRevisao":10000},{"modelo":"TORO","placa":"SVS-8A24","condutor":"MARCO","kmAtual":0,"kmRevisao":10000},{"modelo":"UNO VIVACE","placa":"NWR-9J47","condutor":"THIAGO","kmAtual":0,"kmRevisao":10000},{"modelo":"UNO WAY","placa":"LKY-9I36","condutor":"HELITON","kmAtual":0,"kmRevisao":10000},{"modelo":"ARGO","placa":"TEE-0547","condutor":"WELLINGTON","kmAtual":42732,"kmRevisao":50500},{"modelo":"STRADA","placa":"TDF-3E47","condutor":"NORBERTO","kmAtual":35147,"kmRevisao":40000},{"modelo":"KWID","placa":"RMQ-1J45","condutor":"NORBERTO","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO C. DUPLA","placa":"TYZ-9G82","condutor":"JOÃO VÍCTOR","kmAtual":8770,"kmRevisao":10000},{"modelo":"SAVEIRO C. SIMPLES","placa":"EOC-4J05","condutor":"ADÉLIO","kmAtual":0,"kmRevisao":10000},{"modelo":"SAVEIRO","placa":"SUF-8G01","condutor":"GALPÃO","kmAtual":12293,"kmRevisao":20000},{"modelo":"HB20","placa":"TYT-6A92","condutor":"JEAN","kmAtual":5448,"kmRevisao":10000},{"modelo":"SPIN","placa":"SIF-3D08","condutor":"JEAN","kmAtual":82786,"kmRevisao":90000},{"modelo":"YVUVJ","placa":"JJI-7890","condutor":"FÁBIO","kmAtual":38686860,"kmRevisao":606060}],"placasAlugados":["TYZ-4G83","TEE-0547","TDF-3E47","TYZ-9G82","TYT-6A92","SIF-3D08","JJI-7890"],"snapshotId":"854fe930-992c-40ea-8754-8b0ae70d6912"}</script><script>
+const dadosEmbutidos=JSON.parse(document.getElementById('dadosIncorporados').textContent||'null');
+const prefixoDados=dadosEmbutidos?.snapshotId ? 'frota-html-'+dadosEmbutidos.snapshotId+'-' : '';
+const appStorage={getItem(k){return window.localStorage.getItem(prefixoDados+k)},setItem(k,v){window.localStorage.setItem(prefixoDados+k,v)}};
+const arquivoMaisNovo=dadosEmbutidos && Date.parse(dadosEmbutidos.exportadoEm)>Date.parse(appStorage.getItem('ultimoSalvamentoVeiculos')||'1970-01-01');
+if(dadosEmbutidos && (appStorage.getItem('veiculosConfig')===null || arquivoMaisNovo)){
+ appStorage.setItem('condutoresVeiculos',JSON.stringify(dadosEmbutidos.condutores));
+ appStorage.setItem('historicoVeiculos',JSON.stringify(dadosEmbutidos.registros));
+ appStorage.setItem('veiculosAlugadosPlacas',JSON.stringify(dadosEmbutidos.placasAlugados));
+ appStorage.setItem('veiculosConfig',JSON.stringify(dadosEmbutidos.veiculos));
+ appStorage.setItem('ultimoSalvamentoVeiculos',dadosEmbutidos.exportadoEm);
+}
+</script><script>
+
+/* =========================
+   VEÍCULOS DA LISTA
+   ========================= */
+
+const veiculosPadrao = [
+    {modelo:"DOBLO", placa:"RFQ-3B33", condutor:"FERNANDO", kmAtual:0, kmRevisao:10000},
+    {modelo:"MONTANA", placa:"SYE-8I88", condutor:"GALPÃO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"SVI-3G32", condutor:"GALPÃO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"SUB-3D12", condutor:"ALVINHO", kmAtual:0, kmRevisao:10000},
+    {modelo:"KANGOO", placa:"BAA-6A34", condutor:"ADRIANO", kmAtual:0, kmRevisao:10000},
+    {modelo:"ARGO", placa:"RVQ-0G22", condutor:"ADÉLIO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. SIMPLES", placa:"QPC-2C84", condutor:"ADÉLIO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"TYZ-4G83", condutor:"FÁBIO", kmAtual:12293, kmRevisao:20000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"LTY-6A10", condutor:"ELSON", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"EJL-1I36", condutor:"RAPHAEL", kmAtual:0, kmRevisao:10000},
+    {modelo:"TORO", placa:"SVS-8A24", condutor:"MARCO", kmAtual:0, kmRevisao:10000},
+    {modelo:"UNO VIVACE", placa:"NWR-9J47", condutor:"THIAGO", kmAtual:0, kmRevisao:10000},
+    {modelo:"UNO WAY", placa:"LKY-9I36", condutor:"HELITON", kmAtual:0, kmRevisao:10000},
+    {modelo:"ARGO", placa:"TEE-0547", condutor:"WELLINGTON", kmAtual:42732, kmRevisao:50500},
+    {modelo:"STRADA", placa:"TDF-3E47", condutor:"NORBERTO", kmAtual:35147, kmRevisao:40000},
+    {modelo:"KWID", placa:"RMQ-1J45", condutor:"NORBERTO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO C. DUPLA", placa:"TYZ-9G82", condutor:"JOÃO VÍCTOR", kmAtual:8770, kmRevisao:10000},
+    {modelo:"SAVEIRO C. SIMPLES", placa:"EOC-4J05", condutor:"ADÉLIO", kmAtual:0, kmRevisao:10000},
+    {modelo:"SAVEIRO", placa:"SUF-8G01", condutor:"GALPÃO", kmAtual:12293, kmRevisao:20000},
+    {modelo:"HB20", placa:"TYT-6A92", condutor:"JEAN", kmAtual:5448, kmRevisao:10000},
+    {modelo:"SPIN", placa:"SIF-3D08", condutor:"JEAN", kmAtual:82786, kmRevisao:90000}
+];
+
+let veiculos = JSON.parse(appStorage.getItem("veiculosConfig")) || veiculosPadrao;
+
+/* =========================
+   CARROS ALUGADOS - REVISÃO
+   Somente estas placas aparecem
+   na área de revisão.
+   ========================= */
+const placasAlugadosPadrao = [
+    "TYZ-4G83", // Saveiro - 12.293 -> 20.000
+    "TEE-0547", // Argo - 42.732 -> 50.500
+    "TDF-3E47", // Strada - 35.147 -> 40.000
+    "TYZ-9G82", // Saveiro - 8.770 -> 10.000
+    "TYT-6A92", // HB20 - 5.448 -> 10.000
+    "SIF-3D08"  // Spin - 82.786 -> 90.000
+];
+
+let placasAlugados = JSON.parse(appStorage.getItem("veiculosAlugadosPlacas"));
+if(!Array.isArray(placasAlugados)){
+    placasAlugados = [...placasAlugadosPadrao];
+}
+placasAlugados = placasAlugados.map(p => String(p).trim().toUpperCase());
+
+veiculos = veiculos.map((v,i) => ({
+    ...v,
+    kmAtual: Number.isFinite(Number(v.kmAtual)) ? Number(v.kmAtual) : (veiculosPadrao[i]?.kmAtual || 0),
+    kmRevisao: Number.isFinite(Number(v.kmRevisao)) ? Number(v.kmRevisao) : (veiculosPadrao[i]?.kmRevisao || 10000)
+}));
+
+/* =========================
+   DADOS SALVOS
+   ========================= */
+
+const condutoresPadrao = [...new Set(veiculos.map(v => v.condutor))];
+
+let condutores =
+    JSON.parse(appStorage.getItem("condutoresVeiculos")) ||
+    condutoresPadrao;
+
+let registros =
+    JSON.parse(appStorage.getItem("historicoVeiculos")) ||
+    [];
+
+let editando = null;
+
+
+/* =========================
+   SALVAR
+   ========================= */
+
+function salvarDados(){
+
+    appStorage.setItem("veiculosConfig", JSON.stringify(veiculos));
+    appStorage.setItem("veiculosAlugadosPlacas", JSON.stringify(placasAlugados));
+
+    appStorage.setItem(
+        "condutoresVeiculos",
+        JSON.stringify(condutores)
+    );
+
+    appStorage.setItem(
+        "historicoVeiculos",
+        JSON.stringify(registros)
+    );
+
+    // Também mantém uma cópia organizada por veículo (pasta lógica).
+    const pastas = {};
+    veiculos.forEach((v,index)=>{
+        const chave = chaveVeiculo(index);
+        pastas[chave] = registros.filter(r => Number(r.veiculoIndex) === index);
+    });
+
+    appStorage.setItem("pastasVeiculos", JSON.stringify(pastas));
+    appStorage.setItem("ultimoSalvamentoVeiculos", new Date().toISOString());
+}
+
+
+/* =========================
+   VEÍCULOS
+   ========================= */
+
+function carregarVeiculos(){
+
+    const lista = document.getElementById("listaVeiculos");
+    const select = document.getElementById("veiculo");
+
+    lista.innerHTML = "";
+    select.innerHTML =
+        '<option value="">Selecione o veículo</option>';
+
+    veiculos.forEach((v,index)=>{
+
+        const linha = document.createElement("tr");
+
+        linha.innerHTML =
+            "<td>"+v.modelo+"</td>" +
+            "<td>"+v.placa+"</td>" +
+            "<td>"+v.condutor+"</td>" +
+            "<td>"+formatarKm(v.kmAtual)+"</td>" +
+            "<td>"+formatarKm(v.kmRevisao)+"</td>" +
+            "<td>"+statusRevisaoHtml(v)+"</td>";
+
+        lista.appendChild(linha);
+
+
+        const opcao = document.createElement("option");
+
+        opcao.value = index;
+
+        opcao.textContent =
+            v.modelo + " - " + v.placa;
+
+        select.appendChild(opcao);
+
+    });
+}
+
+
+/* =========================
+   CONDUTORES
+   ========================= */
+
+function carregarCondutores(){
+
+    const select =
+        document.getElementById("condutor");
+
+    select.innerHTML =
+        '<option value="">Selecione o condutor</option>';
+
+    [...condutores]
+        .sort((a,b)=>a.localeCompare(b,"pt-BR"))
+        .forEach(nome=>{
+
+            const opcao =
+                document.createElement("option");
+
+            opcao.value = nome;
+            opcao.textContent = nome;
+
+            select.appendChild(opcao);
+
+        });
+
+    renderCondutores();
+}
+
+
+function renderCondutores(){
+
+    const tabela =
+        document.getElementById("listaCondutores");
+
+    tabela.innerHTML = "";
+
+    [...condutores]
+        .sort((a,b)=>a.localeCompare(b,"pt-BR"))
+        .forEach(nome=>{
+
+            const linha =
+                document.createElement("tr");
+
+            linha.innerHTML =
+                "<td>"+nome+"</td>" +
+                '<td class="acoes">' +
+                '<button onclick="removerCondutor(\''+
+                nome.replace(/'/g,"\\'")+
+                '\')">Excluir</button>' +
+                "</td>";
+
+            tabela.appendChild(linha);
+
+        });
+}
+
+
+/* =========================
+   DATA ATUAL
+   ========================= */
+
+function colocarDataAtual(){
+
+    const hoje = new Date();
+
+    const data =
+        new Date(
+            hoje.getTime() -
+            hoje.getTimezoneOffset()*60000
+        )
+        .toISOString()
+        .split("T")[0];
+
+    document.getElementById("data").value = data;
+}
+
+
+/* =========================
+   REGISTRAR
+   ========================= */
+
+document
+.getElementById("formRegistro")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const indice =
+        document.getElementById("veiculo").value;
+
+    const v = veiculos[indice];
+
+    const kmSaida =
+        Number(document.getElementById("kmSaida").value);
+
+    const kmChegada =
+        Number(document.getElementById("kmChegada").value);
+
+    if(!v){
+
+        document.getElementById("mensagem").textContent =
+            "Selecione um veículo.";
+
+        return;
+    }
+
+    if(
+        document.getElementById("horaRetorno").value <
+        document.getElementById("horaSaida").value
+    ){
+
+        document.getElementById("mensagem").textContent =
+            "O horário de retorno não pode ser menor que o horário de saída.";
+
+        return;
+    }
+
+    if(kmChegada < kmSaida){
+
+        document.getElementById("mensagem").textContent =
+            "O KM de chegada não pode ser menor que o KM de saída.";
+
+        return;
+    }
+
+    const registro = {
+
+        id: editando || Date.now(),
+
+        veiculo: v.modelo,
+
+        placa: v.placa,
+
+        veiculoIndex: Number(indice),
+
+        condutor:
+            document.getElementById("condutor").value,
+
+        data:
+            document.getElementById("data").value,
+
+        horaSaida:
+            document.getElementById("horaSaida").value,
+
+        horaRetorno:
+            document.getElementById("horaRetorno").value,
+
+        kmSaida: kmSaida,
+
+        kmChegada: kmChegada,
+
+        kmRodados:
+            kmChegada - kmSaida
+    };
+
+
+    // O KM de chegada passa a ser o KM atual do veículo.
+    if(kmChegada > Number(veiculos[indice].kmAtual || 0)){
+        veiculos[indice].kmAtual = kmChegada;
+    }
+
+    if(editando){
+
+        registros =
+            registros.map(r =>
+                r.id === editando ? registro : r
+            );
+
+        editando = null;
+
+    }else{
+
+        registros.push(registro);
+
+    }
+
+
+    salvarDados();
+
+    limparFormulario();
+
+    renderHistorico();
+    renderPastaVeiculo();
+
+    document.getElementById("mensagem").textContent =
+        "Registro salvo com sucesso!";
+
+});
+
+
+/* =========================
+   HISTÓRICO
+   ========================= */
+
+function renderHistorico(){
+
+    const tabela =
+        document.getElementById("historicoBody");
+
+    tabela.innerHTML = "";
+
+    registros
+    .slice()
+    .sort((a,b)=>b.id-a.id)
+    .forEach(r=>{
+
+        const linha =
+            document.createElement("tr");
+
+        linha.innerHTML =
+
+            "<td>"+formatarData(r.data)+"</td>" +
+
+            "<td>"+r.veiculo+"</td>" +
+
+            "<td>"+r.placa+"</td>" +
+
+            "<td>"+r.condutor+"</td>" +
+
+            "<td>"+r.horaSaida+"</td>" +
+
+            "<td>"+r.horaRetorno+"</td>" +
+
+            "<td>"+r.kmSaida+"</td>" +
+
+            "<td>"+r.kmChegada+"</td>" +
+
+            "<td>"+r.kmRodados+" km</td>" +
+
+            '<td class="acoes">' +
+
+            '<button onclick="editarRegistro('+
+            r.id+
+            ')">Editar</button>' +
+
+            '<button onclick="excluirRegistro('+
+            r.id+
+            ')">Excluir</button>' +
+
+            "</td>";
+
+        tabela.appendChild(linha);
+
+    });
+
+
+    if(registros.length === 0){
+
+        tabela.innerHTML =
+            '<tr><td colspan="10">Nenhum registro realizado ainda.</td></tr>';
+
+    }
+}
+
+
+function formatarData(data){
+
+    if(!data) return "";
+
+    const partes = data.split("-");
+
+    return partes[2]+"/"+partes[1]+"/"+partes[0];
+}
+
+
+/* =========================
+   EDITAR
+   ========================= */
+
+function editarRegistro(id){
+
+    const r =
+        registros.find(x=>x.id === id);
+
+    if(!r) return;
+
+    document.getElementById("veiculo").value =
+        r.veiculoIndex;
+
+    document.getElementById("condutor").value =
+        r.condutor;
+
+    document.getElementById("data").value =
+        r.data;
+
+    document.getElementById("horaSaida").value =
+        r.horaSaida;
+
+    document.getElementById("horaRetorno").value =
+        r.horaRetorno;
+
+    document.getElementById("kmSaida").value =
+        r.kmSaida;
+
+    document.getElementById("kmChegada").value =
+        r.kmChegada;
+
+    editando = id;
+
+    document.getElementById("mensagem").textContent =
+        "Editando registro. Altere os dados e clique em registrar novamente.";
+
+    window.scrollTo({
+        top: document.getElementById("registro").offsetTop,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================
+   EXCLUIR
+   ========================= */
+
+function excluirRegistro(id){
+
+    if(!confirm("Deseja excluir este registro?"))
+        return;
+
+    registros =
+        registros.filter(r=>r.id !== id);
+
+    salvarDados();
+
+    renderHistorico();
+    renderPastaVeiculo();
+}
+
+
+/* =========================
+   LIMPAR
+   ========================= */
+
+function limparFormulario(){
+
+    document.getElementById("formRegistro").reset();
+
+    editando = null;
+
+    colocarDataAtual();
+}
+
+
+/* =========================
+   ADICIONAR CONDUTOR
+   ========================= */
+
+document
+.getElementById("formCondutor")
+.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const input =
+        document.getElementById("novoCondutor");
+
+    const nome =
+        input.value.trim().toUpperCase();
+
+    const mensagem =
+        document.getElementById("mensagemCadastro");
+
+    if(!nome){
+
+        mensagem.textContent =
+            "Digite o nome do condutor.";
+
+        return;
+    }
+
+    if(
+        condutores.some(
+            c=>c.toLowerCase() === nome.toLowerCase()
+        )
+    ){
+
+        mensagem.textContent =
+            "Este condutor já está cadastrado.";
+
+        return;
+    }
+
+    condutores.push(nome);
+
+    salvarDados();
+
+    carregarCondutores();
+
+    input.value = "";
+
+    mensagem.textContent =
+        "Condutor cadastrado com sucesso!";
+
+});
+
+
+/* =========================
+   REMOVER CONDUTOR
+   ========================= */
+
+function removerCondutor(nome){
+
+    if(
+        !confirm(
+            "Deseja excluir o condutor "+nome+"?"
+        )
+    ) return;
+
+    condutores =
+        condutores.filter(c=>c !== nome);
+
+    salvarDados();
+
+    carregarCondutores();
+
+}
+
+
+
+/* =========================
+   PASTAS POR VEÍCULO
+   ========================= */
+
+function chaveVeiculo(indice){
+    const v = veiculos[indice];
+    return v ? (v.placa + "_" + v.modelo).replace(/\s+/g,"_") : "";
+}
+
+function carregarPastasVeiculos(){
+    const select = document.getElementById("filtroVeiculo");
+    if(!select) return;
+
+    select.innerHTML = '<option value="">Selecione o veículo</option>';
+
+    veiculos.forEach((v,index)=>{
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = v.modelo + " - " + v.placa;
+        select.appendChild(option);
+    });
+}
+
+function renderPastaVeiculo(){
+    const select = document.getElementById("filtroVeiculo");
+    const body = document.getElementById("pastaBody");
+    const status = document.getElementById("statusPasta");
+
+    if(!select || !body || !status) return;
+
+    const indice = select.value;
+    body.innerHTML = "";
+
+    if(indice === ""){
+        status.textContent = "Selecione um veículo para abrir a pasta.";
+        return;
+    }
+
+    const v = veiculos[Number(indice)];
+    const registrosVeiculo = registros
+        .filter(r => Number(r.veiculoIndex) === Number(indice))
+        .slice()
+        .sort((a,b)=>b.id-a.id);
+
+    const s = dadosRevisao(v);
+    status.innerHTML =
+        "<div class='placa'><div class='placa-pais'>BRASIL</div><div class='placa-numero'>"+v.placa+"</div></div>" +
+        "<br><b>Pasta: " + v.modelo + " - " + v.placa + "</b>" +
+        " | " + registrosVeiculo.length + " registro(s)." +
+        "<br>KM atual: <b>"+formatarKm(v.kmAtual)+"</b> | Próxima revisão: <b>"+formatarKm(v.kmRevisao)+"</b> | " +
+        statusRevisaoHtml(v);
+
+    if(registrosVeiculo.length === 0){
+        body.innerHTML = '<tr><td colspan="7">Nenhum registro neste veículo.</td></tr>';
+        return;
+    }
+
+    registrosVeiculo.forEach(r=>{
+        const linha = document.createElement("tr");
+        linha.innerHTML =
+            "<td>"+formatarData(r.data)+"</td>" +
+            "<td>"+r.condutor+"</td>" +
+            "<td>"+r.horaSaida+"</td>" +
+            "<td>"+r.horaRetorno+"</td>" +
+            "<td>"+r.kmSaida+"</td>" +
+            "<td>"+r.kmChegada+"</td>" +
+            "<td>"+r.kmRodados+" km</td>";
+        body.appendChild(linha);
+    });
+}
+
+function abrirPastaSelecionada(){
+    const select = document.getElementById("filtroVeiculo");
+    if(!select.value){
+        alert("Selecione um veículo.");
+        return;
+    }
+    renderPastaVeiculo();
+    document.getElementById("pastas").scrollIntoView({behavior:"smooth"});
+}
+
+/* =========================
+   EXPORTAÇÃO / SINCRONIZAÇÃO
+   ========================= */
+
+function pacoteDeDados(){
+    return {
+        versao: 2,
+        aplicativo: "Controle de Veículos",
+        exportadoEm: new Date().toISOString(),
+        condutores: condutores,
+        registros: registros,
+        veiculos: veiculos,
+        placasAlugados: placasAlugados
+    };
+}
+
+function exportarDados(){
+    const dados = JSON.stringify(pacoteDeDados(), null, 2);
+    const blob = new Blob([dados], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+
+    a.href = url;
+    a.download = "backup-controle-veiculos-" +
+        new Date().toISOString().slice(0,10) + ".json";
+
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    document.getElementById("mensagemSincronizacao").textContent =
+        "Backup completo exportado: veículos, revisões, condutores e utilizações. Guarde o arquivo JSON ou importe-o em outro aparelho.";
+}
+
+function importarDados(event){
+    const arquivo = event.target.files[0];
+    if(!arquivo) return;
+
+    const leitor = new FileReader();
+
+    leitor.onload = function(e){
+        try{
+            const pacote = JSON.parse(e.target.result);
+            if(pacote.versao===2){
+                restaurarBackupCompleto(pacote);
+                event.target.value='';
+                return;
+            }
+
+            if(!pacote || !Array.isArray(pacote.registros) || !Array.isArray(pacote.condutores)){
+                throw new Error("Formato inválido");
+            }
+
+            // Mescla por ID para não duplicar registros já existentes.
+            const mapa = new Map(registros.map(r => [String(r.id), r]));
+
+            pacote.registros.forEach(r=>{
+                if(r && r.id != null){
+                    mapa.set(String(r.id), r);
+                }
+            });
+
+            registros = Array.from(mapa.values());
+
+            pacote.condutores.forEach(nome=>{
+                if(nome && !condutores.some(c => c.toLowerCase() === String(nome).toLowerCase())){
+                    condutores.push(nome);
+                }
+            });
+
+            salvarDados();
+            carregarCondutores();
+            renderHistorico();
+            carregarPastasVeiculos();
+            renderPastaVeiculo();
+
+            document.getElementById("mensagemSincronizacao").textContent =
+                "Sincronização concluída: registros e condutores foram mesclados sem apagar os dados locais.";
+        }catch(erro){
+            document.getElementById("mensagemSincronizacao").textContent =
+                "Não foi possível importar: arquivo de backup inválido.";
+        }
+
+        event.target.value = "";
+    };
+
+    leitor.readAsText(arquivo);
+}
+
+function salvarBackupAutomatico(){
+    salvarDados();
+
+    const dados = JSON.stringify(pacoteDeDados(), null, 2);
+    appStorage.setItem("backupVeiculosAutomatico", dados);
+
+    document.getElementById("mensagemSincronizacao").textContent =
+        "Backup local criado e dados salvos neste aparelho.";
+}
+
+
+/* =========================
+   REVISÕES / PLACAS
+   ========================= */
+
+function formatarKm(valor){
+    return Number(valor || 0).toLocaleString("pt-BR");
+}
+
+function dadosRevisao(v){
+    const atual = Number(v.kmAtual || 0);
+    const proxima = Number(v.kmRevisao || 0);
+    const falta = proxima - atual;
+
+    if(falta <= 0){
+        return {classe:"status-vencida", texto:"REVISÃO VENCIDA", falta:falta};
+    }
+    if(falta <= 1000){
+        return {classe:"status-atencao", texto:"PERTO DA REVISÃO", falta:falta};
+    }
+    return {classe:"status-ok", texto:"EM DIA", falta:falta};
+}
+
+function statusRevisaoHtml(v){
+    const s = dadosRevisao(v);
+    return '<span class="status-revisao '+s.classe+'">'+s.texto+'</span>';
+}
+
+function veiculosAlugados(){
+    return veiculos
+        .map((v,index)=>({v,index}))
+        .filter(item => placasAlugados.includes(String(item.v.placa).toUpperCase()));
+}
+
+function carregarSeletoresRevisao(){
+    const ids = ["filtroRevisao","editarVeiculo"];
+    ids.forEach(id=>{
+        const select = document.getElementById(id);
+        if(!select) return;
+
+        const valorAtual = select.value;
+        select.innerHTML = '<option value="">Selecione o veículo alugado</option>';
+
+        veiculosAlugados().forEach(({v,index})=>{
+            const op = document.createElement("option");
+            op.value = index;
+            op.textContent = v.modelo + " - " + v.placa;
+            select.appendChild(op);
+        });
+
+        if([...select.options].some(o=>o.value === valorAtual)){
+            select.value = valorAtual;
+        }
+    });
+}
+
+function renderListaRevisoes(){
+    const body = document.getElementById("listaRevisoes");
+    if(!body) return;
+    body.innerHTML = "";
+
+    const alugados = veiculosAlugados();
+
+    if(alugados.length === 0){
+        body.innerHTML =
+            '<tr><td colspan="7">Nenhum veículo alugado cadastrado para acompanhamento.</td></tr>';
+        return;
+    }
+
+    alugados.forEach(({v,index})=>{
+        const s = dadosRevisao(v);
+        const linha = document.createElement("tr");
+
+        linha.innerHTML =
+            "<td><div class='placa'><div class='placa-pais'>BRASIL</div><div class='placa-numero'>"+v.placa+"</div></div></td>" +
+            "<td>"+v.modelo+"</td>" +
+            "<td>"+formatarKm(v.kmAtual)+"</td>" +
+            "<td>"+formatarKm(v.kmRevisao)+"</td>" +
+            "<td>"+(s.falta <= 0 ? "Vencida em "+formatarKm(Math.abs(s.falta))+" km" : formatarKm(s.falta)+" km")+"</td>" +
+            "<td>"+statusRevisaoHtml(v)+"</td>" +
+            "<td><div class='acoes-revisao'>" +
+                "<button type='button' class='btn-editar-revisao' onclick='editarVeiculoAlugado("+index+")'>Editar</button>" +
+                "<button type='button' class='btn-excluir-revisao' onclick='excluirVeiculoAlugado("+index+")'>Excluir</button>" +
+            "</div></td>";
+
+        linha.style.cursor = "pointer";
+        linha.onclick = (evento)=>{
+            if(evento.target.closest("button")) return;
+            document.getElementById("filtroRevisao").value = String(index);
+            renderRevisaoSelecionada();
+        };
+
+        body.appendChild(linha);
+    });
+}
+
+function renderRevisaoSelecionada(){
+    const select = document.getElementById("filtroRevisao");
+    const painel = document.getElementById("painelRevisaoSelecionada");
+    if(!select || !painel) return;
+
+    if(select.value === ""){
+        painel.innerHTML = "";
+        return;
+    }
+
+    const index = Number(select.value);
+    const v = veiculos[index];
+    const s = dadosRevisao(v);
+
+    painel.innerHTML =
+        "<div class='revisao-card'>" +
+        "<div class='placa'><div class='placa-pais'>BRASIL</div><div class='placa-numero'>"+v.placa+"</div></div>" +
+        "<h3>"+v.modelo+"</h3>" +
+        "<p><b>KM atual:</b> "+formatarKm(v.kmAtual)+" km</p>" +
+        "<p><b>Próxima revisão:</b> "+formatarKm(v.kmRevisao)+" km</p>" +
+        "<p><b>Falta:</b> "+(s.falta <= 0 ? "revisão vencida" : formatarKm(s.falta)+" km")+"</p>" +
+        "<div>"+statusRevisaoHtml(v)+"</div>" +
+        "</div>";
+}
+
+function preencherEdicaoVeiculo(){
+    const select = document.getElementById("editarVeiculo");
+    if(!select || select.value === "") return;
+
+    const index = Number(select.value);
+    const v = veiculos[index];
+
+    if(!v || !placasAlugados.includes(String(v.placa).toUpperCase())) return;
+
+    document.getElementById("editarModelo").value = v.modelo;
+    document.getElementById("editarPlaca").value = v.placa;
+    document.getElementById("editarKmAtual").value = v.kmAtual;
+    document.getElementById("editarKmRevisao").value = v.kmRevisao;
+}
+
+document.getElementById("editarVeiculo").addEventListener("change", preencherEdicaoVeiculo);
+
+document.getElementById("formEditarVeiculo").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const index = Number(document.getElementById("editarVeiculo").value);
+    if(!Number.isInteger(index) || !veiculos[index]) return;
+
+    const placaAntiga = veiculos[index].placa;
+    const novaPlaca = document.getElementById("editarPlaca").value.trim().toUpperCase();
+    const novoModelo = document.getElementById("editarModelo").value.trim().toUpperCase();
+    const novoKmAtual = Number(document.getElementById("editarKmAtual").value);
+    const novoKmRevisao = Number(document.getElementById("editarKmRevisao").value);
+
+    if(!novaPlaca || !novoModelo || novoKmAtual < 0 || novoKmRevisao < 0){
+        document.getElementById("mensagemEdicaoVeiculo").textContent = "Preencha os dados corretamente.";
+        return;
+    }
+
+    const placaDuplicada = veiculos.some((v,i) =>
+        i !== index && String(v.placa).toUpperCase() === novaPlaca
+    );
+
+    if(placaDuplicada){
+        document.getElementById("mensagemEdicaoVeiculo").textContent = "Essa placa já está cadastrada em outro veículo.";
+        return;
+    }
+
+    veiculos[index].placa = novaPlaca;
+    veiculos[index].modelo = novoModelo;
+    veiculos[index].kmAtual = novoKmAtual;
+    veiculos[index].kmRevisao = novoKmRevisao;
+
+    placasAlugados = placasAlugados.map(p =>
+        String(p).toUpperCase() === String(placaAntiga).toUpperCase()
+            ? novaPlaca
+            : p
+    );
+
+    registros = registros.map(r=>{
+        if(Number(r.veiculoIndex) === index){
+            return {...r, veiculo: novoModelo, placa: novaPlaca};
+        }
+        return r;
+    });
+
+    salvarDados();
+    carregarVeiculos();
+    carregarPastasVeiculos();
+    carregarSeletoresRevisao();
+    renderListaRevisoes();
+    renderRevisaoSelecionada();
+    renderHistorico();
+    renderPastaVeiculo();
+
+    document.getElementById("mensagemEdicaoVeiculo").textContent =
+        "Veículo alugado, placa e revisão atualizados com sucesso!";
+});
+
+/* Ações de revisão */
+
+function editarVeiculoAlugado(index){
+    const v = veiculos[index];
+    if(!v || !placasAlugados.includes(String(v.placa).toUpperCase())) return;
+
+    const select = document.getElementById("editarVeiculo");
+    select.value = String(index);
+    preencherEdicaoVeiculo();
+
+    document.getElementById("mensagemEdicaoVeiculo").textContent =
+        "Edite os dados abaixo e clique em Salvar alterações.";
+
+    document.getElementById("formEditarVeiculo").scrollIntoView({
+        behavior:"smooth",
+        block:"center"
+    });
+}
+
+function excluirVeiculoAlugado(index){
+    const v = veiculos[index];
+    if(!v || !placasAlugados.includes(String(v.placa).toUpperCase())) return;
+
+    const confirmar = confirm(
+        "Deseja retirar o veículo "+v.modelo+" - "+v.placa+
+        " da lista de carros alugados para revisão?\n\n"+
+        "O veículo e o histórico de utilização NÃO serão apagados do sistema."
+    );
+
+    if(!confirmar) return;
+
+    placasAlugados = placasAlugados.filter(
+        p => String(p).toUpperCase() !== String(v.placa).toUpperCase()
+    );
+
+    salvarDados();
+    carregarSeletoresRevisao();
+    renderListaRevisoes();
+    document.getElementById("painelRevisaoSelecionada").innerHTML = "";
+    document.getElementById("mensagemEdicaoVeiculo").textContent =
+        "Veículo retirado da lista de carros alugados para revisão.";
+}
+
+/* =========================
+   INICIALIZAÇÃO
+   ========================= */
+
+carregarVeiculos();
+
+carregarCondutores();
+
+carregarPastasVeiculos();
+carregarSeletoresRevisao();
+renderListaRevisoes();
+
+colocarDataAtual();
+
+renderHistorico();
+
+renderPastaVeiculo();
+salvarDados();
+
+</script><script>
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function updateDashboard(){
+ document.getElementById('countVehicles').textContent=veiculos.length;
+ document.getElementById('countRentals').textContent=veiculosAlugados().length;
+ document.getElementById('countTrips').textContent=registros.length;
+ const list=veiculosAlugados().slice(0,5).map(x=>x.v);
+ document.getElementById('overviewRows').innerHTML=list.map(v=>`<tr><td data-label="Veículo">${esc(v.modelo)}</td><td data-label="Placa"><span class="plate-tag">${esc(v.placa)}</span></td><td data-label="Condutor">${esc(v.condutor)}</td><td data-label="KM atual">${formatarKm(v.kmAtual)} km</td><td data-label="Próxima revisão">${formatarKm(v.kmRevisao)} km</td><td>${statusRevisaoHtml(v)}</td></tr>`).join('');
+ const next=veiculosAlugados().sort((a,b)=>dadosRevisao(a.v).falta-dadosRevisao(b.v).falta)[0];
+ const box=document.getElementById('nextReview');
+ if(next){const v=next.v;const d=dadosRevisao(v);box.innerHTML=`<h3>Revisões dos alugados</h3><div class="review-line"><div><b>${esc(v.modelo)}</b><p><span class="plate-tag">${esc(v.placa)}</span> · ${formatarKm(v.kmAtual)} / ${formatarKm(v.kmRevisao)} km</p><p>${d.falta>0?'Faltam '+formatarKm(d.falta)+' km':'Revisão vencida'}</p></div><a href="#revisoes">Ver revisão ↗</a></div><div class="progress"><i style="width:${Math.max(0,Math.min(100,v.kmAtual/Math.max(v.kmRevisao,1)*100))}%"></i></div>`;}else box.textContent='Nenhum veículo alugado para acompanhar.';
+ document.querySelectorAll('table').forEach(t=>{const labels=Array.from(t.querySelectorAll('th')).map(x=>x.textContent);t.querySelectorAll('tbody tr').forEach(r=>Array.from(r.children).forEach((c,i)=>{if(!c.hasAttribute('colspan'))c.dataset.label=labels[i]||'';}));});
+}
+const titles={inicio:'Controle de Veículos',veiculos:'Veículos cadastrados',registro:'Saída e retorno',revisoes:'Revisões dos alugados',historico:'Histórico de utilização',condutores:'Condutores',pastas:'Pastas por veículo',sincronizacao:'Backup e dados'};
+function route(){let p=location.hash.slice(1)||'inicio';if(!titles[p])p='inicio';document.body.dataset.page=p;document.querySelectorAll('main>section').forEach(s=>s.hidden=!(s.id===p||(p==='inicio'&&['overview','registro','overviewBackup'].includes(s.id))));document.getElementById('pageTitle').textContent=titles[p];document.getElementById('crumb').textContent=titles[p];document.getElementById('pageSubtitle').textContent=p==='inicio'?'Sua frota organizada, do início ao retorno.':'Organização e controle da utilização dos veículos.';document.querySelectorAll('[data-route]').forEach(a=>{a.classList.toggle('active',a.dataset.route===p);if(a.dataset.route===p)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});closeMenu();updateDashboard();window.scrollTo(0,0);}
+function closeMenu(){document.body.classList.remove('menu-open');document.querySelectorAll('.menu-btn').forEach(x=>x.setAttribute('aria-expanded','false'));}
+function toggleMenu(){const open=document.body.classList.toggle('menu-open');document.querySelectorAll('.menu-btn').forEach(x=>x.setAttribute('aria-expanded',String(open)));}
+window.addEventListener('hashchange',route);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+const originalSave=salvarDados;salvarDados=function(){originalSave();updateDashboard();};
+const originalEdit=editarRegistro;editarRegistro=function(id){location.hash='registro';route();originalEdit(id);};
+// Refresh fleet and maintenance after recording a trip, without resetting selected fields.
+document.getElementById('formRegistro').addEventListener('submit',()=>{carregarVeiculos();renderListaRevisoes();renderRevisaoSelecionada();updateDashboard();});
+route();
+</script><script>
+function preencherCondutoresNovoVeiculo(){
+ const select=document.getElementById('novoCondutorVeiculo');
+ const atual=select.value;
+ select.replaceChildren(new Option('Selecione o condutor',''));
+ [...condutores].sort((a,b)=>a.localeCompare(b,'pt-BR')).forEach(nome=>select.add(new Option(nome,nome)));
+ if(condutores.includes(atual))select.value=atual;
+}
+function abrirCadastroVeiculo(){
+ const painel=document.getElementById('cadastroNovoVeiculo');painel.open=true;
+ preencherCondutoresNovoVeiculo();document.getElementById('novoModeloVeiculo').focus();
+ painel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function cancelarCadastroVeiculo(){
+ document.getElementById('formNovoVeiculo').reset();
+ document.getElementById('mensagemNovoVeiculo').textContent='';
+ document.getElementById('cadastroNovoVeiculo').open=false;
+}
+function validarNovoVeiculo(dados,lista,nomes){
+ const modelo=String(dados.modelo||'').trim().toUpperCase();
+ const compacta=String(dados.placa||'').replace(/[\s-]/g,'').toUpperCase();
+ if(!modelo||modelo.length>80||/[<>]/.test(modelo))throw new Error('Informe um modelo válido, sem os símbolos < ou >.');
+ if(!/^[A-Z]{3}[0-9][A-Z0-9][0-9]{2}$/.test(compacta))throw new Error('Informe uma placa brasileira válida: ABC-1234 ou ABC-1D23.');
+ if(lista.some(v=>String(v.placa).replace(/[\s-]/g,'').toUpperCase()===compacta))throw new Error('Esta placa já está cadastrada.');
+ if(!nomes.includes(dados.condutor))throw new Error('Selecione um condutor cadastrado.');
+ const kmAtual=Number(dados.kmAtual),kmRevisao=Number(dados.kmRevisao);
+ if(String(dados.kmAtual).trim()===''||String(dados.kmRevisao).trim()===''||!Number.isSafeInteger(kmAtual)||!Number.isSafeInteger(kmRevisao)||kmAtual<0||kmRevisao<0)throw new Error('Informe quilometragens inteiras, iguais ou maiores que zero.');
+ if(!['proprio','alugado'].includes(dados.tipo))throw new Error('Selecione próprio ou alugado.');
+ return {modelo,placa:compacta.slice(0,3)+'-'+compacta.slice(3),condutor:dados.condutor,kmAtual,kmRevisao};
+}
+document.getElementById('formNovoVeiculo').addEventListener('submit',function(event){
+ event.preventDefault();const msg=document.getElementById('mensagemNovoVeiculo');
+ try{
+  const campo=id=>document.getElementById(id).value;
+  const tipo=campo('novoTipoVeiculo');
+  const v=validarNovoVeiculo({modelo:campo('novoModeloVeiculo'),placa:campo('novaPlacaVeiculo'),condutor:campo('novoCondutorVeiculo'),tipo,kmAtual:campo('novoKmVeiculo'),kmRevisao:campo('novaRevisaoVeiculo')},veiculos,condutores);
+  veiculos.push(v);if(tipo==='alugado')placasAlugados.push(v.placa);
+  salvarDados();
+  const selecionado=document.getElementById('veiculo').value;
+  const pasta=document.getElementById('filtroVeiculo').value;
+  carregarVeiculos();document.getElementById('veiculo').value=selecionado;
+  carregarPastasVeiculos();document.getElementById('filtroVeiculo').value=pasta;
+  carregarSeletoresRevisao();renderListaRevisoes();renderPastaVeiculo();updateDashboard();
+  this.reset();msg.style.color='var(--green)';msg.textContent=v.modelo+' — '+v.placa+' cadastrado com sucesso!'+(tipo==='alugado'?' Disponível também na área de revisões.':' Disponível para registrar utilizações.');
+ }catch(erro){msg.style.color='#ad2828';msg.textContent=erro.message;}
+});
+const carregarCondutoresAntesCadastro=carregarCondutores;
+carregarCondutores=function(){carregarCondutoresAntesCadastro();preencherCondutoresNovoVeiculo();};
+preencherCondutoresNovoVeiculo();
+</script><script>
+function validarBackupCompleto(p){
+ if(!p || p.versao!==2 || !Array.isArray(p.veiculos) || !Array.isArray(p.placasAlugados) || !Array.isArray(p.condutores) || !Array.isArray(p.registros))throw new Error('Formato de backup completo inválido.');
+ const texto=x=>typeof x==='string'&&x.trim().length>0&&!/[<>]/.test(x);
+ const km=x=>typeof x==='number'&&Number.isFinite(x)&&x>=0;
+ if(!p.veiculos.every(v=>v&&texto(v.modelo)&&texto(v.placa)&&texto(v.condutor)&&km(v.kmAtual)&&km(v.kmRevisao)))throw new Error('Há dados de veículos inválidos no backup.');
+ const placas=p.veiculos.map(v=>v.placa.replace(/[\s-]/g,'').toUpperCase());
+ if(new Set(placas).size!==placas.length)throw new Error('O backup contém placas duplicadas.');
+ if(!p.condutores.every(texto)||!p.placasAlugados.every(a=>texto(a)&&p.veiculos.some(v=>v.placa.toUpperCase()===a.toUpperCase())))throw new Error('Condutores ou lista de alugados inválidos.');
+ const ids=new Set();
+ for(const r of p.registros){
+  if(!r||!Number.isSafeInteger(r.id)||ids.has(r.id)||!Number.isInteger(r.veiculoIndex)||!p.veiculos[r.veiculoIndex]||!texto(r.veiculo)||!texto(r.placa)||!texto(r.condutor)||typeof r.data!=='string'||!/^\d{4}-\d{2}-\d{2}$/.test(r.data)||typeof r.horaSaida!=='string'||!/^\d{2}:\d{2}$/.test(r.horaSaida)||typeof r.horaRetorno!=='string'||!/^\d{2}:\d{2}$/.test(r.horaRetorno)||!km(r.kmSaida)||!km(r.kmChegada)||r.kmChegada<r.kmSaida||!km(r.kmRodados))throw new Error('Há registros inválidos no backup.');
+  ids.add(r.id);
+ }
+ return p;
+}
+function restaurarBackupCompleto(p){
+ validarBackupCompleto(p);
+ if(!confirm('Restaurar este backup completo? Os veículos, revisões, condutores e utilizações desta cópia serão substituídos pelos dados do arquivo. Exporte os dados atuais antes se quiser conservá-los.'))return false;
+ veiculos=p.veiculos;placasAlugados=p.placasAlugados;condutores=p.condutores;registros=p.registros;editando=null;
+ salvarDados();carregarVeiculos();carregarCondutores();carregarPastasVeiculos();carregarSeletoresRevisao();renderListaRevisoes();renderHistorico();
+ document.getElementById('filtroRevisao').value='';document.getElementById('editarVeiculo').value='';
+ document.getElementById('formEditarVeiculo').reset();renderRevisaoSelecionada();renderPastaVeiculo();limparFormulario();updateDashboard();
+ document.getElementById('mensagemSincronizacao').textContent='Backup completo restaurado com sucesso: veículos, revisões, condutores e utilizações.';
+ return true;
+}
+function restaurarBackupLocal(){
+ try{
+  const conteudo=appStorage.getItem('backupVeiculosAutomatico');
+  if(!conteudo)throw new Error('Ainda não há backup local. Use Criar backup local primeiro.');
+  const pacote=JSON.parse(conteudo);
+  if(pacote.versao!==2)throw new Error('Este backup local é antigo e incompleto. Crie um novo backup completo.');
+  restaurarBackupCompleto(pacote);
+ }catch(e){document.getElementById('mensagemSincronizacao').textContent=e.message;}
+}
+function baixarHtmlComDados(){
+ const pacote=pacoteDeDados();
+ pacote.snapshotId=globalThis.crypto?.randomUUID?.() || Date.now()+'-'+Math.random().toString(36).slice(2);
+ const copia=document.documentElement.cloneNode(true);
+ copia.querySelector('#dadosIncorporados').textContent=JSON.stringify(pacote).replace(/</g,'\\u003c');
+ // Do not carry unsaved form edits into the downloaded copy.
+ copia.querySelectorAll('input:not([type=file])').forEach(el=>el.removeAttribute('value'));
+ copia.querySelectorAll('option').forEach(el=>el.removeAttribute('selected'));
+ copia.querySelector('body').classList.remove('menu-open');
+ copia.querySelector('#mensagemSincronizacao').textContent='';
+ const blob=new Blob(['<!DOCTYPE html>\n'+copia.outerHTML],{type:'text/html;charset=utf-8'});
+ const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;
+ a.download='controle-veiculos-com-dados-'+new Date().toISOString().slice(0,10)+'.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ document.getElementById('mensagemSincronizacao').textContent='HTML baixado com todos os dados atuais. Abra essa cópia em outro aparelho. Alterações futuras exigem baixar uma nova cópia.';
+}
+</script><script>
+let arquivoVinculado=null;
+let arquivoPendente=false;
+let gravacaoArquivo=null;
+let vinculandoArquivo=false;
+let identidadeArquivo=null;
+function avisoDoArquivo(texto,erro=false){
+ for(const id of ['statusArquivo','avisoArquivo']){
+  const el=document.getElementById(id);el.textContent=texto;el.style.color=erro?'#a32c22':'#335c2a';
+ }
+}
+function gerarHtmlParaArquivo(snapshotId){
+ const pacote=pacoteDeDados();pacote.snapshotId=snapshotId;
+ const copia=document.documentElement.cloneNode(true);
+ copia.querySelector('#dadosIncorporados').textContent=JSON.stringify(pacote).replace(/</g,'\\u003c');
+ copia.querySelectorAll('input:not([type=file])').forEach(el=>el.removeAttribute('value'));
+ copia.querySelectorAll('option').forEach(el=>el.removeAttribute('selected'));
+ copia.querySelector('body').classList.remove('menu-open');
+ for(const id of ['statusArquivo','avisoArquivo'])copia.querySelector('#'+id).textContent='Arquivo não vinculado. Vincule este HTML para continuar salvando nele.';
+ copia.querySelector('#btnVincularArquivo').removeAttribute('disabled');
+ return '<!DOCTYPE html>\n'+copia.outerHTML;
+}
+async function gravarMudancasNoArquivo(){
+ if(gravacaoArquivo)return gravacaoArquivo;
+ gravacaoArquivo=(async()=>{
+  try{
+   while(arquivoPendente && arquivoVinculado){
+    arquivoPendente=false;
+    const alvo=arquivoVinculado;
+    avisoDoArquivo('Salvando em '+alvo.name+'… Aguarde antes de fechar ou enviar.');
+    const conteudo=gerarHtmlParaArquivo(identidadeArquivo);
+    let escrita;
+    try{
+     escrita=await alvo.createWritable();
+     await escrita.write(conteudo);
+     await escrita.close();
+    }catch(e){if(escrita)try{await escrita.abort()}catch(_){}throw e;}
+    if(!arquivoPendente)avisoDoArquivo('Arquivo atualizado: '+alvo.name+' · '+new Date().toLocaleTimeString('pt-BR')+'. Pode enviar este mesmo arquivo.');
+   }
+  }catch(e){
+   arquivoPendente=true;
+   avisoDoArquivo('Não foi possível atualizar o HTML. Os dados continuam no navegador. Autorize novamente ou toque em Salvar agora antes de enviar o arquivo.',true);
+  }finally{gravacaoArquivo=null;}
+ })();
+ return gravacaoArquivo;
+}
+function agendarGravacaoArquivo(){
+ if(!arquivoVinculado)return;
+ arquivoPendente=true;return gravarMudancasNoArquivo();
+}
+async function vincularArquivoAtual(){
+ if(vinculandoArquivo)return;
+ if(!window.isSecureContext || !('showOpenFilePicker' in window)){
+  avisoDoArquivo('Este navegador ou esta forma de abrir o HTML não permite gravar no mesmo arquivo. Tente abrir no Chrome atualizado. Aqui, o arquivo NÃO está sendo atualizado.',true);return;
+ }
+ vinculandoArquivo=true;document.getElementById('btnVincularArquivo').disabled=true;
+ try{
+  const [handle]=await window.showOpenFilePicker({multiple:false,types:[{description:'Controle de veículos (HTML)',accept:{'text/html':['.html','.htm']}}]});
+  const texto=await (await handle.getFile()).text();
+  const doc=new DOMParser().parseFromString(texto,'text/html');
+  if(!doc.querySelector('#dadosIncorporados')||!doc.querySelector('#listaVeiculos')||!doc.querySelector('#formRegistro'))throw new Error('Selecione um HTML deste sistema (versão 4 ou posterior).');
+  if(!confirm('Vincular '+handle.name+'? O conteúdo desse arquivo será atualizado com o sistema e TODOS os dados exibidos nesta tela. Confirme que escolheu o arquivo que deseja usar.'))return;
+  if(handle.requestPermission && await handle.requestPermission({mode:'readwrite'})!=='granted')throw new Error('Permissão de gravação não concedida.');
+  if(gravacaoArquivo)await gravacaoArquivo;
+  arquivoVinculado=handle;
+  identidadeArquivo=dadosEmbutidos?.snapshotId || appStorage.getItem('arquivoSnapshotId') || globalThis.crypto?.randomUUID?.() || Date.now()+'-'+Math.random().toString(36).slice(2);
+  appStorage.setItem('arquivoSnapshotId',identidadeArquivo);
+  await agendarGravacaoArquivo();
+ }catch(e){
+  if(e.name!=='AbortError')avisoDoArquivo(e.message+' O arquivo selecionado não foi vinculado.',true);
+ }finally{vinculandoArquivo=false;document.getElementById('btnVincularArquivo').disabled=false;}
+}
+async function salvarNoArquivoAgora(){
+ if(!arquivoVinculado){await vincularArquivoAtual();return;}
+ try{
+  if(arquivoVinculado.requestPermission && await arquivoVinculado.requestPermission({mode:'readwrite'})!=='granted')throw new Error('Autorize a gravação para atualizar o arquivo.');
+  await agendarGravacaoArquivo();
+ }catch(e){avisoDoArquivo(e.message,true);}
+}
+async function desvincularArquivo(){
+ if(gravacaoArquivo)await gravacaoArquivo;
+ if(arquivoPendente && !confirm('Há alterações que ainda não foram gravadas no HTML. Desvincular mesmo assim? Elas continuarão no navegador.'))return;
+ arquivoVinculado=null;arquivoPendente=false;
+ avisoDoArquivo('Arquivo desvinculado. Novas alterações serão salvas somente no navegador.');
+}
+const salvarDadosAntesArquivo=salvarDados;
+salvarDados=function(){salvarDadosAntesArquivo();agendarGravacaoArquivo();};
+window.addEventListener('beforeunload',event=>{
+ if(arquivoVinculado && (arquivoPendente||gravacaoArquivo)){event.preventDefault();event.returnValue='';}
+});
+avisoDoArquivo('Arquivo não vinculado. Em Backup e dados, toque em Vincular este HTML para salvar nele.');
+</script></body></html>
