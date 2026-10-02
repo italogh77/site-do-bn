@@ -666,7 +666,7 @@
     }
   </style>
 </head>
-<body data-page="sincronizacao">
+<body data-page="historico">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -679,13 +679,13 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico"><span class="icon">↶</span>Histórico completo</a>
-      <a href="#condutores" data-route="condutores"><span class="icon">♙</span>Condutores</a>
+      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
+      <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -708,7 +708,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
+        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
       </div>
       <div class="topbar-right">
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
@@ -722,8 +722,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">GitHub &amp; Backup</h1>
-        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
+        <h1 id="pageTitle">Histórico Completo</h1>
+        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -1487,7 +1487,7 @@
           <form id="formRegistro" class="grid-form">
             <div class="field">
               <label for="regVeiculo">Veículo *</label>
-              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()"><option value="">Selecione o veículo...</option><option value="0">DOBLO — RFQ-3B33 (KM Atual: 15)</option><option value="1">MONTANA — SYE-8I88 (KM Atual: 0)</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32 (KM Atual: 120.096)</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12 (KM Atual: 0)</option><option value="4">KANGOO — BAA-6A34 (KM Atual: 0)</option><option value="5">ARGO — RVQ-0G22 (KM Atual: 0)</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84 (KM Atual: 0)</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83 (KM Atual: 12.293)</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10 (KM Atual: 0)</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36 (KM Atual: 0)</option><option value="10">TORO — SVS-8A24 (KM Atual: 0)</option><option value="11">UNO VIVACE — NWR-9J47 (KM Atual: 0)</option><option value="12">UNO WAY — LKY-9I36 (KM Atual: 0)</option><option value="13">ARGO — TEE-0547 (KM Atual: 42.732)</option><option value="14">STRADA — TDF-3E47 (KM Atual: 35.147)</option><option value="15">KWID — RMQ-1J45 (KM Atual: 0)</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82 (KM Atual: 8.770)</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05 (KM Atual: 0)</option><option value="18">SAVEIRO — SUF-8G01 (KM Atual: 12.293)</option><option value="19">HB20 — TYT-6A92 (KM Atual: 5.448)</option><option value="20">SPIN — SIF-3D08 (KM Atual: 82.786)</option><option value="21">YVUVJ — JJI-7890 (KM Atual: 38.686.860)</option></select>
+              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()"><option value="">Selecione o veículo...</option><option value="0">DOBLO — RFQ-3B33 (KM Atual: 15)</option><option value="1">MONTANA — SYE-8I88 (KM Atual: 0)</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32 (KM Atual: 120.096)</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12 (KM Atual: 0)</option><option value="4">KANGOO — BAA-6A34 (KM Atual: 0)</option><option value="5">ARGO — RVQ-0G22 (KM Atual: 0)</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84 (KM Atual: 0)</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83 (KM Atual: 12.293)</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10 (KM Atual: 0)</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36 (KM Atual: 0)</option><option value="10">TORO — SVS-8A24 (KM Atual: 0)</option><option value="11">UNO VIVACE — NWR-9J47 (KM Atual: 0)</option><option value="12">UNO WAY — LKY-9I36 (KM Atual: 0)</option><option value="13">ARGO — TEE-0547 (KM Atual: 42.732)</option><option value="14">STRADA — TDF-3E47 (KM Atual: 35.147)</option><option value="15">KWID — RMQ-1J45 (KM Atual: 0)</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82 (KM Atual: 8.770)</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05 (KM Atual: 0)</option><option value="18">SAVEIRO — SUF-8G01 (KM Atual: 12.293)</option><option value="19">HB20 — TYT-6A92 (KM Atual: 5.448)</option><option value="20">SPIN — SIF-3D08 (KM Atual: 82.786)</option><option value="21">YVUVJ — JJI-7890 (KM Atual: 38.686.860)</option><option value="22">ITALO E LINDO — ABC-1234 (KM Atual: 1.000)</option></select>
             </div>
 
             <div class="field">
@@ -1523,8 +1523,8 @@
             </div>
 
             <!-- Calculadora visual -->
-            <div class="full-width" id="boxCalculoKm" style="display:none;background:#f0f8ee;border:1px solid #c7e6c1;padding:12px 16px;border-radius:8px;">
-              <span id="textoCalculoKm" style="font-weight:600;color:var(--green-dark);"></span>
+            <div class="full-width" id="boxCalculoKm" style="display: none; background: rgb(240, 248, 238); border: 1px solid rgb(199, 230, 193); padding: 12px 16px; border-radius: 8px;">
+              <span id="textoCalculoKm" style="font-weight:600;color:var(--green-dark);">Distância calculada: <b>6 km rodados</b> nesta utilização.</span>
             </div>
 
             <div class="form-actions">
@@ -1576,7 +1576,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico" hidden="">
+      <section id="historico">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1615,7 +1615,43 @@
                 <th style="text-align:right">Ações</th>
               </tr>
             </thead>
-            <tbody id="listaHistoricoTabela"></tbody>
+            <tbody id="listaHistoricoTabela">
+        <tr>
+          <td><strong>02/10/2026</strong></td>
+          <td>SAVEIRO C. DUPLA</td>
+          <td><span class="plate-tag">SVI-3G32</span></td>
+          <td>ELSON</td>
+          <td>10:41</td>
+          <td>11:41</td>
+          <td>120.088</td>
+          <td>120.096</td>
+          <td><strong style="color:var(--green-dark)">+8 km</strong></td>
+          <td style="text-align:right">
+            <div class="acoes" style="justify-content:flex-end;">
+              <button class="btn-sm secondary" onclick="editarRegistroViagem(1790948522665)">✏️</button>
+              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1790948522665)">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      
+        <tr>
+          <td><strong>02/10/2026</strong></td>
+          <td>DOBLO</td>
+          <td><span class="plate-tag">RFQ-3B33</span></td>
+          <td>FÁBIO</td>
+          <td>03:52</td>
+          <td>10:52</td>
+          <td>9</td>
+          <td>15</td>
+          <td><strong style="color:var(--green-dark)">+6 km</strong></td>
+          <td style="text-align:right">
+            <div class="acoes" style="justify-content:flex-end;">
+              <button class="btn-sm secondary" onclick="editarRegistroViagem(1790945591889)">✏️</button>
+              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1790945591889)">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
           </table>
         </div>
       </section>
@@ -1653,7 +1689,142 @@
                   <th style="text-align:right">Ações</th>
                 </tr>
               </thead>
-              <tbody id="listaCondutoresTabela"></tbody>
+              <tbody id="listaCondutoresTabela">
+          <tr>
+            <td><strong>ADÉLIO</strong></td>
+            <td>ARGO <span class="plate-tag">RVQ-0G22</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('ADÉLIO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>ADRIANO</strong></td>
+            <td>KANGOO <span class="plate-tag">BAA-6A34</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('ADRIANO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>ALVINHO</strong></td>
+            <td>SAVEIRO C. DUPLA <span class="plate-tag">SUB-3D12</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('ALVINHO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>ELSON</strong></td>
+            <td>SAVEIRO C. DUPLA <span class="plate-tag">LTY-6A10</span></td>
+            <td><b>1</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('ELSON')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>FÁBIO</strong></td>
+            <td>SAVEIRO C. DUPLA <span class="plate-tag">TYZ-4G83</span></td>
+            <td><b>1</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('FÁBIO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>FERNANDO</strong></td>
+            <td>DOBLO <span class="plate-tag">RFQ-3B33</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('FERNANDO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>GALPÃO</strong></td>
+            <td>MONTANA <span class="plate-tag">SYE-8I88</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('GALPÃO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>HELITON</strong></td>
+            <td>UNO WAY <span class="plate-tag">LKY-9I36</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('HELITON')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>JEAN</strong></td>
+            <td>HB20 <span class="plate-tag">TYT-6A92</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('JEAN')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>JOÃO VÍCTOR</strong></td>
+            <td>SAVEIRO C. DUPLA <span class="plate-tag">TYZ-9G82</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('JOÃO VÍCTOR')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>MARCO</strong></td>
+            <td>TORO <span class="plate-tag">SVS-8A24</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('MARCO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>NORBERTO</strong></td>
+            <td>STRADA <span class="plate-tag">TDF-3E47</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('NORBERTO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>RAPHAEL</strong></td>
+            <td>SAVEIRO C. DUPLA <span class="plate-tag">EJL-1I36</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('RAPHAEL')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>THIAGO</strong></td>
+            <td>UNO VIVACE <span class="plate-tag">NWR-9J47</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('THIAGO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
+            <td><strong>WELLINGTON</strong></td>
+            <td>ARGO <span class="plate-tag">TEE-0547</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('WELLINGTON')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        </tbody>
             </table>
           </div>
         </div>
@@ -1681,7 +1852,7 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao">
+      <section id="sincronizacao" hidden="">
         <div class="section-header">
           <div>
             <h2>GitHub &amp; Sincronização de Dados</h2>
@@ -1762,7 +1933,7 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Frota</a>
+    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
@@ -1828,7 +1999,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:45:46.876Z",
+  "exportadoEm": "2026-10-02T23:48:36.329Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -1847,19 +2018,6 @@
     "WELLINGTON"
   ],
   "registros": [
-    {
-      "id": 1790945591889,
-      "veiculo": "DOBLO",
-      "placa": "RFQ-3B33",
-      "veiculoIndex": 0,
-      "condutor": "FÁBIO",
-      "data": "2026-10-02",
-      "horaSaida": "03:52",
-      "horaRetorno": "10:52",
-      "kmSaida": 9,
-      "kmChegada": 15,
-      "kmRodados": 6
-    },
     {
       "id": 1790948522665,
       "veiculo": "SAVEIRO C. DUPLA",

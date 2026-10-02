@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:45:46.876Z",
+  "exportadoEm": "2026-10-02T23:48:36.329Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -20,19 +20,6 @@
     "WELLINGTON"
   ],
   "registros": [
-    {
-      "id": 1790945591889,
-      "veiculo": "DOBLO",
-      "placa": "RFQ-3B33",
-      "veiculoIndex": 0,
-      "condutor": "FÁBIO",
-      "data": "2026-10-02",
-      "horaSaida": "03:52",
-      "horaRetorno": "10:52",
-      "kmSaida": 9,
-      "kmChegada": 15,
-      "kmRodados": 6
-    },
     {
       "id": 1790948522665,
       "veiculo": "SAVEIRO C. DUPLA",
