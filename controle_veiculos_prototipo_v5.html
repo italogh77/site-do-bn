@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#2c9520">
-  <title>Grupo Solutions — Controle de Veículos & Gestão de Frota</title>
+  <title>Grupo Solutions — Controle de Veículos &amp; Gestão de Frota</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --green: #2c9520;
@@ -667,7 +666,7 @@
     }
   </style>
 </head>
-<body data-page="inicio">
+<body data-page="sincronizacao">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -679,14 +678,14 @@
 
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
-      <a href="#inicio" data-route="inicio" class="active"><span class="icon">⌂</span>Visão geral</a>
+      <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
       <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro"><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico"><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores"><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas"><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao"><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -709,24 +708,22 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Visão geral</strong></span>
+        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
       </div>
       <div class="topbar-right">
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
           <span class="dot pulsing"></span>
           <span id="repoPillText">Repositório: <strong>italogh77/site-do-bn</strong></span>
         </div>
-        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()">
-          <span>🚀</span> Subir para o GitHub
-        </button>
+        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()" disabled=""><span>⏳</span> Enviando...</button>
       </div>
     </div>
 
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Controle de Veículos</h1>
-        <p id="pageSubtitle">Sua frota organizada com controle de quilometragem e revisões em dia.</p>
+        <h1 id="pageTitle">GitHub &amp; Backup</h1>
+        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -737,33 +734,33 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main>
       <!-- 1. VISÃO GERAL (DASHBOARD) -->
-      <section id="inicio">
+      <section id="inicio" hidden="">
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon">▤</div>
             <div>
-              <strong id="countVehicles">0</strong>
+              <strong id="countVehicles">22</strong>
               <small>Veículos na frota</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">⚿</div>
             <div>
-              <strong id="countRentals">0</strong>
+              <strong id="countRentals">7</strong>
               <small>Veículos alugados</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">0</strong>
+              <strong id="countTrips">2</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">0 km</strong>
+              <strong id="countTotalKm">14 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -777,8 +774,28 @@
               <a href="#revisoes">Ver todas ↗</a>
             </div>
             <div id="dashboardNextReview">
-              <p>Carregando revisões...</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+            <div>
+              <strong style="font-size:16px;">YVUVJ</strong>
+              <div style="margin-top:4px;">
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">JJI-7890</div>
+        </div>
+      </div>
             </div>
+            <span class="status-badge status-vencida">REVISÃO VENCIDA</span>
+          </div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">
+            KM Atual: <b>38.686.860</b> / Revisão: <b>606.060</b>
+          </div>
+          <div class="prog-bar-wrap">
+            <div class="prog-bar-fill danger" style="width:100%"></div>
+          </div>
+          <div style="margin-top:6px;font-size:12px;font-weight:600;color:var(--danger)">
+            Vencida há 38.080.800 km
+          </div>
+        </div>
           </div>
 
           <!-- Card Resumo de Últimas Saídas -->
@@ -788,8 +805,28 @@
               <a href="#historico">Histórico completo ↗</a>
             </div>
             <div id="dashboardRecentTrips">
-              <p>Nenhuma viagem recente.</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
+            <div>
+              <strong>SAVEIRO C. DUPLA</strong> <span class="plate-tag">SVI-3G32</span>
+              <div style="font-size:11px;color:var(--muted)">Motorista: <b>ELSON</b> em 02/10/2026</div>
             </div>
+            <div style="text-align:right">
+              <span style="font-weight:700;color:var(--green-dark);">+8 km</span>
+              <div style="font-size:10px;color:var(--muted)">10:41 - 11:41</div>
+            </div>
+          </div>
+        
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
+            <div>
+              <strong>DOBLO</strong> <span class="plate-tag">RFQ-3B33</span>
+              <div style="font-size:11px;color:var(--muted)">Motorista: <b>FÁBIO</b> em 02/10/2026</div>
+            </div>
+            <div style="text-align:right">
+              <span style="font-weight:700;color:var(--green-dark);">+6 km</span>
+              <div style="font-size:10px;color:var(--muted)">03:52 - 10:52</div>
+            </div>
+          </div>
+        </div>
           </div>
         </div>
 
@@ -811,14 +848,98 @@
                   <th>Status</th>
                 </tr>
               </thead>
-              <tbody id="overviewRows"></tbody>
+              <tbody id="overviewRows">
+          <tr>
+            <td><strong>DOBLO</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">RFQ-3B33</div>
+        </div>
+      </td>
+            <td>FERNANDO</td>
+            <td><b>15</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+          </tr>
+        
+          <tr>
+            <td><strong>MONTANA</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">SYE-8I88</div>
+        </div>
+      </td>
+            <td>GALPÃO</td>
+            <td><b>0</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+          </tr>
+        
+          <tr>
+            <td><strong>SAVEIRO C. DUPLA</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">SVI-3G32</div>
+        </div>
+      </td>
+            <td>GALPÃO</td>
+            <td><b>120.096</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-vencida">REVISÃO VENCIDA</span></td>
+          </tr>
+        
+          <tr>
+            <td><strong>SAVEIRO C. DUPLA</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">SUB-3D12</div>
+        </div>
+      </td>
+            <td>ALVINHO</td>
+            <td><b>0</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+          </tr>
+        
+          <tr>
+            <td><strong>KANGOO</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">BAA-6A34</div>
+        </div>
+      </td>
+            <td>ADRIANO</td>
+            <td><b>0</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+          </tr>
+        
+          <tr>
+            <td><strong>ARGO</strong></td>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">RVQ-0G22</div>
+        </div>
+      </td>
+            <td>ADÉLIO</td>
+            <td><b>0</b> km</td>
+            <td>10.000 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+          </tr>
+        </tbody>
             </table>
           </div>
         </div>
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos" hidden>
+      <section id="veiculos" hidden="">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -870,7 +991,7 @@
       </section>
 
       <!-- 3. SAÍDA E RETORNO (REGISTRAR UTILIZAÇÃO) -->
-      <section id="registro" hidden>
+      <section id="registro" hidden="">
         <div class="section-header">
           <div>
             <h2 id="tituloRegistro">Registrar Saída e Retorno</h2>
@@ -883,14 +1004,14 @@
           <form id="formRegistro" class="grid-form">
             <div class="field">
               <label for="regVeiculo">Veículo *</label>
-              <select id="regVeiculo" required onchange="aoSelecionarVeiculoNoRegistro()">
+              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()">
                 <option value="">Selecione o veículo...</option>
               </select>
             </div>
 
             <div class="field">
               <label for="regCondutor">Condutor *</label>
-              <select id="regCondutor" required>
+              <select id="regCondutor" required="">
                 <option value="">Selecione o condutor...</option>
               </select>
             </div>
@@ -898,7 +1019,7 @@
             <div class="field">
               <label for="regData">Data da utilização *</label>
               <div style="display:flex;gap:8px;">
-                <input type="date" id="regData" required>
+                <input type="date" id="regData" required="">
                 <button type="button" class="secondary btn-sm" onclick="colocarDataHoje()">Hoje</button>
               </div>
             </div>
@@ -906,20 +1027,20 @@
             <div class="field">
               <label>Horários (Saída e Retorno) *</label>
               <div style="display:flex;gap:8px;">
-                <input type="time" id="regHoraSaida" required placeholder="Saída">
-                <input type="time" id="regHoraRetorno" required placeholder="Retorno">
+                <input type="time" id="regHoraSaida" required="" placeholder="Saída">
+                <input type="time" id="regHoraRetorno" required="" placeholder="Retorno">
                 <button type="button" class="secondary btn-sm" onclick="preencherHorarioAtual()">Agora</button>
               </div>
             </div>
 
             <div class="field">
               <label for="regKmSaida">KM de Saída *</label>
-              <input type="number" id="regKmSaida" min="0" required placeholder="Ex.: 15000" oninput="calcularKmRodadosDinamico()">
+              <input type="number" id="regKmSaida" min="0" required="" placeholder="Ex.: 15000" oninput="calcularKmRodadosDinamico()">
             </div>
 
             <div class="field">
               <label for="regKmChegada">KM de Chegada / Retorno *</label>
-              <input type="number" id="regKmChegada" min="0" required placeholder="Ex.: 15120" oninput="calcularKmRodadosDinamico()">
+              <input type="number" id="regKmChegada" min="0" required="" placeholder="Ex.: 15120" oninput="calcularKmRodadosDinamico()">
             </div>
 
             <!-- Calculadora visual -->
@@ -931,7 +1052,7 @@
               <button type="submit" class="primary" id="btnSalvarRegistro">💾 Salvar Registro</button>
               <button type="button" class="secondary" onclick="limparFormularioRegistro()">Cancelar / Limpar</button>
               <label style="display:inline-flex;align-items:center;gap:6px;font-size:12px;cursor:pointer;margin-left:auto;">
-                <input type="checkbox" id="checkAutoPush" style="width:auto;height:auto;" checked>
+                <input type="checkbox" id="checkAutoPush" style="width:auto;height:auto;" checked="">
                 Subir para o repositório GitHub automaticamente ao salvar
               </label>
             </div>
@@ -940,7 +1061,7 @@
       </section>
 
       <!-- 4. REVISÕES E ALERTAS -->
-      <section id="revisoes" hidden>
+      <section id="revisoes" hidden="">
         <div class="section-header">
           <div>
             <h2>Revisão e Manutenção da Frota</h2>
@@ -976,7 +1097,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico" hidden>
+      <section id="historico" hidden="">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1021,7 +1142,7 @@
       </section>
 
       <!-- 6. CONDUTORES -->
-      <section id="condutores" hidden>
+      <section id="condutores" hidden="">
         <div class="section-header">
           <div>
             <h2>Condutores Cadastrados</h2>
@@ -1036,7 +1157,7 @@
             <form id="formNovoCondutor" onsubmit="salvarNovoCondutor(event)">
               <div class="field" style="margin-bottom:14px;">
                 <label for="nomeNovoCondutor">Nome Completo / Apelido</label>
-                <input type="text" id="nomeNovoCondutor" placeholder="Ex.: JOÃO SILVA" required maxlength="60" style="text-transform:uppercase;">
+                <input type="text" id="nomeNovoCondutor" placeholder="Ex.: JOÃO SILVA" required="" maxlength="60" style="text-transform:uppercase;">
               </div>
               <button type="submit" class="primary" style="width:100%">＋ Adicionar Condutor</button>
             </form>
@@ -1060,7 +1181,7 @@
       </section>
 
       <!-- 7. PASTAS POR VEÍCULO -->
-      <section id="pastas" hidden>
+      <section id="pastas" hidden="">
         <div class="section-header">
           <div>
             <h2>Pastas Digitais por Veículo</h2>
@@ -1083,10 +1204,10 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao" hidden>
+      <section id="sincronizacao">
         <div class="section-header">
           <div>
-            <h2>GitHub & Sincronização de Dados</h2>
+            <h2>GitHub &amp; Sincronização de Dados</h2>
             <p style="margin:4px 0 0; color:var(--muted)">Envie todas as alterações feitas no próprio site diretamente para o repositório no GitHub.</p>
           </div>
         </div>
@@ -1095,27 +1216,25 @@
         <div class="form-box" style="border: 2px solid #a3d99b; background: #f6fcf5;">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
             <div>
-              <span class="status-badge status-ok" style="margin-bottom:8px;" id="badgeGitStatus">🟢 Conectado ao Repositório</span>
+              <span class="status-badge status-ok" style="margin-bottom:8px;" id="badgeGitStatus">🟢 Conectado ao Servidor &amp; Git</span>
               <h3 style="margin:4px 0; font-size:18px;">Enviar Alterações para o GitHub</h3>
               <p style="margin:4px 0 16px; color:var(--ink-light); max-width:650px;">
                 Qualquer cadastro de veículo, edição, exclusão ou registro de viagem feito neste site pode ser enviado diretamente para o repositório <b>https://github.com/italogh77/site-do-bn</b> no ramo <b>main</b>.
               </p>
             </div>
             <div style="text-align:right;">
-              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()">
-                🚀 Subir Alterações para o GitHub Agora
-              </button>
+              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()" disabled="">⏳ Enviando para o GitHub...</button>
             </div>
           </div>
 
           <div style="display:flex; gap:12px; align-items:center; margin-top:14px; border-top:1px solid #d8ebd4; padding-top:14px; flex-wrap:wrap;">
             <label style="display:inline-flex; align-items:center; gap:8px; font-weight:600; cursor:pointer;">
-              <input type="checkbox" id="checkAutoPushConfig" onchange="toggleAutoPush(this.checked)" checked style="width:auto;height:auto;">
+              <input type="checkbox" id="checkAutoPushConfig" onchange="toggleAutoPush(this.checked)" checked="" style="width:auto;height:auto;">
               Sincronizar e subir para o GitHub automaticamente a cada alteração
             </label>
             <button class="btn btn-sm secondary" onclick="puxarDoGitHub()">⬇️ Puxar do GitHub (Pull)</button>
             <button class="btn btn-sm secondary" onclick="verificarStatusGit()">🔍 Verificar Alterações Pendentes</button>
-            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;"></span>
+            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;">✅ Tudo sincronizado com o GitHub!</span>
           </div>
         </div>
 
@@ -1158,14 +1277,14 @@
 
     <!-- Rodapé -->
     <footer style="margin-top:40px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:12px;color:var(--muted);">
-      <strong>GRUPO SOLUTIONS</strong> — Sistema de Gestão de Frota & Controle de Veículos<br>
+      <strong>GRUPO SOLUTIONS</strong> — Sistema de Gestão de Frota &amp; Controle de Veículos<br>
       Repositório: <a href="https://github.com/italogh77/site-do-bn" target="_blank" rel="noopener">italogh77/site-do-bn</a> · Versão 5.2 Estável
     </footer>
   </div>
 
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
-    <a href="#inicio" data-route="inicio" class="active"><span class="icon">⌂</span>Início</a>
+    <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
     <a href="#veiculos" data-route="veiculos"><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro"><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões</a>
@@ -1185,17 +1304,17 @@
 
           <div class="field full-width">
             <label for="modalModelo">Modelo do Veículo *</label>
-            <input type="text" id="modalModelo" placeholder="Ex.: FIAT STRADA, VOLKSWAGEN SAVEIRO" required style="text-transform:uppercase;">
+            <input type="text" id="modalModelo" placeholder="Ex.: FIAT STRADA, VOLKSWAGEN SAVEIRO" required="" style="text-transform:uppercase;">
           </div>
 
           <div class="field">
             <label for="modalPlaca">Placa * (Ex: ABC-1234 ou ABC-1D23)</label>
-            <input type="text" id="modalPlaca" placeholder="ABC-1D23" maxlength="8" required style="text-transform:uppercase; font-family:'JetBrains Mono',monospace;">
+            <input type="text" id="modalPlaca" placeholder="ABC-1D23" maxlength="8" required="" style="text-transform:uppercase; font-family:'JetBrains Mono',monospace;">
           </div>
 
           <div class="field">
             <label for="modalTipo">Tipo do Veículo *</label>
-            <select id="modalTipo" required>
+            <select id="modalTipo" required="">
               <option value="proprio">Próprio</option>
               <option value="alugado">Alugado (com acompanhamento de revisão)</option>
             </select>
@@ -1203,19 +1322,19 @@
 
           <div class="field full-width">
             <label for="modalCondutor">Condutor Padrão *</label>
-            <select id="modalCondutor" required>
+            <select id="modalCondutor" required="">
               <option value="">Selecione o condutor...</option>
             </select>
           </div>
 
           <div class="field">
             <label for="modalKmAtual">Quilometragem Atual (KM) *</label>
-            <input type="number" id="modalKmAtual" min="0" step="1" required placeholder="Ex.: 35000">
+            <input type="number" id="modalKmAtual" min="0" step="1" required="" placeholder="Ex.: 35000">
           </div>
 
           <div class="field">
             <label for="modalKmRevisao">KM da Próxima Revisão *</label>
-            <input type="number" id="modalKmRevisao" min="0" step="1" required placeholder="Ex.: 40000">
+            <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 40000">
           </div>
 
           <div class="form-actions">
@@ -1231,8 +1350,7 @@
   <div id="toastContainer"></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
-  <script id="dadosIncorporados" type="application/json">
-{
+  <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
   "exportadoEm": "2026-10-02T13:44:02.024Z",
@@ -1282,28 +1400,160 @@
     }
   ],
   "veiculos": [
-    {"modelo": "DOBLO", "placa": "RFQ-3B33", "condutor": "FERNANDO", "kmAtual": 15, "kmRevisao": 10000},
-    {"modelo": "MONTANA", "placa": "SYE-8I88", "condutor": "GALPÃO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "SVI-3G32", "condutor": "GALPÃO", "kmAtual": 120096, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "SUB-3D12", "condutor": "ALVINHO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "KANGOO", "placa": "BAA-6A34", "condutor": "ADRIANO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "ARGO", "placa": "RVQ-0G22", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. SIMPLES", "placa": "QPC-2C84", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "TYZ-4G83", "condutor": "FÁBIO", "kmAtual": 12293, "kmRevisao": 20000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "LTY-6A10", "condutor": "ELSON", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "EJL-1I36", "condutor": "RAPHAEL", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "TORO", "placa": "SVS-8A24", "condutor": "MARCO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "UNO VIVACE", "placa": "NWR-9J47", "condutor": "THIAGO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "UNO WAY", "placa": "LKY-9I36", "condutor": "HELITON", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "ARGO", "placa": "TEE-0547", "condutor": "WELLINGTON", "kmAtual": 42732, "kmRevisao": 50500},
-    {"modelo": "STRADA", "placa": "TDF-3E47", "condutor": "NORBERTO", "kmAtual": 35147, "kmRevisao": 40000},
-    {"modelo": "KWID", "placa": "RMQ-1J45", "condutor": "NORBERTO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "TYZ-9G82", "condutor": "JOÃO VÍCTOR", "kmAtual": 8770, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. SIMPLES", "placa": "EOC-4J05", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO", "placa": "SUF-8G01", "condutor": "GALPÃO", "kmAtual": 12293, "kmRevisao": 20000},
-    {"modelo": "HB20", "placa": "TYT-6A92", "condutor": "JEAN", "kmAtual": 5448, "kmRevisao": 10000},
-    {"modelo": "SPIN", "placa": "SIF-3D08", "condutor": "JEAN", "kmAtual": 82786, "kmRevisao": 90000},
-    {"modelo": "YVUVJ", "placa": "JJI-7890", "condutor": "FÁBIO", "kmAtual": 38686860, "kmRevisao": 606060}
+    {
+      "modelo": "DOBLO",
+      "placa": "RFQ-3B33",
+      "condutor": "FERNANDO",
+      "kmAtual": 15,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "MONTANA",
+      "placa": "SYE-8I88",
+      "condutor": "GALPÃO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "SVI-3G32",
+      "condutor": "GALPÃO",
+      "kmAtual": 120096,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "SUB-3D12",
+      "condutor": "ALVINHO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "KANGOO",
+      "placa": "BAA-6A34",
+      "condutor": "ADRIANO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "ARGO",
+      "placa": "RVQ-0G22",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. SIMPLES",
+      "placa": "QPC-2C84",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "TYZ-4G83",
+      "condutor": "FÁBIO",
+      "kmAtual": 12293,
+      "kmRevisao": 20000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "LTY-6A10",
+      "condutor": "ELSON",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "EJL-1I36",
+      "condutor": "RAPHAEL",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "TORO",
+      "placa": "SVS-8A24",
+      "condutor": "MARCO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "UNO VIVACE",
+      "placa": "NWR-9J47",
+      "condutor": "THIAGO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "UNO WAY",
+      "placa": "LKY-9I36",
+      "condutor": "HELITON",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "ARGO",
+      "placa": "TEE-0547",
+      "condutor": "WELLINGTON",
+      "kmAtual": 42732,
+      "kmRevisao": 50500
+    },
+    {
+      "modelo": "STRADA",
+      "placa": "TDF-3E47",
+      "condutor": "NORBERTO",
+      "kmAtual": 35147,
+      "kmRevisao": 40000
+    },
+    {
+      "modelo": "KWID",
+      "placa": "RMQ-1J45",
+      "condutor": "NORBERTO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "TYZ-9G82",
+      "condutor": "JOÃO VÍCTOR",
+      "kmAtual": 8770,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. SIMPLES",
+      "placa": "EOC-4J05",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO",
+      "placa": "SUF-8G01",
+      "condutor": "GALPÃO",
+      "kmAtual": 12293,
+      "kmRevisao": 20000
+    },
+    {
+      "modelo": "HB20",
+      "placa": "TYT-6A92",
+      "condutor": "JEAN",
+      "kmAtual": 5448,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SPIN",
+      "placa": "SIF-3D08",
+      "condutor": "JEAN",
+      "kmAtual": 82786,
+      "kmRevisao": 90000
+    },
+    {
+      "modelo": "YVUVJ",
+      "placa": "JJI-7890",
+      "condutor": "FÁBIO",
+      "kmAtual": 38686860,
+      "kmRevisao": 606060
+    }
   ],
   "placasAlugados": [
     "TYZ-4G83",
@@ -1314,8 +1564,7 @@
     "SIF-3D08",
     "JJI-7890"
   ]
-}
-  </script>
+}</script>
 
   <!-- LÓGICA DO SISTEMA -->
   <script>
@@ -2551,5 +2800,6 @@
       rotear();
     });
   </script>
-</body>
-</html>
+
+
+</body></html>

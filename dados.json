@@ -48,28 +48,160 @@
     }
   ],
   "veiculos": [
-    {"modelo": "DOBLO", "placa": "RFQ-3B33", "condutor": "FERNANDO", "kmAtual": 15, "kmRevisao": 10000},
-    {"modelo": "MONTANA", "placa": "SYE-8I88", "condutor": "GALPÃO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "SVI-3G32", "condutor": "GALPÃO", "kmAtual": 120096, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "SUB-3D12", "condutor": "ALVINHO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "KANGOO", "placa": "BAA-6A34", "condutor": "ADRIANO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "ARGO", "placa": "RVQ-0G22", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. SIMPLES", "placa": "QPC-2C84", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "TYZ-4G83", "condutor": "FÁBIO", "kmAtual": 12293, "kmRevisao": 20000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "LTY-6A10", "condutor": "ELSON", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "EJL-1I36", "condutor": "RAPHAEL", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "TORO", "placa": "SVS-8A24", "condutor": "MARCO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "UNO VIVACE", "placa": "NWR-9J47", "condutor": "THIAGO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "UNO WAY", "placa": "LKY-9I36", "condutor": "HELITON", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "ARGO", "placa": "TEE-0547", "condutor": "WELLINGTON", "kmAtual": 42732, "kmRevisao": 50500},
-    {"modelo": "STRADA", "placa": "TDF-3E47", "condutor": "NORBERTO", "kmAtual": 35147, "kmRevisao": 40000},
-    {"modelo": "KWID", "placa": "RMQ-1J45", "condutor": "NORBERTO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. DUPLA", "placa": "TYZ-9G82", "condutor": "JOÃO VÍCTOR", "kmAtual": 8770, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO C. SIMPLES", "placa": "EOC-4J05", "condutor": "ADÉLIO", "kmAtual": 0, "kmRevisao": 10000},
-    {"modelo": "SAVEIRO", "placa": "SUF-8G01", "condutor": "GALPÃO", "kmAtual": 12293, "kmRevisao": 20000},
-    {"modelo": "HB20", "placa": "TYT-6A92", "condutor": "JEAN", "kmAtual": 5448, "kmRevisao": 10000},
-    {"modelo": "SPIN", "placa": "SIF-3D08", "condutor": "JEAN", "kmAtual": 82786, "kmRevisao": 90000},
-    {"modelo": "YVUVJ", "placa": "JJI-7890", "condutor": "FÁBIO", "kmAtual": 38686860, "kmRevisao": 606060}
+    {
+      "modelo": "DOBLO",
+      "placa": "RFQ-3B33",
+      "condutor": "FERNANDO",
+      "kmAtual": 15,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "MONTANA",
+      "placa": "SYE-8I88",
+      "condutor": "GALPÃO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "SVI-3G32",
+      "condutor": "GALPÃO",
+      "kmAtual": 120096,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "SUB-3D12",
+      "condutor": "ALVINHO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "KANGOO",
+      "placa": "BAA-6A34",
+      "condutor": "ADRIANO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "ARGO",
+      "placa": "RVQ-0G22",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. SIMPLES",
+      "placa": "QPC-2C84",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "TYZ-4G83",
+      "condutor": "FÁBIO",
+      "kmAtual": 12293,
+      "kmRevisao": 20000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "LTY-6A10",
+      "condutor": "ELSON",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "EJL-1I36",
+      "condutor": "RAPHAEL",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "TORO",
+      "placa": "SVS-8A24",
+      "condutor": "MARCO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "UNO VIVACE",
+      "placa": "NWR-9J47",
+      "condutor": "THIAGO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "UNO WAY",
+      "placa": "LKY-9I36",
+      "condutor": "HELITON",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "ARGO",
+      "placa": "TEE-0547",
+      "condutor": "WELLINGTON",
+      "kmAtual": 42732,
+      "kmRevisao": 50500
+    },
+    {
+      "modelo": "STRADA",
+      "placa": "TDF-3E47",
+      "condutor": "NORBERTO",
+      "kmAtual": 35147,
+      "kmRevisao": 40000
+    },
+    {
+      "modelo": "KWID",
+      "placa": "RMQ-1J45",
+      "condutor": "NORBERTO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. DUPLA",
+      "placa": "TYZ-9G82",
+      "condutor": "JOÃO VÍCTOR",
+      "kmAtual": 8770,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO C. SIMPLES",
+      "placa": "EOC-4J05",
+      "condutor": "ADÉLIO",
+      "kmAtual": 0,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SAVEIRO",
+      "placa": "SUF-8G01",
+      "condutor": "GALPÃO",
+      "kmAtual": 12293,
+      "kmRevisao": 20000
+    },
+    {
+      "modelo": "HB20",
+      "placa": "TYT-6A92",
+      "condutor": "JEAN",
+      "kmAtual": 5448,
+      "kmRevisao": 10000
+    },
+    {
+      "modelo": "SPIN",
+      "placa": "SIF-3D08",
+      "condutor": "JEAN",
+      "kmAtual": 82786,
+      "kmRevisao": 90000
+    },
+    {
+      "modelo": "YVUVJ",
+      "placa": "JJI-7890",
+      "condutor": "FÁBIO",
+      "kmAtual": 38686860,
+      "kmRevisao": 606060
+    }
   ],
   "placasAlugados": [
     "TYZ-4G83",
