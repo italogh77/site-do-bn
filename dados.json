@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:10:57.382Z",
+  "exportadoEm": "2026-10-03T23:25:41.064Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -24,10 +24,10 @@
   "veiculos": [
     {
       "modelo": "DOBLO",
-      "placa": "RFQ-3B33",
+      "placa": "RFQ-3B34",
       "condutor": "FERNANDO",
       "kmAtual": 15,
-      "kmRevisao": 10000
+      "kmRevisao": 9315
     },
     {
       "modelo": "MONTANA",
