@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="condutores">
+<body data-page="veiculos">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -704,11 +704,11 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
-      <a href="#condutores" data-route="condutores" class="active"><span class="icon">♙</span>Condutores</a>
+      <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
       <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Condutores Cadastrados</strong></span>
+        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Condutores Cadastrados</h1>
-        <p id="pageSubtitle">Controle de motoristas autorizados para utilização.</p>
+        <h1 id="pageTitle">Veículos Cadastrados</h1>
+        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -783,7 +783,7 @@
           <div class="stat-card">
             <div class="stat-icon">▤</div>
             <div>
-              <strong id="countVehicles">22</strong>
+              <strong id="countVehicles">23</strong>
               <small>Veículos na frota</small>
             </div>
           </div>
@@ -961,7 +961,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos" hidden="">
+      <section id="veiculos">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1469,6 +1469,27 @@
               </div>
             </td>
           </tr>
+        
+          <tr>
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">AVC-1234</div>
+        </div>
+      </td>
+            <td><strong>FHJ</strong></td>
+            <td><span class="status-badge status-ok">Próprio</span></td>
+            <td>MOATAN</td>
+            <td><b>25.890</b> km</td>
+            <td>35.890 km</td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(22)">✏️ Editar</button>
+                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(22)">🗑️</button>
+              </div>
+            </td>
+          </tr>
         </tbody>
           </table>
         </div>
@@ -1825,7 +1846,7 @@
       </section>
 
       <!-- 6. CONDUTORES -->
-      <section id="condutores">
+      <section id="condutores" hidden="">
         <div class="section-header">
           <div>
             <h2>Condutores Cadastrados</h2>
@@ -2143,7 +2164,7 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
+    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
@@ -2180,7 +2201,7 @@
 
           <div class="field full-width">
             <label for="modalCondutor">Condutor Padrão *</label>
-            <select id="modalCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select>
+            <select id="modalCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option><option value="ITALOAUGUSTO">ITALOAUGUSTO</option><option value="MOATAN">MOATAN</option></select>
           </div>
 
           <div class="field">
@@ -2201,7 +2222,7 @@
           <div class="field full-width">
             <label for="modalKmRevisao">KM da Próxima Revisão no Odômetro *</label>
             <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()">
-            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>25.263 km</b> (daqui a <b>10.000 km</b> rodados a partir de agora).</small>
+            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>35.890 km</b> (daqui a <b>10.000 km</b> rodados a partir de agora).</small>
           </div>
 
           <div class="form-actions">
@@ -2286,7 +2307,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:05:49.557Z",
+  "exportadoEm": "2026-10-03T01:07:27.735Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2461,6 +2482,13 @@
       "condutor": "ALVINHO",
       "kmAtual": 15263,
       "kmRevisao": 25263
+    },
+    {
+      "modelo": "FHJ",
+      "placa": "AVC-1234",
+      "condutor": "MOATAN",
+      "kmAtual": 25890,
+      "kmRevisao": 35890
     }
   ],
   "placasAlugados": [
