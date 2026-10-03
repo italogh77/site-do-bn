@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T00:39:12.350Z",
+  "exportadoEm": "2026-10-03T01:05:49.557Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -18,7 +18,8 @@
     "RAPHAEL",
     "THIAGO",
     "WELLINGTON",
-    "ITALOAUGUSTO"
+    "ITALOAUGUSTO",
+    "MOATAN"
   ],
   "registros": [],
   "veiculos": [
