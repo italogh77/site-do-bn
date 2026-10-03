@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:51:48.200Z",
+  "exportadoEm": "2026-10-03T00:38:48.065Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -167,6 +167,13 @@
       "condutor": "JEAN",
       "kmAtual": 82786,
       "kmRevisao": 90000
+    },
+    {
+      "modelo": "MERCEDES",
+      "placa": "ABC-1255",
+      "condutor": "ALVINHO",
+      "kmAtual": 15263,
+      "kmRevisao": 25263
     }
   ],
   "placasAlugados": [
@@ -175,6 +182,7 @@
     "TDF-3E47",
     "TYZ-9G82",
     "TYT-6A92",
-    "SIF-3D08"
+    "SIF-3D08",
+    "ABC-1255"
   ]
 }

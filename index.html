@@ -688,7 +688,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="veiculos">
+<body data-page="revisoes">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -701,9 +701,9 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
-      <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões e alertas</a>
+      <a href="#revisoes" data-route="revisoes" class="active"><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
@@ -731,11 +731,11 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
+        <span>Frota / <strong id="crumb">Revisões e Alertas</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
-          <span id="iconeSyncNuvem" style="display:inline-block;">🔄</span> Sincronizar Nuvem
+          <span id="iconeSyncNuvem" style="display: inline-block;">🔄</span> Sincronizar Nuvem
         </button>
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
           <span class="dot pulsing"></span>
@@ -746,12 +746,12 @@
     </div>
 
     <!-- BANNER DE ALERTA DE REVISÃO GERAL -->
-    <div id="bannerAlertaRevisaoGeral" class="alerta-banner" style="display:none;">
+    <div id="bannerAlertaRevisaoGeral" class="alerta-banner" style="display: flex;">
       <div style="display:flex;align-items:center;gap:12px;">
         <span class="alerta-icone">🚨</span>
         <div>
-          <strong id="tituloAlertaBanner" style="font-size:15px;display:block;">Período de Revisão Atingido!</strong>
-          <div id="descAlertaBanner" style="font-size:12px;opacity:0.95;margin-top:2px;">Existem veículos que atingiram a quilometragem para manutenção preventiva.</div>
+          <strong id="tituloAlertaBanner" style="font-size:15px;display:block;">🚨 Alerta Crítico: 1 veículo(s) com revisão vencida!</strong>
+          <div id="descAlertaBanner" style="font-size:12px;opacity:0.95;margin-top:2px;">Veículos: SAVEIRO C. DUPLA (SVI-3G32). Encaminhe para a manutenção preventiva.</div>
         </div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
@@ -763,8 +763,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Veículos Cadastrados</h1>
-        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
+        <h1 id="pageTitle">Revisões e Alertas</h1>
+        <p id="pageSubtitle">Acompanhamento preventivo para garantir a segurança da frota.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -780,14 +780,14 @@
           <div class="stat-card">
             <div class="stat-icon">▤</div>
             <div>
-              <strong id="countVehicles">22</strong>
+              <strong id="countVehicles">21</strong>
               <small>Veículos na frota</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">⚿</div>
             <div>
-              <strong id="countRentals">7</strong>
+              <strong id="countRentals">6</strong>
               <small>Veículos alugados</small>
             </div>
           </div>
@@ -958,7 +958,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos">
+      <section id="veiculos" hidden="">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1445,27 +1445,6 @@
               </div>
             </td>
           </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">ABC-1234</div>
-        </div>
-      </td>
-            <td><strong>ITALO E LINDO</strong></td>
-            <td><span class="status-badge status-alerta">Alugado</span></td>
-            <td>WELLINGTON</td>
-            <td><b>1.000</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(21)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(21)">🗑️</button>
-              </div>
-            </td>
-          </tr>
         </tbody>
           </table>
         </div>
@@ -1538,7 +1517,7 @@
       </section>
 
       <!-- 4. REVISÕES E ALERTAS -->
-      <section id="revisoes" hidden="">
+      <section id="revisoes">
         <div class="section-header">
           <div>
             <h2>Revisão e Manutenção da Frota</h2>
@@ -1568,7 +1547,181 @@
                 <th style="text-align:right">Ações Rápidas</th>
               </tr>
             </thead>
-            <tbody id="listaRevisoesTabela"></tbody>
+            <tbody id="listaRevisoesTabela">
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">TYZ-4G83</div>
+        </div>
+      </td>
+            <td><strong>SAVEIRO C. DUPLA</strong></td>
+            <td>FÁBIO</td>
+            <td><b>12.293</b> km</td>
+            <td>20.000 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 7.707 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:61%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(7)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(7)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(7)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">TEE-0547</div>
+        </div>
+      </td>
+            <td><strong>ARGO</strong></td>
+            <td>WELLINGTON</td>
+            <td><b>42.732</b> km</td>
+            <td>50.500 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 7.768 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:85%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(13)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(13)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(13)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">TDF-3E47</div>
+        </div>
+      </td>
+            <td><strong>STRADA</strong></td>
+            <td>NORBERTO</td>
+            <td><b>35.147</b> km</td>
+            <td>40.000 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 4.853 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:88%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(14)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(14)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(14)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">TYZ-9G82</div>
+        </div>
+      </td>
+            <td><strong>SAVEIRO C. DUPLA</strong></td>
+            <td>JOÃO VÍCTOR</td>
+            <td><b>8.770</b> km</td>
+            <td>10.000 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 1.230 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:88%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(16)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(16)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(16)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">TYT-6A92</div>
+        </div>
+      </td>
+            <td><strong>HB20</strong></td>
+            <td>JEAN</td>
+            <td><b>5.448</b> km</td>
+            <td>10.000 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 4.552 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:54%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(19)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(19)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(19)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        
+          <tr style="">
+            <td>
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">SIF-3D08</div>
+        </div>
+      </td>
+            <td><strong>SPIN</strong></td>
+            <td>JEAN</td>
+            <td><b>82.786</b> km</td>
+            <td>90.000 km</td>
+            <td style="font-weight:700;color:var(--ink)">
+              ⏳ Faltam 7.214 km
+            </td>
+            <td style="width:140px;">
+              <div class="prog-bar-wrap">
+                <div class="prog-bar-fill " style="width:92%"></div>
+              </div>
+            </td>
+            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td style="text-align:right">
+              <div class="acoes" style="justify-content:flex-end;">
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(20)" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(20)" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(20)" title="Editar cadastro do veículo">✏️</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
           </table>
         </div>
       </section>
@@ -1682,7 +1835,7 @@
           <tr>
             <td><strong>ELSON</strong></td>
             <td>SAVEIRO C. DUPLA <span class="plate-tag">LTY-6A10</span></td>
-            <td><b>1</b> utilização(ões)</td>
+            <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('ELSON')">🗑️ Excluir</button>
             </td>
@@ -1691,7 +1844,7 @@
           <tr>
             <td><strong>FÁBIO</strong></td>
             <td>SAVEIRO C. DUPLA <span class="plate-tag">TYZ-4G83</span></td>
-            <td><b>1</b> utilização(ões)</td>
+            <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('FÁBIO')">🗑️ Excluir</button>
             </td>
@@ -1860,7 +2013,7 @@
             </label>
             <button class="btn btn-sm secondary" onclick="puxarDoGitHub()">⬇️ Puxar do GitHub (Pull)</button>
             <button class="btn btn-sm secondary" onclick="verificarStatusGit()">🔍 Verificar Alterações Pendentes</button>
-            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;">Verificando conexão...</span>
+            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;">✅ Tudo sincronizado com o GitHub!</span>
           </div>
         </div>
 
@@ -1874,7 +2027,7 @@
               Se você estiver acessando o site pelo link da web <code>https://italogh77.github.io/site-do-bn/</code>, insira um Personal Access Token (PAT) do GitHub com permissão de gravação (<b>repo</b> ou <b>contents: write</b>). Ele ficará salvo no seu navegador:
             </p>
             <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
-              <a href="https://github.com/settings/tokens/new?scopes=repo&description=GrupoSolutionsFrota" target="_blank" class="btn btn-sm secondary" style="text-decoration:none;">🔗 Criar Token no GitHub (1 Clique)</a>
+              <a href="https://github.com/settings/tokens/new?scopes=repo&amp;description=GrupoSolutionsFrota" target="_blank" class="btn btn-sm secondary" style="text-decoration:none;">🔗 Criar Token no GitHub (1 Clique)</a>
               <span style="font-size:12px; color:var(--muted);">Marque a permissão <b>repo</b>, clique em Generate e cole o código abaixo.</span>
             </div>
             <div class="field" style="margin-bottom:12px;">
@@ -1919,14 +2072,14 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
+    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
-    <a href="#revisoes" data-route="revisoes"><span class="icon">◷</span>Revisões</a>
+    <a href="#revisoes" data-route="revisoes" class="active"><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
   </nav>
 
   <!-- MODAL DE CADASTRO / EDIÇÃO DE VEÍCULO -->
-  <div id="modalVeiculo" class="modal-overlay">
+  <div id="modalVeiculo" class="modal-overlay open">
     <div class="modal-window">
       <div class="modal-header">
         <h3 id="modalVeiculoTitulo">Cadastrar Novo Veículo</h3>
@@ -1961,7 +2114,7 @@
 
           <div class="field">
             <label for="modalKmAtual">Quilometragem Atual (KM) *</label>
-            <input type="number" id="modalKmAtual" min="0" step="1" required placeholder="Ex.: 35000" oninput="aoMudarKmAtualModal()">
+            <input type="number" id="modalKmAtual" min="0" step="1" required="" placeholder="Ex.: 35000" oninput="aoMudarKmAtualModal()">
           </div>
 
           <div class="field">
@@ -1976,8 +2129,8 @@
 
           <div class="field full-width">
             <label for="modalKmRevisao">KM da Próxima Revisão no Odômetro *</label>
-            <input type="number" id="modalKmRevisao" min="0" step="1" required placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()">
-            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;"></small>
+            <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()">
+            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>25.263 km</b> (daqui a <b>10.000 km</b> rodados a partir de agora).</small>
           </div>
 
           <div class="form-actions">
@@ -2010,12 +2163,12 @@
               <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(15000)">+15.000 km</button>
               <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(20000)">+20.000 km</button>
             </div>
-            <input type="number" id="inputKmAgendarIntervalo" min="100" step="100" placeholder="Ex.: 10000" required oninput="calcularAgendamentoRevisao()">
+            <input type="number" id="inputKmAgendarIntervalo" min="100" step="100" placeholder="Ex.: 10000" required="" oninput="calcularAgendamentoRevisao()">
           </div>
 
           <div class="field" style="margin-bottom:16px;">
             <label for="inputKmAgendarTotal">KM da Revisão no Odômetro *</label>
-            <input type="number" id="inputKmAgendarTotal" min="0" step="1" required oninput="calcularIntervaloPeloTotal()">
+            <input type="number" id="inputKmAgendarTotal" min="0" step="1" required="" oninput="calcularIntervaloPeloTotal()">
             <small id="resumoCalculoAgendamento" style="margin-top:6px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;"></small>
           </div>
 
@@ -2056,14 +2209,13 @@
   </div>
 
   <!-- CONTAINER DE TOASTS -->
-  <div id="toastContainer"></div></div></div>
+  <div id="toastContainer"></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
-  <script id="dadosIncorporados" type="application/json">
-{
+  <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:51:48.200Z",
+  "exportadoEm": "2026-10-03T00:38:48.065Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2229,6 +2381,13 @@
       "condutor": "JEAN",
       "kmAtual": 82786,
       "kmRevisao": 90000
+    },
+    {
+      "modelo": "MERCEDES",
+      "placa": "ABC-1255",
+      "condutor": "ALVINHO",
+      "kmAtual": 15263,
+      "kmRevisao": 25263
     }
   ],
   "placasAlugados": [
@@ -2237,10 +2396,10 @@
     "TDF-3E47",
     "TYZ-9G82",
     "TYT-6A92",
-    "SIF-3D08"
+    "SIF-3D08",
+    "ABC-1255"
   ]
-}
-</script>
+}</script>
 
   <!-- LÓGICA DO SISTEMA -->
   <script>
