@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" __gcrremoteframetoken="6b7d875a1b24635aef60842a551cf139"><head>
+<html lang="pt-BR" __gcrremoteframetoken="42606fb4918f04e045755fecf1b5ddc4"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="veiculos">
+<body data-page="registro" class="">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -704,8 +704,8 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
-      <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
+      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#registro" data-route="registro" class="active"><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
+        <span>Frota / <strong id="crumb">Saída e Retorno</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -753,8 +753,8 @@
       <div style="display:flex;align-items:center;gap:12px;">
         <span class="alerta-icone">🚨</span>
         <div>
-          <strong id="tituloAlertaBanner" style="font-size:15px;display:block;">🚨 Alerta Crítico: 1 veículo(s) com revisão vencida!</strong>
-          <div id="descAlertaBanner" style="font-size:12px;opacity:0.95;margin-top:2px;">Veículos: SAVEIRO C. DUPLA (SVI-3G32). Encaminhe para a manutenção preventiva.</div>
+          <strong id="tituloAlertaBanner" style="font-size:15px;display:block;">🚨 Alerta Crítico: 2 veículo(s) com revisão vencida!</strong>
+          <div id="descAlertaBanner" style="font-size:12px;opacity:0.95;margin-top:2px;">Veículos: DOBLO (RFQ-3B33), SAVEIRO C. DUPLA (SVI-3G32). Encaminhe para a manutenção preventiva.</div>
         </div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Veículos Cadastrados</h1>
-        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
+        <h1 id="pageTitle">Saída e Retorno</h1>
+        <p id="pageSubtitle">Registre a utilização dos veículos com verificação de KM.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -797,14 +797,14 @@
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">0</strong>
+              <strong id="countTrips">1</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">0 km</strong>
+              <strong id="countTotalKm">1.000 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -848,7 +848,18 @@
               <h3>⏱️ Últimas Utilizações</h3>
               <a href="#historico">Histórico completo ↗</a>
             </div>
-            <div id="dashboardRecentTrips"><p style="color:var(--muted)">Nenhuma utilização registrada.</p></div>
+            <div id="dashboardRecentTrips">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
+            <div>
+              <strong>DOBLO</strong> <span class="plate-tag">RFQ-3B33</span>
+              <div style="font-size:11px;color:var(--muted)">Motorista: <b>FERNANDO</b> em 03/10/2026</div>
+            </div>
+            <div style="text-align:right">
+              <span style="font-weight:700;color:var(--green-dark);">+1.000 km</span>
+              <div style="font-size:10px;color:var(--muted)">20:27 - 23:27</div>
+            </div>
+          </div>
+        </div>
           </div>
         </div>
 
@@ -880,9 +891,9 @@
         </div>
       </td>
             <td>FERNANDO</td>
-            <td><b>15</b> km</td>
+            <td><b>13.000</b> km</td>
             <td>9.315 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
+            <td><span class="status-badge status-vencida">REVISÃO VENCIDA</span></td>
           </tr>
         
           <tr>
@@ -961,7 +972,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos">
+      <section id="veiculos" hidden="">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1012,153 +1023,6 @@
             <td>
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">RFQ-3B33</div>
-        </div>
-      </td>
-            <td><strong>DOBLO</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>FERNANDO</td>
-            <td><b>15</b> km</td>
-            <td>9.315 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(0)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(0)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">SYE-8I88</div>
-        </div>
-      </td>
-            <td><strong>MONTANA</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>GALPÃO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(1)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(1)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">SVI-3G32</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. DUPLA</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>GALPÃO</td>
-            <td><b>120.096</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-vencida">REVISÃO VENCIDA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(2)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(2)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">SUB-3D12</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. DUPLA</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ALVINHO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(3)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(3)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">BAA-6A34</div>
-        </div>
-      </td>
-            <td><strong>KANGOO</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ADRIANO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(4)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(4)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">RVQ-0G22</div>
-        </div>
-      </td>
-            <td><strong>ARGO</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ADÉLIO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(5)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(5)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">QPC-2C84</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. SIMPLES</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ADÉLIO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(6)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(6)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
           <div class="placa-code">TYZ-4G83</div>
         </div>
       </td>
@@ -1172,111 +1036,6 @@
               <div class="acoes" style="justify-content:flex-end;">
                 <button type="button" class="btn-sm secondary" onclick="editarVeiculo(7)">✏️ Editar</button>
                 <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(7)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">LTY-6A10</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. DUPLA</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ELSON</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(8)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(8)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">EJL-1I36</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. DUPLA</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>RAPHAEL</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(9)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(9)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">SVS-8A24</div>
-        </div>
-      </td>
-            <td><strong>TORO</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>MARCO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(10)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(10)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">NWR-9J47</div>
-        </div>
-      </td>
-            <td><strong>UNO VIVACE</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>THIAGO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(11)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(11)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">LKY-9I36</div>
-        </div>
-      </td>
-            <td><strong>UNO WAY</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>HELITON</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(12)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(12)">🗑️</button>
               </div>
             </td>
           </tr>
@@ -1327,27 +1086,6 @@
             <td>
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">RMQ-1J45</div>
-        </div>
-      </td>
-            <td><strong>KWID</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>NORBERTO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(15)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(15)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
           <div class="placa-code">TYZ-9G82</div>
         </div>
       </td>
@@ -1361,48 +1099,6 @@
               <div class="acoes" style="justify-content:flex-end;">
                 <button type="button" class="btn-sm secondary" onclick="editarVeiculo(16)">✏️ Editar</button>
                 <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(16)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">EOC-4J05</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO C. SIMPLES</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>ADÉLIO</td>
-            <td><b>0</b> km</td>
-            <td>10.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(17)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(17)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
-          <div class="placa-code">SUF-8G01</div>
-        </div>
-      </td>
-            <td><strong>SAVEIRO</strong></td>
-            <td><span class="status-badge status-ok">Próprio</span></td>
-            <td>GALPÃO</td>
-            <td><b>12.293</b> km</td>
-            <td>20.000 km</td>
-            <td><span class="status-badge status-ok">EM DIA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(18)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(18)">🗑️</button>
               </div>
             </td>
           </tr>
@@ -1475,7 +1171,7 @@
       </section>
 
       <!-- 3. SAÍDA E RETORNO (REGISTRAR UTILIZAÇÃO) -->
-      <section id="registro" hidden="">
+      <section id="registro">
         <div class="section-header">
           <div>
             <h2 id="tituloRegistro">Registrar Saída e Retorno</h2>
@@ -1507,8 +1203,8 @@
             <div class="field">
               <label>Horários (Saída e Retorno) *</label>
               <div style="display:flex;gap:8px;">
-                <input type="time" id="regHoraSaida" required="" placeholder="Saída">
-                <input type="time" id="regHoraRetorno" required="" placeholder="Retorno">
+                <input type="time" id="regHoraSaida" required="" placeholder="Saída" __gcruniqueid="27">
+                <input type="time" id="regHoraRetorno" required="" placeholder="Retorno" __gcruniqueid="28">
                 <button type="button" class="secondary btn-sm" onclick="preencherHorarioAtual()">Agora</button>
               </div>
             </div>
@@ -1525,7 +1221,7 @@
 
             <!-- Calculadora visual -->
             <div class="full-width" id="boxCalculoKm" style="display: none; background: rgb(240, 248, 238); border: 1px solid rgb(199, 230, 193); padding: 12px 16px; border-radius: 8px;">
-              <span id="textoCalculoKm" style="font-weight: 600; color: var(--green-dark);">Distância calculada: <b>7.075 km rodados</b> nesta utilização.</span>
+              <span id="textoCalculoKm" style="font-weight: 600; color: var(--green-dark);">Distância calculada: <b>1.000 km rodados</b> nesta utilização.</span>
             </div>
 
             <div class="form-actions">
@@ -1905,7 +1601,7 @@
         
           <tr>
             <td><strong>FERNANDO</strong></td>
-            <td>DOBLO <span class="plate-tag">RFQ-3B34</span></td>
+            <td>DOBLO <span class="plate-tag">RFQ-3B33</span></td>
             <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('FERNANDO')">🗑️ Excluir</button>
@@ -2024,8 +1720,50 @@
         </div>
 
         <div id="conteudoPastaVeiculo">
-          <p style="color:var(--muted)">Selecione um veículo acima para visualizar o dossiê e histórico.</p>
+        <div class="pasta-card">
+          <div class="pasta-info">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+              
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">RFQ-3B33</div>
         </div>
+      
+              <h3 style="margin:0">DOBLO</h3>
+              <span class="status-badge status-ok">Próprio</span>
+              <span class="status-badge status-ok">EM DIA</span>
+            </div>
+            <div class="pasta-meta">
+              <span>Condutor padrão: <b>FERNANDO</b></span>
+              <span>KM Atual: <b>15 km</b></span>
+              <span>Próxima revisão: <b>9.315 km</b></span>
+              <span>Total acumulado nesta pasta: <b>0 km</b></span>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-sm secondary" onclick="window.print()">🖨️ Imprimir Pasta</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Condutor</th>
+                <th>Saída</th>
+                <th>Retorno</th>
+                <th>KM Saída</th>
+                <th>KM Chegada</th>
+                <th>KM Rodados</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="7" style="text-align:center;padding:20px;color:var(--muted)">Nenhuma utilização registrada para este veículo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
@@ -2134,8 +1872,8 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
-    <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
+    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
+    <a href="#registro" data-route="registro" class="active"><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
   </nav>
@@ -2149,7 +1887,7 @@
       </div>
       <div class="modal-body">
         <form id="formVeiculoModal" onsubmit="salvarVeiculoModal(event)" class="grid-form" __gcruniqueid="8">
-          <input type="hidden" id="modalVeiculoIndex" value="0">
+          <input type="hidden" id="modalVeiculoIndex" value="22">
 
           <div class="field full-width">
             <label for="modalModelo">Modelo do Veículo *</label>
@@ -2192,7 +1930,7 @@
           <div class="field full-width">
             <label for="modalKmRevisao">KM da Próxima Revisão no Odômetro *</label>
             <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()" __gcruniqueid="15">
-            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>9.315 km</b> (daqui a <b>9.300 km</b> rodados a partir de agora).</small>
+            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>35.890 km</b> (daqui a <b>2.925 km</b> rodados a partir de agora).</small>
           </div>
 
           <div class="form-actions">
@@ -2244,7 +1982,7 @@
   </div>
 
   <!-- MODAL DE ALERTA DE REVISÃO ATINGIDA -->
-  <div id="modalAlertaRevisao" class="modal-overlay">
+  <div id="modalAlertaRevisao" class="modal-overlay open">
     <div class="modal-window" style="border-top: 6px solid #d32f2f; max-width: 520px; box-shadow: 0 20px 50px rgba(183, 28, 28, 0.3);">
       <div class="modal-header" style="background:#fff4f4;">
         <div style="display:flex;align-items:center;gap:10px;">
@@ -2254,7 +1992,44 @@
         <button class="modal-close" onclick="fecharModalAlertaRevisao()">✕</button>
       </div>
       <div class="modal-body" style="padding:22px;">
-        <div id="corpoAlertaRevisao"></div>
+        <div id="corpoAlertaRevisao">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;background:#fff2f2;padding:12px 14px;border-radius:10px;border:1px solid #f9d1d1;">
+          
+        <div class="placa-badge">
+          <div class="placa-top">BRASIL</div>
+          <div class="placa-code">RFQ-3B33</div>
+        </div>
+      
+          <div>
+            <strong style="font-size:16px;">DOBLO</strong>
+            <div style="font-size:12px;color:var(--muted)">Condutor responsável: <b>FERNANDO</b></div>
+          </div>
+          <div style="margin-left:auto;">
+            <span class="status-badge status-vencida" style="font-size:12px;padding:6px 10px;">REVISÃO VENCIDA</span>
+          </div>
+        </div>
+
+        <div style="background:#fcfcfc;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;">
+            <span>Quilometragem Atual:</span>
+            <strong style="font-size:15px;color:var(--ink);">13.000 km</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;">
+            <span>Limite da Revisão:</span>
+            <strong>9.315 km</strong>
+          </div>
+          <div class="prog-bar-wrap" style="height:10px;">
+            <div class="prog-bar-fill danger" style="width:100%"></div>
+          </div>
+          <div style="margin-top:8px;font-size:12px;font-weight:700;color:var(--danger);">
+            🚨 ATENÇÃO: Revisão VENCIDA em 3.685 km!
+          </div>
+        </div>
+
+        <p style="font-size:13px;color:var(--ink-light);margin:0;line-height:1.5;">
+          Este veículo atingiu o período estipulado para a revisão preventiva. Por favor, providencie o encaminhamento do veículo para revisão antes de novas utilizações.
+        </p>
+      </div>
         <div class="form-actions" style="margin-top:20px;justify-content:flex-end;gap:8px;">
           <button type="button" class="primary" id="btnAlertaRevisaoFeita" style="background:var(--green);border-color:var(--green);">
             ✅ Revisão Feita (+10.000 km)
@@ -2277,7 +2052,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T23:26:14.037Z",
+  "exportadoEm": "2026-10-03T23:28:12.279Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2296,13 +2071,27 @@
     "WELLINGTON",
     "ITALOAUGUSTO"
   ],
-  "registros": [],
+  "registros": [
+    {
+      "id": 1791070092279,
+      "veiculo": "DOBLO",
+      "placa": "RFQ-3B33",
+      "veiculoIndex": 0,
+      "condutor": "FERNANDO",
+      "data": "2026-10-03",
+      "horaSaida": "20:27",
+      "horaRetorno": "23:27",
+      "kmSaida": 12000,
+      "kmChegada": 13000,
+      "kmRodados": 1000
+    }
+  ],
   "veiculos": [
     {
       "modelo": "DOBLO",
       "placa": "RFQ-3B33",
       "condutor": "FERNANDO",
-      "kmAtual": 15,
+      "kmAtual": 13000,
       "kmRevisao": 9315
     },
     {
