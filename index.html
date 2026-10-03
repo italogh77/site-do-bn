@@ -736,7 +736,7 @@
           <span class="dot pulsing"></span>
           <span id="repoPillText">Repositório: <strong>italogh77/site-do-bn</strong></span>
         </div>
-        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()" disabled=""><span>⏳</span> Enviando...</button>
+        <button class="btn btn-github btn-sm" id="btnHeaderPush" onclick="subirParaGitHub()"><span>🚀</span> Subir para GitHub</button>
       </div>
     </div>
 
@@ -1828,7 +1828,23 @@
               </p>
             </div>
             <div style="text-align:right;">
-              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()" disabled="">⏳ Enviando para o GitHub...</button>
+              <button class="btn btn-github" style="font-size:14px; padding:12px 24px;" id="btnSubirGitHubPrincipal" onclick="subirParaGitHub()">🚀 Subir Alterações para o GitHub Agora</button>
+            </div>
+          </div>
+
+          <!-- Cards explicativos dos dois modos de uso -->
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:12px; margin-top:14px;">
+            <div style="background:white; border:1px solid #c7e6c1; border-radius:8px; padding:12px;">
+              <strong style="color:var(--green-dark); display:block; margin-bottom:4px;">💻 No seu Computador (Recomendado)</strong>
+              <p style="font-size:12px; color:var(--ink-light); margin:0;">
+                Abra pelo arquivo <code>ABRIR_SITE.bat</code> na pasta do computador. As credenciais do GitHub Desktop são usadas automaticamente: salva e envia com 1 clique, sem precisar de token.
+              </p>
+            </div>
+            <div style="background:white; border:1px solid #d4e3f5; border-radius:8px; padding:12px;">
+              <strong style="color:#1d5bbf; display:block; margin-bottom:4px;">☁️ Na Web / Celular (GitHub Pages)</strong>
+              <p style="font-size:12px; color:var(--ink-light); margin:0;">
+                Ao acessar por <code>italogh77.github.io</code>, basta informar seu Token do GitHub (PAT) no campo abaixo uma única vez para salvar direto pela nuvem de onde estiver.
+              </p>
             </div>
           </div>
 
@@ -1839,28 +1855,36 @@
             </label>
             <button class="btn btn-sm secondary" onclick="puxarDoGitHub()">⬇️ Puxar do GitHub (Pull)</button>
             <button class="btn btn-sm secondary" onclick="verificarStatusGit()">🔍 Verificar Alterações Pendentes</button>
-            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;">✅ Tudo sincronizado com o GitHub!</span>
+            <span id="gitStatusReport" style="font-size:12px; color:var(--muted); margin-left:auto;">Verificando conexão...</span>
           </div>
         </div>
 
         <!-- Configuração de Token para Acesso Remoto / Celular -->
-        <details class="form-box" style="margin-bottom:24px;">
+        <details class="form-box" style="margin-bottom:24px;" id="detalhesTokenGit" open="">
           <summary style="cursor:pointer; font-weight:700; font-size:15px; color:#2c3a2f;">
-            ⚙️ Configurações Avançadas de Repositório (Token GitHub / Modo Remoto)
+            🔑 Token do GitHub para Modo Web (GitHub Pages / Celular)
           </summary>
           <div style="margin-top:16px;">
-            <p style="font-size:13px; color:var(--muted);">
-              Quando executado pelo computador via <code>ABRIR_SITE.bat</code>, o sistema usa as credenciais salvas do GitHub Desktop automaticamente sem precisar de token. Caso você queira sincronizar através de outro celular ou hospedagem web, você pode inserir um Personal Access Token (PAT) do GitHub aqui:
+            <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">
+              Se você estiver acessando o site pelo link da web <code>https://italogh77.github.io/site-do-bn/</code>, insira um Personal Access Token (PAT) do GitHub com permissão de gravação (<b>repo</b> ou <b>contents: write</b>). Ele ficará salvo no seu navegador:
             </p>
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap;">
+              <a href="https://github.com/settings/tokens/new?scopes=repo&description=GrupoSolutionsFrota" target="_blank" class="btn btn-sm secondary" style="text-decoration:none;">🔗 Criar Token no GitHub (1 Clique)</a>
+              <span style="font-size:12px; color:var(--muted);">Marque a permissão <b>repo</b>, clique em Generate e cole o código abaixo.</span>
+            </div>
             <div class="field" style="margin-bottom:12px;">
               <label for="inputGitRepo">Repositório GitHub (usuario/repositorio)</label>
               <input type="text" id="inputGitRepo" value="italogh77/site-do-bn">
             </div>
             <div class="field" style="margin-bottom:12px;">
-              <label for="inputGitToken">GitHub Personal Access Token (PAT - com permissão repo)</label>
+              <label for="inputGitToken">GitHub Personal Access Token (PAT)</label>
               <input type="password" id="inputGitToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
             </div>
-            <button class="btn btn-sm secondary" onclick="salvarConfigTokenGit()">Salvar Configurações Remotas</button>
+            <div style="display:flex; gap:8px; align-items:center;">
+              <button class="btn btn-sm primary" onclick="salvarConfigTokenGit()">💾 Salvar Token no Navegador</button>
+              <button class="btn btn-sm secondary" onclick="removerTokenGit()">🗑️ Remover Token</button>
+              <span id="statusTokenSalvo" style="font-size:13px; color:var(--muted); margin-left:8px;"></span>
+            </div>
           </div>
         </details>
 
@@ -2260,29 +2284,114 @@
 
       // Se servidor local estiver disponível, salva arquivos e executa auto-sync
       const autoPush = dispararAutoSync && document.getElementById('checkAutoPushConfig')?.checked;
-      salvarNoServidorLocal(autoPush);
+      if (servidorDisponivel) {
+        salvarNoServidorLocal(autoPush);
+      } else if (autoPush) {
+        const token = localStorage.getItem('gh_token') || document.getElementById('inputGitToken')?.value;
+        if (token) {
+          subirParaGitHubSilencioso();
+        }
+      }
     }
 
     /* ========================================================
        SINCRONIZAÇÃO COM O REPOSITÓRIO GITHUB / SERVIDOR
        ======================================================== */
+    function utf8ToBase64(str) {
+      return btoa(
+        encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, p1) {
+          return String.fromCharCode('0x' + p1);
+        })
+      );
+    }
+
+    function gerarHtmlLimpo() {
+      const pacote = JSON.parse(JSON.stringify(appData));
+      const clone = document.documentElement.cloneNode(true);
+
+      const scriptDados = clone.querySelector('#dadosIncorporados');
+      if (scriptDados) scriptDados.textContent = JSON.stringify(pacote, null, 2);
+
+      // Garante que botões de envio não fiquem travados em "Enviando..." no arquivo gerado
+      const bHeader = clone.querySelector('#btnHeaderPush');
+      if (bHeader) {
+        bHeader.innerHTML = '<span>🚀</span> Subir para GitHub';
+        bHeader.removeAttribute('disabled');
+        bHeader.disabled = false;
+      }
+      const bMain = clone.querySelector('#btnSubirGitHubPrincipal');
+      if (bMain) {
+        bMain.innerHTML = '🚀 Subir Alterações para o GitHub Agora';
+        bMain.removeAttribute('disabled');
+        bMain.disabled = false;
+      }
+
+      // Remove modais abertos no clone
+      clone.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+
+      // Remove toasts no clone
+      clone.querySelectorAll('.toast').forEach(t => t.remove());
+
+      // Normaliza status badge no clone
+      const badge = clone.querySelector('#badgeGitStatus');
+      if (badge) {
+        badge.textContent = '🟢 Conectado ao Servidor & Git';
+        badge.className = 'status-badge status-ok';
+      }
+
+      return '<!DOCTYPE html>\n' + clone.outerHTML;
+    }
+
     async function testarServidorLocal() {
-      try {
-        const resp = await fetch('/api/status', { cache: 'no-store' });
-        if (resp.ok) {
-          const info = await resp.json();
-          servidorDisponivel = true;
-          document.getElementById('repoPillText').innerHTML = `Repositório: <strong>${info.repository}</strong>`;
-          document.getElementById('badgeGitStatus').textContent = '🟢 Conectado ao Servidor & Git';
-          document.getElementById('badgeGitStatus').className = 'status-badge status-ok';
-          verificarStatusGit();
-          return true;
+      const badge = document.getElementById('badgeGitStatus');
+      const rep = document.getElementById('gitStatusReport');
+      const statusToken = document.getElementById('statusTokenSalvo');
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+      if (isLocalhost) {
+        try {
+          const resp = await fetch('/api/status', { cache: 'no-store' });
+          if (resp.ok) {
+            const info = await resp.json();
+            servidorDisponivel = true;
+            document.getElementById('repoPillText').innerHTML = `Repositório: <strong>${info.repository}</strong>`;
+            if (badge) {
+              badge.textContent = '🟢 Conectado ao Servidor Local & Git';
+              badge.className = 'status-badge status-ok';
+            }
+            verificarStatusGit();
+            return true;
+          }
+        } catch (e) {
+          console.warn('Erro ao conectar ao servidor local:', e);
         }
-      } catch (e) {
-        servidorDisponivel = false;
-        document.getElementById('repoPillText').innerHTML = `Repositório: <strong>italogh77/site-do-bn</strong>`;
-        document.getElementById('badgeGitStatus').textContent = '☁️ Modo Web (GitHub API)';
-        document.getElementById('badgeGitStatus').className = 'status-badge status-alerta';
+      }
+
+      // Se estiver em GitHub Pages ou sem servidor local Node ativo:
+      servidorDisponivel = false;
+      const token = (localStorage.getItem('gh_token') || document.getElementById('inputGitToken')?.value || '').trim();
+      document.getElementById('repoPillText').innerHTML = `Repositório: <strong>italogh77/site-do-bn</strong>`;
+
+      if (token) {
+        if (badge) {
+          badge.textContent = '☁️ Conectado via GitHub API (Token Ativo)';
+          badge.className = 'status-badge status-ok';
+        }
+        if (rep) rep.textContent = '☁️ Modo Web: alterações serão enviadas via GitHub API.';
+        if (statusToken) {
+          statusToken.textContent = '✅ Token configurado e pronto para envio direto.';
+          statusToken.style.color = 'var(--green-dark)';
+        }
+      } else {
+        if (badge) {
+          badge.textContent = '☁️ Modo Web (GitHub Pages — Sem Token)';
+          badge.className = 'status-badge status-alerta';
+        }
+        if (rep) rep.textContent = 'Para salvar direto pela web, informe o Token abaixo ou abra pelo ABRIR_SITE.bat no PC.';
+        if (statusToken) {
+          statusToken.textContent = '⚠️ Nenhum token configurado ainda.';
+          statusToken.style.color = 'var(--muted)';
+        }
       }
       return false;
     }
@@ -2291,13 +2400,8 @@
       if (!servidorDisponivel) return;
 
       try {
-        // Prepara HTML com os dados incorporados atualizados
         const pacote = JSON.parse(JSON.stringify(appData));
-        const clone = document.documentElement.cloneNode(true);
-        const scriptDados = clone.querySelector('#dadosIncorporados');
-        if (scriptDados) scriptDados.textContent = JSON.stringify(pacote, null, 2);
-
-        const htmlCompleto = '<!DOCTYPE html>\n' + clone.outerHTML;
+        const htmlCompleto = gerarHtmlLimpo();
 
         await fetch('/api/salvar', {
           method: 'POST',
@@ -2317,23 +2421,46 @@
       }
     }
 
+    let autoSyncWebTimeout = null;
+    function subirParaGitHubSilencioso() {
+      clearTimeout(autoSyncWebTimeout);
+      autoSyncWebTimeout = setTimeout(async () => {
+        try {
+          const token = localStorage.getItem('gh_token') || document.getElementById('inputGitToken')?.value;
+          const repo = localStorage.getItem('gh_repo') || 'italogh77/site-do-bn';
+          if (!token) return;
+          const htmlCompleto = gerarHtmlLimpo();
+          const pacote = JSON.parse(JSON.stringify(appData));
+          await enviarViaGitHubApi(repo, token.trim(), htmlCompleto, pacote);
+          mostrarToast('Alterações sincronizadas com o GitHub com sucesso!', 'success');
+        } catch (e) {
+          console.warn('Erro na sincronização automática web:', e);
+        }
+      }, 1200);
+    }
+
     async function verificarStatusGit() {
       const rep = document.getElementById('gitStatusReport');
       if (!servidorDisponivel) {
-        rep.textContent = 'Servidor local não detectado. Use ABRIR_SITE.bat ou insira o Token GitHub.';
+        const token = localStorage.getItem('gh_token');
+        if (rep) {
+          rep.textContent = token
+            ? '☁️ Modo Web: Token configurado. Pronto para envio.'
+            : 'Servidor local não detectado. Use ABRIR_SITE.bat no PC ou informe o Token.';
+        }
         return;
       }
       try {
-        rep.textContent = 'Verificando status do Git...';
+        if (rep) rep.textContent = 'Verificando status do Git...';
         const resp = await fetch('/api/git-status');
         const data = await resp.json();
         if (data.clean) {
-          rep.textContent = '✅ Tudo sincronizado com o GitHub!';
+          if (rep) rep.textContent = '✅ Tudo sincronizado com o GitHub!';
         } else {
-          rep.textContent = '⚠️ Há alterações locais aguardando envio para o GitHub.';
+          if (rep) rep.textContent = '⚠️ Há alterações locais aguardando envio para o GitHub.';
         }
       } catch (e) {
-        rep.textContent = '';
+        if (rep) rep.textContent = '';
       }
     }
 
@@ -2341,20 +2468,23 @@
       const btnHeader = document.getElementById('btnHeaderPush');
       const btnMain = document.getElementById('btnSubirGitHubPrincipal');
 
-      const originalText = btnHeader.innerHTML;
-      btnHeader.innerHTML = '<span>⏳</span> Enviando...';
-      btnHeader.disabled = true;
-      if (btnMain) { btnMain.innerHTML = '⏳ Enviando para o GitHub...'; btnMain.disabled = true; }
+      const originalTextHeader = '<span>🚀</span> Subir para GitHub';
+      const originalTextMain = '🚀 Subir Alterações para o GitHub Agora';
+
+      if (btnHeader) {
+        btnHeader.innerHTML = '<span>⏳</span> Enviando...';
+        btnHeader.disabled = true;
+      }
+      if (btnMain) {
+        btnMain.innerHTML = '⏳ Enviando para o GitHub...';
+        btnMain.disabled = true;
+      }
 
       try {
-        // 1. Prepara HTML e dados
         const pacote = JSON.parse(JSON.stringify(appData));
-        const clone = document.documentElement.cloneNode(true);
-        const scriptDados = clone.querySelector('#dadosIncorporados');
-        if (scriptDados) scriptDados.textContent = JSON.stringify(pacote, null, 2);
-        const htmlCompleto = '<!DOCTYPE html>\n' + clone.outerHTML;
+        const htmlCompleto = gerarHtmlLimpo();
 
-        // Se servidor local estiver ativo:
+        // Modo 1: Se servidor local estiver ativo no PC (localhost)
         if (servidorDisponivel) {
           const resp = await fetch('/api/git-push', {
             method: 'POST',
@@ -2374,30 +2504,47 @@
             throw new Error(resData.error || 'Erro ao enviar para o Git');
           }
         } else {
-          // Fallback via GitHub REST API se houver token
-          const token = localStorage.getItem('gh_token') || document.getElementById('inputGitToken')?.value;
-          const repo = localStorage.getItem('gh_repo') || 'italogh77/site-do-bn';
+          // Modo 2: Modo Web (GitHub Pages / celular / sem servidor local)
+          let token = (localStorage.getItem('gh_token') || document.getElementById('inputGitToken')?.value || '').trim();
+          const repo = (localStorage.getItem('gh_repo') || document.getElementById('inputGitRepo')?.value || 'italogh77/site-do-bn').trim();
 
           if (!token) {
             navegarPara('sincronizacao');
-            throw new Error('Inicie o site pelo arquivo ABRIR_SITE.bat no seu computador ou configure um Token do GitHub.');
+            const resposta = prompt(
+              "🔑 VOCÊ ESTÁ NO MODO WEB (GitHub Pages):\n\nPara salvar alterações diretamente pelo navegador na nuvem, cole seu Personal Access Token (PAT) do GitHub:\n\n(Dica: no computador da empresa, basta abrir pelo arquivo ABRIR_SITE.bat que já sincroniza automaticamente sem precisar de token!)"
+            );
+            if (resposta && resposta.trim()) {
+              token = resposta.trim();
+              localStorage.setItem('gh_token', token);
+              if (document.getElementById('inputGitToken')) {
+                document.getElementById('inputGitToken').value = token;
+              }
+              testarServidorLocal();
+            } else {
+              throw new Error('Operação cancelada. Insira o token do GitHub ou abra pelo arquivo ABRIR_SITE.bat no computador.');
+            }
           }
 
-          mostrarToast('Enviando via GitHub API...', 'info');
+          mostrarToast('Enviando arquivos para o GitHub...', 'info');
           await enviarViaGitHubApi(repo, token, htmlCompleto, pacote);
-          mostrarToast('🎉 SUCESSO! Arquivos atualizados no GitHub via API!', 'success');
+          mostrarToast('🎉 SUCESSO! Repositório atualizado no GitHub via API!', 'success');
+          testarServidorLocal();
         }
       } catch (err) {
         mostrarToast('Erro ao subir para o GitHub: ' + err.message, 'error');
       } finally {
-        btnHeader.innerHTML = originalText;
-        btnHeader.disabled = false;
-        if (btnMain) { btnMain.innerHTML = '🚀 Subir Alterações para o GitHub Agora'; btnMain.disabled = false; }
+        if (btnHeader) {
+          btnHeader.innerHTML = originalTextHeader;
+          btnHeader.disabled = false;
+        }
+        if (btnMain) {
+          btnMain.innerHTML = originalTextMain;
+          btnMain.disabled = false;
+        }
       }
     }
 
     async function enviarViaGitHubApi(repo, token, htmlContent, dadosContent) {
-      // Atualiza index.html e controle_veiculos_prototipo_v5.html
       const arquivosParaAtualizar = [
         { path: 'index.html', content: htmlContent },
         { path: 'controle_veiculos_prototipo_v5.html', content: htmlContent },
@@ -2408,7 +2555,10 @@
         let sha = null;
         try {
           const check = await fetch(`https://api.github.com/repos/${repo}/contents/${item.path}`, {
-            headers: { 'Authorization': `token ${token}` }
+            headers: {
+              'Authorization': `Bearer ${token}`,
+              'Accept': 'application/vnd.github+json'
+            }
           });
           if (check.ok) {
             const fData = await check.json();
@@ -2418,7 +2568,7 @@
 
         const body = {
           message: `Atualização de ${item.path} pelo site em ${new Date().toLocaleString('pt-BR')}`,
-          content: btoa(unescape(encodeURIComponent(item.content))),
+          content: utf8ToBase64(item.content),
           branch: 'main'
         };
         if (sha) body.sha = sha;
@@ -2426,7 +2576,8 @@
         const putResp = await fetch(`https://api.github.com/repos/${repo}/contents/${item.path}`, {
           method: 'PUT',
           headers: {
-            'Authorization': `token ${token}`,
+            'Authorization': `Bearer ${token}`,
+            'Accept': 'application/vnd.github+json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(body)
@@ -2434,14 +2585,14 @@
 
         if (!putResp.ok) {
           const errData = await putResp.json();
-          throw new Error(errData.message || 'Falha ao gravar arquivo no GitHub');
+          throw new Error(errData.message || `Falha ao gravar ${item.path} no GitHub`);
         }
       }
     }
 
     async function puxarDoGitHub() {
       if (!servidorDisponivel) {
-        mostrarToast('Inicie o servidor pelo ABRIR_SITE.bat para puxar dados via Git.', 'error');
+        mostrarToast('Inicie o servidor pelo ABRIR_SITE.bat no PC para puxar dados via Git.', 'error');
         return;
       }
       try {
@@ -2461,17 +2612,33 @@
 
     function toggleAutoPush(ativado) {
       localStorage.setItem('auto_push_github', ativado ? '1' : '0');
-      document.getElementById('checkAutoPush').checked = ativado;
-      document.getElementById('checkAutoPushConfig').checked = ativado;
+      const c1 = document.getElementById('checkAutoPush');
+      const c2 = document.getElementById('checkAutoPushConfig');
+      if (c1) c1.checked = ativado;
+      if (c2) c2.checked = ativado;
       mostrarToast(ativado ? 'Auto-envio para o GitHub ativado!' : 'Auto-envio desativado.', 'info');
     }
 
     function salvarConfigTokenGit() {
-      const repo = document.getElementById('inputGitRepo').value.trim();
+      const repo = document.getElementById('inputGitRepo').value.trim() || 'italogh77/site-do-bn';
       const token = document.getElementById('inputGitToken').value.trim();
-      if (repo) localStorage.setItem('gh_repo', repo);
-      if (token) localStorage.setItem('gh_token', token);
-      mostrarToast('Configurações salvas no navegador!', 'success');
+      localStorage.setItem('gh_repo', repo);
+      if (token) {
+        localStorage.setItem('gh_token', token);
+        mostrarToast('Token do GitHub salvo com sucesso! Agora você pode sincronizar direto pela web.', 'success');
+      } else {
+        localStorage.removeItem('gh_token');
+        mostrarToast('Token removido.', 'info');
+      }
+      testarServidorLocal();
+    }
+
+    function removerTokenGit() {
+      localStorage.removeItem('gh_token');
+      const input = document.getElementById('inputGitToken');
+      if (input) input.value = '';
+      mostrarToast('Token do GitHub removido.', 'info');
+      testarServidorLocal();
     }
 
     /* ========================================================
@@ -3698,6 +3865,18 @@
        INICIALIZAÇÃO
        ======================================================== */
     window.addEventListener('DOMContentLoaded', () => {
+      // Garante botões de envio destravados na inicialização
+      const bHeader = document.getElementById('btnHeaderPush');
+      if (bHeader) {
+        bHeader.innerHTML = '<span>🚀</span> Subir para GitHub';
+        bHeader.disabled = false;
+      }
+      const bMain = document.getElementById('btnSubirGitHubPrincipal');
+      if (bMain) {
+        bMain.innerHTML = '🚀 Subir Alterações para o GitHub Agora';
+        bMain.disabled = false;
+      }
+
       // Carrega auto-push configurado
       const autoPushSalvo = localStorage.getItem('auto_push_github');
       if (autoPushSalvo !== null) {
