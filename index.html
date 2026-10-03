@@ -685,6 +685,7 @@
       .bottom-nav span.icon { font-size: 20px; line-height: 1; }
       form.grid-form { grid-template-columns: 1fr; }
     }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
 <body data-page="veiculos">
@@ -721,6 +722,7 @@
     <div class="mobile-head">
       <a class="brand" href="#inicio">GRUPO<strong>SOLUTIONS</strong></a>
       <div style="display:flex;gap:8px;align-items:center;">
+        <button class="btn btn-sm secondary" onclick="sincronizarDadosDaNuvem(false)" title="Puxar dados atualizados da nuvem">🔄</button>
         <button class="btn btn-sm btn-github" onclick="subirParaGitHub()" title="Subir alterações para o repositório">🚀 Subir</button>
         <button class="secondary btn-sm" onclick="toggleMenu()" aria-label="Abrir menu">☰</button>
       </div>
@@ -732,6 +734,9 @@
         <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
       </div>
       <div class="topbar-right">
+        <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
+          <span id="iconeSyncNuvem" style="display:inline-block;">🔄</span> Sincronizar Nuvem
+        </button>
         <div id="repoStatusPill" class="repo-pill" onclick="navegarPara('sincronizacao')">
           <span class="dot pulsing"></span>
           <span id="repoPillText">Repositório: <strong>italogh77/site-do-bn</strong></span>
@@ -1480,7 +1485,7 @@
           <form id="formRegistro" class="grid-form">
             <div class="field">
               <label for="regVeiculo">Veículo *</label>
-              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()"><option value="">Selecione o veículo...</option><option value="0">DOBLO — RFQ-3B33 (KM Atual: 15)</option><option value="1">MONTANA — SYE-8I88 (KM Atual: 0)</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32 (KM Atual: 120.096)</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12 (KM Atual: 0)</option><option value="4">KANGOO — BAA-6A34 (KM Atual: 0)</option><option value="5">ARGO — RVQ-0G22 (KM Atual: 0)</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84 (KM Atual: 0)</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83 (KM Atual: 12.293)</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10 (KM Atual: 0)</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36 (KM Atual: 0)</option><option value="10">TORO — SVS-8A24 (KM Atual: 0)</option><option value="11">UNO VIVACE — NWR-9J47 (KM Atual: 0)</option><option value="12">UNO WAY — LKY-9I36 (KM Atual: 0)</option><option value="13">ARGO — TEE-0547 (KM Atual: 42.732)</option><option value="14">STRADA — TDF-3E47 (KM Atual: 35.147)</option><option value="15">KWID — RMQ-1J45 (KM Atual: 0)</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82 (KM Atual: 8.770)</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05 (KM Atual: 0)</option><option value="18">SAVEIRO — SUF-8G01 (KM Atual: 12.293)</option><option value="19">HB20 — TYT-6A92 (KM Atual: 5.448)</option><option value="20">SPIN — SIF-3D08 (KM Atual: 82.786)</option><option value="21">YVUVJ — JJI-7890 (KM Atual: 38.686.860)</option><option value="22">ITALO E LINDO — ABC-1234 (KM Atual: 1.000)</option></select>
+              <select id="regVeiculo" required="" onchange="aoSelecionarVeiculoNoRegistro()"><option value="">Selecione o veículo...</option></select>
             </div>
 
             <div class="field">
@@ -1799,7 +1804,7 @@
         <div class="form-box">
           <div class="field" style="max-width:400px;">
             <label for="filtroVeiculoPasta">Selecione o Veículo para abrir a pasta:</label>
-            <select id="filtroVeiculoPasta" onchange="renderPastaSelecionada()"><option value="">Selecione um veículo...</option><option value="0">DOBLO — RFQ-3B33</option><option value="1">MONTANA — SYE-8I88</option><option value="2">SAVEIRO C. DUPLA — SVI-3G32</option><option value="3">SAVEIRO C. DUPLA — SUB-3D12</option><option value="4">KANGOO — BAA-6A34</option><option value="5">ARGO — RVQ-0G22</option><option value="6">SAVEIRO C. SIMPLES — QPC-2C84</option><option value="7">SAVEIRO C. DUPLA — TYZ-4G83</option><option value="8">SAVEIRO C. DUPLA — LTY-6A10</option><option value="9">SAVEIRO C. DUPLA — EJL-1I36</option><option value="10">TORO — SVS-8A24</option><option value="11">UNO VIVACE — NWR-9J47</option><option value="12">UNO WAY — LKY-9I36</option><option value="13">ARGO — TEE-0547</option><option value="14">STRADA — TDF-3E47</option><option value="15">KWID — RMQ-1J45</option><option value="16">SAVEIRO C. DUPLA — TYZ-9G82</option><option value="17">SAVEIRO C. SIMPLES — EOC-4J05</option><option value="18">SAVEIRO — SUF-8G01</option><option value="19">HB20 — TYT-6A92</option><option value="20">SPIN — SIF-3D08</option><option value="21">YVUVJ — JJI-7890</option></select>
+            <select id="filtroVeiculoPasta" onchange="renderPastaSelecionada()"><option value="">Selecione um veículo...</option></select>
           </div>
         </div>
 
@@ -2328,6 +2333,12 @@
         bMain.disabled = false;
       }
 
+      // Limpa selects dinâmicos para não salvar opções estáticas obsoletas
+      const selV = clone.querySelector('#regVeiculo');
+      if (selV) selV.innerHTML = '<option value="">Selecione o veículo...</option>';
+      const selP = clone.querySelector('#filtroVeiculoPasta');
+      if (selP) selP.innerHTML = '<option value="">Selecione um veículo...</option>';
+
       // Remove modais abertos no clone
       clone.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
 
@@ -2342,6 +2353,81 @@
       }
 
       return '<!DOCTYPE html>\n' + clone.outerHTML;
+    }
+
+    /* Sincronização direta com a nuvem (para refletir em todos os aparelhos) */
+    async function sincronizarDadosDaNuvem(silencioso = false) {
+      const btn = document.getElementById('btnSyncNuvem');
+      const icone = document.getElementById('iconeSyncNuvem');
+      if (icone) icone.style.animation = 'spin 0.8s linear infinite';
+      if (btn) btn.disabled = true;
+
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const timestamp = Date.now();
+
+      // Lista de fontes: servidor local (se existir), raw GitHub (CORS liberado mundialmente) ou caminho relativo
+      const urls = [];
+      if (isLocalhost) {
+        urls.push(`/dados.json?_t=${timestamp}`);
+      }
+      urls.push(`https://raw.githubusercontent.com/italogh77/site-do-bn/main/dados.json?_t=${timestamp}`);
+      urls.push(`./dados.json?_t=${timestamp}`);
+
+      let novosDados = null;
+      for (const u of urls) {
+        try {
+          const resp = await fetch(u, { cache: 'no-store' });
+          if (resp.ok) {
+            const json = await resp.json();
+            if (json && Array.isArray(json.veiculos) && json.veiculos.length > 0) {
+              novosDados = json;
+              break;
+            }
+          }
+        } catch (_) {}
+      }
+
+      if (icone) icone.style.animation = '';
+      if (btn) btn.disabled = false;
+
+      if (!novosDados) {
+        if (!silencioso) mostrarToast('Não foi possível conectar à nuvem no momento. Verifique a internet.', 'error');
+        return;
+      }
+
+      const dataRemota = new Date(novosDados.exportadoEm || 0).getTime();
+      const dataLocal = new Date(appData.exportadoEm || 0).getTime();
+
+      // Atualiza se a nuvem tiver dados iguais ou mais recentes, ou se não houver dados locais, ou se for manual
+      if (dataRemota >= dataLocal || !appData.veiculos || appData.veiculos.length === 0 || !silencioso) {
+        const veiculosMudaram = JSON.stringify(appData.veiculos) !== JSON.stringify(novosDados.veiculos);
+        const registrosMudaram = JSON.stringify(appData.registros) !== JSON.stringify(novosDados.registros);
+
+        appData = novosDados;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+        } catch (_) {}
+
+        // Atualiza todas as telas do aplicativo
+        renderDashboard();
+        renderListaVeiculos();
+        renderRevisoes();
+        renderHistorico();
+        renderCondutores();
+        renderPastasVeiculos();
+        prepararFormularioRegistro();
+        verificarAlertasRevisaoGerais();
+
+        if (!silencioso) {
+          mostrarToast(`🎉 Dados atualizados da nuvem com sucesso! (${appData.veiculos.length} veículos carregados)`, 'success');
+        } else if (veiculosMudaram || registrosMudaram) {
+          mostrarToast(`🔄 Dados atualizados da nuvem! Novas informações sincronizadas.`, 'info');
+        }
+      } else {
+        if (!silencioso) {
+          mostrarToast('Este aparelho já está com a versão mais recente dos dados.', 'info');
+        }
+      }
     }
 
     async function testarServidorLocal() {
@@ -3897,6 +3983,14 @@
 
       testarServidorLocal();
       rotear();
+
+      // Sincroniza dados com a nuvem automaticamente ao abrir qualquer aparelho
+      sincronizarDadosDaNuvem(true);
+
+      // Verificação em segundo plano a cada 30 segundos para manter múltiplos aparelhos sincronizados
+      setInterval(() => {
+        sincronizarDadosDaNuvem(true);
+      }, 30000);
     });
   </script>
 
