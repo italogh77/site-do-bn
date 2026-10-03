@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:05:49.557Z",
+  "exportadoEm": "2026-10-03T01:07:27.735Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -176,6 +176,13 @@
       "condutor": "ALVINHO",
       "kmAtual": 15263,
       "kmRevisao": 25263
+    },
+    {
+      "modelo": "FHJ",
+      "placa": "AVC-1234",
+      "condutor": "MOATAN",
+      "kmAtual": 25890,
+      "kmRevisao": 35890
     }
   ],
   "placasAlugados": [
