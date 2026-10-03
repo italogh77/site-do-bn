@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:08:56.037Z",
+  "exportadoEm": "2026-10-03T01:10:22.151Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -21,21 +21,7 @@
     "ITALOAUGUSTO",
     "MOATAN"
   ],
-  "registros": [
-    {
-      "id": 1790989736036,
-      "veiculo": "FHJ",
-      "placa": "AVC-1234",
-      "veiculoIndex": 22,
-      "condutor": "MOATAN",
-      "data": "2026-09-11",
-      "horaSaida": "15:08",
-      "horaRetorno": "22:08",
-      "kmSaida": 25890,
-      "kmChegada": 32965,
-      "kmRodados": 7075
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",
