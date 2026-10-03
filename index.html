@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="registro">
+<body data-page="historico">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -705,9 +705,9 @@
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
       <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
-      <a href="#registro" data-route="registro" class="active"><span class="icon">↗</span>Saída e retorno</a>
+      <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
+      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
       <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Saída e Retorno</strong></span>
+        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Saída e Retorno</h1>
-        <p id="pageSubtitle">Registre a utilização dos veículos com verificação de KM.</p>
+        <h1 id="pageTitle">Histórico Completo</h1>
+        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -797,14 +797,14 @@
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">1</strong>
+              <strong id="countTrips">0</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">7.075 km</strong>
+              <strong id="countTotalKm">0 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -848,18 +848,7 @@
               <h3>⏱️ Últimas Utilizações</h3>
               <a href="#historico">Histórico completo ↗</a>
             </div>
-            <div id="dashboardRecentTrips">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
-            <div>
-              <strong>FHJ</strong> <span class="plate-tag">AVC-1234</span>
-              <div style="font-size:11px;color:var(--muted)">Motorista: <b>MOATAN</b> em 11/09/2026</div>
-            </div>
-            <div style="text-align:right">
-              <span style="font-weight:700;color:var(--green-dark);">+7.075 km</span>
-              <div style="font-size:10px;color:var(--muted)">15:08 - 22:08</div>
-            </div>
-          </div>
-        </div>
+            <div id="dashboardRecentTrips"><p style="color:var(--muted)">Nenhuma utilização registrada.</p></div>
           </div>
         </div>
 
@@ -1491,7 +1480,7 @@
             <td><strong>FHJ</strong></td>
             <td><span class="status-badge status-ok">Próprio</span></td>
             <td>MOATAN</td>
-            <td><b>25.890</b> km</td>
+            <td><b>32.965</b> km</td>
             <td>35.890 km</td>
             <td><span class="status-badge status-ok">EM DIA</span></td>
             <td style="text-align:right">
@@ -1507,7 +1496,7 @@
       </section>
 
       <!-- 3. SAÍDA E RETORNO (REGISTRAR UTILIZAÇÃO) -->
-      <section id="registro">
+      <section id="registro" hidden="">
         <div class="section-header">
           <div>
             <h2 id="tituloRegistro">Registrar Saída e Retorno</h2>
@@ -1812,7 +1801,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico" hidden="">
+      <section id="historico">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -2001,7 +1990,7 @@
           <tr>
             <td><strong>MOATAN</strong></td>
             <td>FHJ <span class="plate-tag">AVC-1234</span></td>
-            <td><b>0</b> utilização(ões)</td>
+            <td><b>1</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('MOATAN')">🗑️ Excluir</button>
             </td>
@@ -2176,7 +2165,7 @@
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
     <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
-    <a href="#registro" data-route="registro" class="active"><span class="icon">⊕</span>Registrar</a>
+    <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
   </nav>
@@ -2318,7 +2307,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:08:56.037Z",
+  "exportadoEm": "2026-10-03T01:10:22.151Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2338,21 +2327,7 @@
     "ITALOAUGUSTO",
     "MOATAN"
   ],
-  "registros": [
-    {
-      "id": 1790989736036,
-      "veiculo": "FHJ",
-      "placa": "AVC-1234",
-      "veiculoIndex": 22,
-      "condutor": "MOATAN",
-      "data": "2026-09-11",
-      "horaSaida": "15:08",
-      "horaRetorno": "22:08",
-      "kmSaida": 25890,
-      "kmChegada": 32965,
-      "kmRodados": 7075
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",
