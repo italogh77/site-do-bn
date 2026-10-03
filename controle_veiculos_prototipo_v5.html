@@ -688,7 +688,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="condutores">
+<body data-page="sincronizacao">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -705,9 +705,9 @@
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
-      <a href="#condutores" data-route="condutores" class="active"><span class="icon">♙</span>Condutores</a>
+      <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -731,7 +731,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Condutores Cadastrados</strong></span>
+        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -763,8 +763,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Condutores Cadastrados</h1>
-        <p id="pageSubtitle">Controle de motoristas autorizados para utilização.</p>
+        <h1 id="pageTitle">GitHub &amp; Backup</h1>
+        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -1490,7 +1490,7 @@
 
             <div class="field">
               <label for="regCondutor">Condutor *</label>
-              <select id="regCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option></select>
+              <select id="regCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option><option value="ITALOAUGUSTO">ITALOAUGUSTO</option></select>
             </div>
 
             <div class="field">
@@ -2257,7 +2257,7 @@
       </section>
 
       <!-- 6. CONDUTORES -->
-      <section id="condutores">
+      <section id="condutores" hidden="">
         <div class="section-header">
           <div>
             <h2>Condutores Cadastrados</h2>
@@ -2363,6 +2363,15 @@
           </tr>
         
           <tr>
+            <td><strong>ITALOAUGUSTO</strong></td>
+            <td><span style="color:var(--muted)">Nenhum fixo</span></td>
+            <td><b>0</b> utilização(ões)</td>
+            <td style="text-align:right">
+              <button class="btn-sm btn-danger" onclick="excluirCondutor('ITALOAUGUSTO')">🗑️ Excluir</button>
+            </td>
+          </tr>
+        
+          <tr>
             <td><strong>JEAN</strong></td>
             <td>HB20 <span class="plate-tag">TYT-6A92</span></td>
             <td><b>0</b> utilização(ões)</td>
@@ -2452,7 +2461,7 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao" hidden="">
+      <section id="sincronizacao">
         <div class="section-header">
           <div>
             <h2>GitHub &amp; Sincronização de Dados</h2>
