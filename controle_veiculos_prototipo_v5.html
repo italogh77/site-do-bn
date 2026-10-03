@@ -550,6 +550,27 @@
     .prog-bar-fill.warning { background: var(--warning); }
     .prog-bar-fill.danger { background: var(--danger); }
 
+    /* Banner de Alerta de Revisão */
+    .alerta-banner {
+      background: linear-gradient(135deg, #d32f2f 0%, #a71818 100%);
+      color: white;
+      padding: 14px 20px;
+      border-radius: var(--radius);
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 4px 14px rgba(211, 47, 47, 0.28);
+      animation: pulseAlert 2.8s infinite;
+    }
+    @keyframes pulseAlert {
+      0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+    }
+    .alerta-icone { font-size: 26px; line-height: 1; flex-shrink: 0; }
+
     /* Notificação Toast */
     #toastContainer {
       position: fixed;
@@ -719,6 +740,21 @@
       </div>
     </div>
 
+    <!-- BANNER DE ALERTA DE REVISÃO GERAL -->
+    <div id="bannerAlertaRevisaoGeral" class="alerta-banner" style="display:none;">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="alerta-icone">🚨</span>
+        <div>
+          <strong id="tituloAlertaBanner" style="font-size:15px;display:block;">Período de Revisão Atingido!</strong>
+          <div id="descAlertaBanner" style="font-size:12px;opacity:0.95;margin-top:2px;">Existem veículos que atingiram a quilometragem para manutenção preventiva.</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-shrink:0;">
+        <button type="button" class="btn btn-sm btn-danger" onclick="navegarPara('revisoes')" style="background:white!important;color:#b3261e!important;border:0!important;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,0.15);">Ver Revisões ↗</button>
+        <button type="button" class="btn btn-sm" onclick="dispensarAlertaBanner()" style="background:rgba(255,255,255,0.2)!important;border:1px solid rgba(255,255,255,0.4)!important;color:white!important;min-height:32px;padding:4px 10px;" title="Dispensar aviso provisoriamente">✕</button>
+      </div>
+    </div>
+
     <!-- Hero Header -->
     <header class="hero">
       <div>
@@ -739,14 +775,14 @@
           <div class="stat-card">
             <div class="stat-icon">▤</div>
             <div>
-              <strong id="countVehicles">23</strong>
+              <strong id="countVehicles">22</strong>
               <small>Veículos na frota</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">⚿</div>
             <div>
-              <strong id="countRentals">8</strong>
+              <strong id="countRentals">7</strong>
               <small>Veículos alugados</small>
             </div>
           </div>
@@ -776,24 +812,24 @@
             <div id="dashboardNextReview">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
             <div>
-              <strong style="font-size:16px;">YVUVJ</strong>
+              <strong style="font-size:16px;">SAVEIRO C. DUPLA</strong>
               <div style="margin-top:4px;">
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">JJI-7890</div>
+          <div class="placa-code">TYZ-9G82</div>
         </div>
       </div>
             </div>
-            <span class="status-badge status-vencida">REVISÃO VENCIDA</span>
+            <span class="status-badge status-ok">EM DIA</span>
           </div>
           <div style="margin-top:12px;font-size:13px;color:var(--muted)">
-            KM Atual: <b>38.686.860</b> / Revisão: <b>606.060</b>
+            KM Atual: <b>8.770</b> / Revisão: <b>10.000</b>
           </div>
           <div class="prog-bar-wrap">
-            <div class="prog-bar-fill danger" style="width:100%"></div>
+            <div class="prog-bar-fill " style="width:88%"></div>
           </div>
-          <div style="margin-top:6px;font-size:12px;font-weight:600;color:var(--danger)">
-            Vencida há 38.080.800 km
+          <div style="margin-top:6px;font-size:12px;font-weight:600;color:var(--muted)">
+            Faltam 1.230 km para a revisão
           </div>
         </div>
           </div>
@@ -1409,27 +1445,6 @@
             <td>
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">JJI-7890</div>
-        </div>
-      </td>
-            <td><strong>YVUVJ</strong></td>
-            <td><span class="status-badge status-alerta">Alugado</span></td>
-            <td>FÁBIO</td>
-            <td><b>38.686.860</b> km</td>
-            <td>606.060 km</td>
-            <td><span class="status-badge status-vencida">REVISÃO VENCIDA</span></td>
-            <td style="text-align:right">
-              <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(21)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(21)">🗑️</button>
-              </div>
-            </td>
-          </tr>
-        
-          <tr>
-            <td>
-        <div class="placa-badge">
-          <div class="placa-top">BRASIL</div>
           <div class="placa-code">ABC-1234</div>
         </div>
       </td>
@@ -1441,8 +1456,8 @@
             <td><span class="status-badge status-ok">EM DIA</span></td>
             <td style="text-align:right">
               <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(22)">✏️ Editar</button>
-                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(22)">🗑️</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(21)">✏️ Editar</button>
+                <button type="button" class="btn-sm btn-danger" onclick="excluirVeiculo(21)">🗑️</button>
               </div>
             </td>
           </tr>
@@ -1917,12 +1932,23 @@
 
           <div class="field">
             <label for="modalKmAtual">Quilometragem Atual (KM) *</label>
-            <input type="number" id="modalKmAtual" min="0" step="1" required="" placeholder="Ex.: 35000">
+            <input type="number" id="modalKmAtual" min="0" step="1" required placeholder="Ex.: 35000" oninput="aoMudarKmAtualModal()">
           </div>
 
           <div class="field">
-            <label for="modalKmRevisao">KM da Próxima Revisão *</label>
-            <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 40000">
+            <label for="modalKmIntervalo">Fazer revisão daqui a quantos KM? *</label>
+            <div style="display:flex;gap:4px;">
+              <input type="number" id="modalKmIntervalo" min="100" step="100" placeholder="Ex.: 10000" oninput="aoMudarIntervaloModal()">
+              <button type="button" class="btn btn-sm secondary" onclick="definirIntervaloModal(5000)" title="Daqui a 5.000 km" style="padding:4px 8px;min-height:auto;">+5k</button>
+              <button type="button" class="btn btn-sm secondary" onclick="definirIntervaloModal(10000)" title="Daqui a 10.000 km" style="padding:4px 8px;min-height:auto;">+10k</button>
+              <button type="button" class="btn btn-sm secondary" onclick="definirIntervaloModal(15000)" title="Daqui a 15.000 km" style="padding:4px 8px;min-height:auto;">+15k</button>
+            </div>
+          </div>
+
+          <div class="field full-width">
+            <label for="modalKmRevisao">KM da Próxima Revisão no Odômetro *</label>
+            <input type="number" id="modalKmRevisao" min="0" step="1" required placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()">
+            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;"></small>
           </div>
 
           <div class="form-actions">
@@ -1934,14 +1960,80 @@
     </div>
   </div>
 
+  <!-- MODAL RÁPIDO PARA AGENDAR/DEFINIR INTERVALO DE REVISÃO -->
+  <div id="modalAgendarRevisao" class="modal-overlay">
+    <div class="modal-window" style="max-width: 500px;">
+      <div class="modal-header">
+        <h3 id="tituloModalAgendar">Definir Revisão do Veículo</h3>
+        <button class="modal-close" onclick="fecharModalAgendarRevisao()">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="formAgendarRevisao" onsubmit="salvarAgendamentoRevisao(event)">
+          <input type="hidden" id="agendarVeiculoIndex" value="">
+
+          <div id="infoVeiculoAgendamento" style="margin-bottom:16px;background:#f6f9f6;padding:12px 14px;border-radius:8px;border:1px solid #d8e5d7;"></div>
+
+          <div class="field" style="margin-bottom:16px;">
+            <label>Fazer próxima revisão daqui a quantos KM? *</label>
+            <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:6px;margin-bottom:8px;">
+              <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(5000)">+5.000 km</button>
+              <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(10000)">+10.000 km</button>
+              <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(15000)">+15.000 km</button>
+              <button type="button" class="btn btn-sm secondary" onclick="setKmAgendarIntervalo(20000)">+20.000 km</button>
+            </div>
+            <input type="number" id="inputKmAgendarIntervalo" min="100" step="100" placeholder="Ex.: 10000" required oninput="calcularAgendamentoRevisao()">
+          </div>
+
+          <div class="field" style="margin-bottom:16px;">
+            <label for="inputKmAgendarTotal">KM da Revisão no Odômetro *</label>
+            <input type="number" id="inputKmAgendarTotal" min="0" step="1" required oninput="calcularIntervaloPeloTotal()">
+            <small id="resumoCalculoAgendamento" style="margin-top:6px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;"></small>
+          </div>
+
+          <div class="form-actions" style="justify-content:flex-end;">
+            <button type="submit" class="primary">💾 Salvar Programação</button>
+            <button type="button" class="secondary" onclick="fecharModalAgendarRevisao()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE ALERTA DE REVISÃO ATINGIDA -->
+  <div id="modalAlertaRevisao" class="modal-overlay">
+    <div class="modal-window" style="border-top: 6px solid #d32f2f; max-width: 520px; box-shadow: 0 20px 50px rgba(183, 28, 28, 0.3);">
+      <div class="modal-header" style="background:#fff4f4;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:24px;">🚨</span>
+          <h3 style="color:#b71c1c;margin:0;font-size:18px;">Alerta: Período de Revisão Atingido!</h3>
+        </div>
+        <button class="modal-close" onclick="fecharModalAlertaRevisao()">✕</button>
+      </div>
+      <div class="modal-body" style="padding:22px;">
+        <div id="corpoAlertaRevisao"></div>
+        <div class="form-actions" style="margin-top:20px;justify-content:flex-end;gap:8px;">
+          <button type="button" class="primary" id="btnAlertaRevisaoFeita" style="background:var(--green);border-color:var(--green);">
+            ✅ Revisão Feita (+10.000 km)
+          </button>
+          <button type="button" class="secondary" id="btnAlertaReagendar">
+            ⚙️ Agendar Outro KM
+          </button>
+          <button type="button" class="secondary" onclick="fecharModalAlertaRevisao()">
+            Entendido, Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- CONTAINER DE TOASTS -->
-  <div id="toastContainer"></div>
+  <div id="toastContainer"><div class="toast info"><span>ℹ️</span> <div>Veículo YVUVJ removido da frota.</div></div></div>
 
   <!-- DADOS INCORPORADOS DEFAULT -->
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-02T23:51:45.552Z",
+  "exportadoEm": "2026-10-02T23:51:48.200Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2107,13 +2199,6 @@
       "condutor": "JEAN",
       "kmAtual": 82786,
       "kmRevisao": 90000
-    },
-    {
-      "modelo": "ITALO E LINDO",
-      "placa": "ABC-1234",
-      "condutor": "WELLINGTON",
-      "kmAtual": 1000,
-      "kmRevisao": 10000
     }
   ],
   "placasAlugados": [
@@ -2122,8 +2207,7 @@
     "TDF-3E47",
     "TYZ-9G82",
     "TYT-6A92",
-    "SIF-3D08",
-    "ABC-1234"
+    "SIF-3D08"
   ]
 }</script>
 
@@ -2698,19 +2782,68 @@
         document.getElementById('modalModelo').value = v.modelo;
         document.getElementById('modalPlaca').value = v.placa;
         document.getElementById('modalCondutor').value = v.condutor;
-        document.getElementById('modalKmAtual').value = v.kmAtual;
-        document.getElementById('modalKmRevisao').value = v.kmRevisao;
+        document.getElementById('modalKmAtual').value = v.kmAtual || 0;
+        document.getElementById('modalKmRevisao').value = v.kmRevisao || 10000;
+
+        const intervalo = Math.max(0, (v.kmRevisao || 10000) - (v.kmAtual || 0));
+        document.getElementById('modalKmIntervalo').value = intervalo > 0 ? intervalo : 10000;
+        atualizarResumoRevisaoModal();
 
         const isAlugado = (appData.placasAlugados || []).includes(v.placa);
         document.getElementById('modalTipo').value = isAlugado ? 'alugado' : 'proprio';
       } else {
         document.getElementById('modalVeiculoTitulo').textContent = 'Cadastrar Novo Veículo';
         document.getElementById('modalVeiculoIndex').value = '';
-        document.getElementById('modalKmRevisao').value = 10000;
         document.getElementById('modalKmAtual').value = 0;
+        document.getElementById('modalKmIntervalo').value = 10000;
+        document.getElementById('modalKmRevisao').value = 10000;
+        atualizarResumoRevisaoModal();
       }
 
       modal.classList.add('open');
+    }
+
+    function aoMudarKmAtualModal() {
+      const atual = Number(document.getElementById('modalKmAtual').value || 0);
+      const intervalo = Number(document.getElementById('modalKmIntervalo').value || 10000);
+      document.getElementById('modalKmRevisao').value = atual + intervalo;
+      atualizarResumoRevisaoModal();
+    }
+
+    function aoMudarIntervaloModal() {
+      const atual = Number(document.getElementById('modalKmAtual').value || 0);
+      const intervalo = Number(document.getElementById('modalKmIntervalo').value || 0);
+      document.getElementById('modalKmRevisao').value = atual + intervalo;
+      atualizarResumoRevisaoModal();
+    }
+
+    function aoMudarKmRevisaoModal() {
+      const atual = Number(document.getElementById('modalKmAtual').value || 0);
+      const revisao = Number(document.getElementById('modalKmRevisao').value || 0);
+      const intervalo = Math.max(0, revisao - atual);
+      document.getElementById('modalKmIntervalo').value = intervalo;
+      atualizarResumoRevisaoModal();
+    }
+
+    function definirIntervaloModal(km) {
+      document.getElementById('modalKmIntervalo').value = km;
+      aoMudarIntervaloModal();
+    }
+
+    function atualizarResumoRevisaoModal() {
+      const atual = Number(document.getElementById('modalKmAtual').value || 0);
+      const revisao = Number(document.getElementById('modalKmRevisao').value || 0);
+      const intervalo = Math.max(0, revisao - atual);
+      const resumo = document.getElementById('resumoCalculoRevisaoModal');
+      if (resumo) {
+        if (revisao <= atual) {
+          resumo.style.color = 'var(--danger)';
+          resumo.innerHTML = `⚠️ Com esse valor, a revisão estará <b>VENCIDA</b> imediatamente! (Atual: ${formatarKm(atual)} km | Revisão: ${formatarKm(revisao)} km).`;
+        } else {
+          resumo.style.color = 'var(--green-dark)';
+          resumo.innerHTML = `💡 A revisão será aos <b>${formatarKm(revisao)} km</b> (daqui a <b>${formatarKm(intervalo)} km</b> rodados a partir de agora).`;
+        }
+      }
     }
 
     function fecharModalVeiculo() {
@@ -2976,6 +3109,15 @@
       salvarLocalmente(autoPush);
       limparFormularioRegistro();
       renderDashboard();
+      verificarAlertasRevisaoGerais();
+
+      // Dispara o alerta imediato se o veículo atingiu o período de revisão!
+      const stRevisao = statusRevisaoVeiculo(v);
+      if (stRevisao.vencida || stRevisao.alerta) {
+        setTimeout(() => {
+          dispararAlertaRevisao(v, stRevisao);
+        }, 300);
+      }
     });
 
     /* ========================================================
@@ -3001,14 +3143,14 @@
         const st = statusRevisaoVeiculo(v);
 
         return `
-          <tr>
+          <tr style="${st.vencida ? 'background:#fff8f8;' : st.alerta ? 'background:#fffcf5;' : ''}">
             <td>${renderPlacaBadgeHtml(v.placa)}</td>
             <td><strong>${esc(v.modelo)}</strong></td>
             <td>${esc(v.condutor)}</td>
             <td><b>${formatarKm(v.kmAtual)}</b> km</td>
             <td>${formatarKm(v.kmRevisao)} km</td>
-            <td style="font-weight:600;color:${st.vencida ? 'var(--danger)' : st.alerta ? 'var(--warning)' : 'var(--ink)'}">
-              ${st.falta <= 0 ? `Vencida em ${formatarKm(Math.abs(st.falta))} km` : `${formatarKm(st.falta)} km`}
+            <td style="font-weight:700;color:${st.vencida ? 'var(--danger)' : st.alerta ? 'var(--warning)' : 'var(--ink)'}">
+              ${st.falta <= 0 ? `🚨 Vencida em ${formatarKm(Math.abs(st.falta))} km` : `⏳ Faltam ${formatarKm(st.falta)} km`}
             </td>
             <td style="width:140px;">
               <div class="prog-bar-wrap">
@@ -3018,8 +3160,9 @@
             <td><span class="status-badge ${st.classe}">${st.texto}</span></td>
             <td style="text-align:right">
               <div class="acoes" style="justify-content:flex-end;">
-                <button type="button" class="btn-sm primary" onclick="registrarRevisaoFeita(${idx})" title="Registrar que a revisão foi feita e adiantar 10.000 km">✅ Feita (+10k)</button>
-                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(${idx})">✏️</button>
+                <button type="button" class="btn-sm primary" onclick="abrirModalAgendarRevisao(${idx})" title="Definir daqui a quantos KM fazer a revisão">⚙️ Definir KM</button>
+                <button type="button" class="btn-sm secondary" onclick="registrarRevisaoFeita(${idx})" title="Revisão feita: +10.000 km">✅ Feita (+10k)</button>
+                <button type="button" class="btn-sm secondary" onclick="editarVeiculo(${idx})" title="Editar cadastro do veículo">✏️</button>
               </div>
             </td>
           </tr>
@@ -3032,13 +3175,227 @@
       if (!v) return;
 
       const proximoKm = Math.max(v.kmAtual, v.kmRevisao) + 10000;
-      if (confirm(`Confirmar que a revisão do veículo ${v.modelo} (${v.placa}) foi realizada?\n\nA próxima revisão será ajustada para ${formatarKm(proximoKm)} km.`)) {
+      if (confirm(`Confirmar que a revisão do veículo ${v.modelo} (${v.placa}) foi realizada?\n\nA próxima revisão será ajustada para ${formatarKm(proximoKm)} km (daqui a 10.000 km).`)) {
         v.kmRevisao = proximoKm;
         salvarLocalmente(true);
         renderRevisoes();
         renderDashboard();
+        verificarAlertasRevisaoGerais();
         mostrarToast(`Revisão de ${v.modelo} registrada! Próxima aos ${formatarKm(proximoKm)} km.`, 'success');
       }
+    }
+
+    /* Agendamento Rápido de Revisão (Daqui a quantos KM) */
+    let veiculoSendoAgendadoIndex = null;
+
+    function abrirModalAgendarRevisao(indice) {
+      const v = appData.veiculos[indice];
+      if (!v) return;
+
+      veiculoSendoAgendadoIndex = indice;
+      document.getElementById('agendarVeiculoIndex').value = indice;
+      document.getElementById('tituloModalAgendar').textContent = `Definir Revisão — ${v.modelo}`;
+
+      const infoBox = document.getElementById('infoVeiculoAgendamento');
+      infoBox.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+          ${renderPlacaBadgeHtml(v.placa)}
+          <div>
+            <strong style="font-size:15px;">${esc(v.modelo)}</strong>
+            <div style="font-size:12px;color:var(--muted)">Condutor: <b>${esc(v.condutor)}</b></div>
+          </div>
+        </div>
+        <div style="font-size:13px;color:var(--muted);border-top:1px solid #e1ebe0;padding-top:6px;margin-top:6px;">
+          KM Atual no odômetro: <b style="color:var(--ink);font-size:14px;">${formatarKm(v.kmAtual)} km</b>
+        </div>
+      `;
+
+      // Define intervalo padrão de 10.000 km
+      document.getElementById('inputKmAgendarIntervalo').value = 10000;
+      calcularAgendamentoRevisao();
+
+      document.getElementById('modalAgendarRevisao').classList.add('open');
+    }
+
+    function fecharModalAgendarRevisao() {
+      document.getElementById('modalAgendarRevisao').classList.remove('open');
+      veiculoSendoAgendadoIndex = null;
+    }
+
+    function setKmAgendarIntervalo(km) {
+      document.getElementById('inputKmAgendarIntervalo').value = km;
+      calcularAgendamentoRevisao();
+    }
+
+    function calcularAgendamentoRevisao() {
+      if (veiculoSendoAgendadoIndex === null) return;
+      const v = appData.veiculos[veiculoSendoAgendadoIndex];
+      if (!v) return;
+
+      const atual = Number(v.kmAtual || 0);
+      const intervalo = Number(document.getElementById('inputKmAgendarIntervalo').value || 0);
+      const total = atual + intervalo;
+
+      document.getElementById('inputKmAgendarTotal').value = total;
+
+      const msg = document.getElementById('resumoCalculoAgendamento');
+      msg.innerHTML = `💡 A revisão será aos <b>${formatarKm(total)} km</b> (daqui a <b>${formatarKm(intervalo)} km</b> rodados).`;
+    }
+
+    function calcularIntervaloPeloTotal() {
+      if (veiculoSendoAgendadoIndex === null) return;
+      const v = appData.veiculos[veiculoSendoAgendadoIndex];
+      if (!v) return;
+
+      const atual = Number(v.kmAtual || 0);
+      const total = Number(document.getElementById('inputKmAgendarTotal').value || 0);
+      const intervalo = Math.max(0, total - atual);
+
+      document.getElementById('inputKmAgendarIntervalo').value = intervalo;
+
+      const msg = document.getElementById('resumoCalculoAgendamento');
+      msg.innerHTML = `💡 A revisão será aos <b>${formatarKm(total)} km</b> (daqui a <b>${formatarKm(intervalo)} km</b> rodados).`;
+    }
+
+    function salvarAgendamentoRevisao(event) {
+      event.preventDefault();
+      if (veiculoSendoAgendadoIndex === null) return;
+      const v = appData.veiculos[veiculoSendoAgendadoIndex];
+      if (!v) return;
+
+      const novoKm = Number(document.getElementById('inputKmAgendarTotal').value);
+      if (novoKm <= 0) {
+        alert('Informe uma quilometragem válida para a revisão.');
+        return;
+      }
+
+      v.kmRevisao = novoKm;
+      salvarLocalmente(true);
+      fecharModalAgendarRevisao();
+      renderRevisoes();
+      renderDashboard();
+      verificarAlertasRevisaoGerais();
+      mostrarToast(`Revisão de ${v.modelo} agendada para ${formatarKm(novoKm)} km com sucesso!`, 'success');
+    }
+
+    /* Sistema de Alerta Interativo de Revisão */
+    let veiculoAlertaAtual = null;
+
+    function tocarSomAlerta() {
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.35);
+      } catch (_) {}
+    }
+
+    function dispararAlertaRevisao(v, st) {
+      veiculoAlertaAtual = v;
+      const modal = document.getElementById('modalAlertaRevisao');
+      const corpo = document.getElementById('corpoAlertaRevisao');
+      if (!modal || !corpo) return;
+
+      tocarSomAlerta();
+
+      corpo.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;background:#fff2f2;padding:12px 14px;border-radius:10px;border:1px solid #f9d1d1;">
+          ${renderPlacaBadgeHtml(v.placa)}
+          <div>
+            <strong style="font-size:16px;">${esc(v.modelo)}</strong>
+            <div style="font-size:12px;color:var(--muted)">Condutor responsável: <b>${esc(v.condutor)}</b></div>
+          </div>
+          <div style="margin-left:auto;">
+            <span class="status-badge ${st.classe}" style="font-size:12px;padding:6px 10px;">${st.texto}</span>
+          </div>
+        </div>
+
+        <div style="background:#fcfcfc;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;">
+            <span>Quilometragem Atual:</span>
+            <strong style="font-size:15px;color:var(--ink);">${formatarKm(v.kmAtual)} km</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;font-size:13px;">
+            <span>Limite da Revisão:</span>
+            <strong>${formatarKm(v.kmRevisao)} km</strong>
+          </div>
+          <div class="prog-bar-wrap" style="height:10px;">
+            <div class="prog-bar-fill ${st.vencida ? 'danger' : 'warning'}" style="width:${st.percent}%"></div>
+          </div>
+          <div style="margin-top:8px;font-size:12px;font-weight:700;color:${st.vencida ? 'var(--danger)' : 'var(--warning)'};">
+            ${st.falta <= 0 ? `🚨 ATENÇÃO: Revisão VENCIDA em ${formatarKm(Math.abs(st.falta))} km!` : `⚠️ ATENÇÃO: Faltam apenas ${formatarKm(st.falta)} km para a revisão!`}
+          </div>
+        </div>
+
+        <p style="font-size:13px;color:var(--ink-light);margin:0;line-height:1.5;">
+          Este veículo atingiu o período estipulado para a revisão preventiva. Por favor, providencie o encaminhamento do veículo para revisão antes de novas utilizações.
+        </p>
+      `;
+
+      document.getElementById('btnAlertaRevisaoFeita').onclick = () => {
+        const idx = appData.veiculos.indexOf(veiculoAlertaAtual);
+        fecharModalAlertaRevisao();
+        if (idx >= 0) {
+          registrarRevisaoFeita(idx);
+        }
+      };
+
+      document.getElementById('btnAlertaReagendar').onclick = () => {
+        const idx = appData.veiculos.indexOf(veiculoAlertaAtual);
+        fecharModalAlertaRevisao();
+        if (idx >= 0) {
+          abrirModalAgendarRevisao(idx);
+        }
+      };
+
+      modal.classList.add('open');
+    }
+
+    function fecharModalAlertaRevisao() {
+      const modal = document.getElementById('modalAlertaRevisao');
+      if (modal) modal.classList.remove('open');
+      veiculoAlertaAtual = null;
+    }
+
+    function verificarAlertasRevisaoGerais() {
+      const vencidas = appData.veiculos.filter(v => {
+        const st = statusRevisaoVeiculo(v);
+        return st.vencida;
+      });
+      const perto = appData.veiculos.filter(v => {
+        const st = statusRevisaoVeiculo(v);
+        return st.alerta && !st.vencida;
+      });
+
+      const banner = document.getElementById('bannerAlertaRevisaoGeral');
+      if (!banner) return;
+
+      const totalAlertas = vencidas.length + perto.length;
+      if (totalAlertas > 0) {
+        banner.style.display = 'flex';
+        document.getElementById('tituloAlertaBanner').textContent = vencidas.length > 0
+          ? `🚨 Alerta Crítico: ${vencidas.length} veículo(s) com revisão vencida!`
+          : `⚠️ Atenção: ${perto.length} veículo(s) próximo(s) da revisão!`;
+
+        const nomes = [...vencidas, ...perto].map(v => `${v.modelo} (${v.placa})`).slice(0, 3).join(', ');
+        const mais = totalAlertas > 3 ? ` e mais ${totalAlertas - 3}...` : '';
+        document.getElementById('descAlertaBanner').textContent = `Veículos: ${nomes}${mais}. Encaminhe para a manutenção preventiva.`;
+      } else {
+        banner.style.display = 'none';
+      }
+    }
+
+    function dispensarAlertaBanner() {
+      const banner = document.getElementById('bannerAlertaRevisaoGeral');
+      if (banner) banner.style.display = 'none';
     }
 
     /* ========================================================
