@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="historico">
+<body data-page="condutores">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -707,8 +707,8 @@
       <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
-      <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
+      <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
+      <a href="#condutores" data-route="condutores" class="active"><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
       <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
+        <span>Frota / <strong id="crumb">Condutores Cadastrados</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Histórico Completo</h1>
-        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
+        <h1 id="pageTitle">Condutores Cadastrados</h1>
+        <p id="pageSubtitle">Controle de motoristas autorizados para utilização.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -1514,7 +1514,7 @@
 
             <div class="field">
               <label for="regCondutor">Condutor *</label>
-              <select id="regCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option><option value="ITALOAUGUSTO">ITALOAUGUSTO</option><option value="MOATAN">MOATAN</option></select>
+              <select id="regCondutor" required=""><option value="">Selecione o condutor...</option><option value="ADÉLIO">ADÉLIO</option><option value="ADRIANO">ADRIANO</option><option value="ALVINHO">ALVINHO</option><option value="ELSON">ELSON</option><option value="FÁBIO">FÁBIO</option><option value="FERNANDO">FERNANDO</option><option value="GALPÃO">GALPÃO</option><option value="HELITON">HELITON</option><option value="JEAN">JEAN</option><option value="JOÃO VÍCTOR">JOÃO VÍCTOR</option><option value="MARCO">MARCO</option><option value="NORBERTO">NORBERTO</option><option value="RAPHAEL">RAPHAEL</option><option value="THIAGO">THIAGO</option><option value="WELLINGTON">WELLINGTON</option><option value="ITALOAUGUSTO">ITALOAUGUSTO</option></select>
             </div>
 
             <div class="field">
@@ -1801,7 +1801,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico">
+      <section id="historico" hidden="">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1846,7 +1846,7 @@
       </section>
 
       <!-- 6. CONDUTORES -->
-      <section id="condutores" hidden="">
+      <section id="condutores">
         <div class="section-header">
           <div>
             <h2>Condutores Cadastrados</h2>
@@ -1984,15 +1984,6 @@
             <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('MARCO')">🗑️ Excluir</button>
-            </td>
-          </tr>
-        
-          <tr>
-            <td><strong>MOATAN</strong></td>
-            <td>FHJ <span class="plate-tag">AVC-1234</span></td>
-            <td><b>1</b> utilização(ões)</td>
-            <td style="text-align:right">
-              <button class="btn-sm btn-danger" onclick="excluirCondutor('MOATAN')">🗑️ Excluir</button>
             </td>
           </tr>
         
@@ -2307,7 +2298,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T01:10:22.151Z",
+  "exportadoEm": "2026-10-03T01:10:29.118Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2324,8 +2315,7 @@
     "RAPHAEL",
     "THIAGO",
     "WELLINGTON",
-    "ITALOAUGUSTO",
-    "MOATAN"
+    "ITALOAUGUSTO"
   ],
   "registros": [],
   "veiculos": [
