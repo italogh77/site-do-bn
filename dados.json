@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-04T06:17:20.975Z",
+  "exportadoEm": "2026-10-04T06:19:45.317Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -20,21 +20,7 @@
     "WELLINGTON",
     "ITALOAUGUSTO"
   ],
-  "registros": [
-    {
-      "id": 1791070208251,
-      "veiculo": "KANGOO",
-      "placa": "BAA-6A34",
-      "veiculoIndex": 4,
-      "condutor": "ADÉLIO",
-      "data": "2026-10-03",
-      "horaSaida": "03:29",
-      "horaRetorno": "22:29",
-      "kmSaida": 6000,
-      "kmChegada": 6700,
-      "kmRodados": 700
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",
