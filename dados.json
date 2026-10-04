@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-04T06:12:11.963Z",
+  "exportadoEm": "2026-10-04T06:14:07.104Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -115,7 +115,7 @@
     },
     {
       "modelo": "UNO VIVACE",
-      "placa": "NWR-9J47",
+      "placa": "IWR-9J47",
       "condutor": "THIAGO",
       "kmAtual": 0,
       "kmRevisao": 10000
