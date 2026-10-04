@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="historico" class="">
+<body data-page="inicio" class="">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -703,11 +703,11 @@
 
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
-      <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
+      <a href="#inicio" data-route="inicio" class="active"><span class="icon">⌂</span>Visão geral</a>
       <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
+      <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
       <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
+        <span>Frota / <strong id="crumb">Controle de Veículos</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Histórico Completo</h1>
-        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
+        <h1 id="pageTitle">Controle de Veículos</h1>
+        <p id="pageSubtitle">Sua frota organizada com controle de quilometragem e revisões em dia.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -778,7 +778,7 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main>
       <!-- 1. VISÃO GERAL (DASHBOARD) -->
-      <section id="inicio" hidden="">
+      <section id="inicio">
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-icon">▤</div>
@@ -1780,7 +1780,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico">
+      <section id="historico" hidden="">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1861,7 +1861,7 @@
           <tr>
             <td><strong>ADÉLIO</strong></td>
             <td>ARGO <span class="plate-tag">RVQ-0G22</span></td>
-            <td><b>1</b> utilização(ões)</td>
+            <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('ADÉLIO')">🗑️ Excluir</button>
             </td>
@@ -2175,7 +2175,7 @@
 
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
-    <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
+    <a href="#inicio" data-route="inicio" class="active"><span class="icon">⌂</span>Início</a>
     <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
