@@ -1,7 +1,7 @@
 {
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-04T06:14:30.392Z",
+  "exportadoEm": "2026-10-04T06:16:26.894Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -129,10 +129,10 @@
     },
     {
       "modelo": "ARGO",
-      "placa": "TEE-0547",
+      "placa": "TEE-0J47",
       "condutor": "WELLINGTON",
       "kmAtual": 42732,
-      "kmRevisao": 50500
+      "kmRevisao": 50432
     },
     {
       "modelo": "STRADA",
@@ -192,12 +192,12 @@
     }
   ],
   "placasAlugados": [
-    "TEE-0547",
     "TDF-3E47",
     "TYZ-9G82",
     "TYT-6A92",
     "SIF-3D08",
     "ABC-1255",
-    "TYZ-9G83"
+    "TYZ-9G83",
+    "TEE-0J47"
   ]
 }
