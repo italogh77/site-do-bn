@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="registro" class="">
+<body data-page="veiculos" class="">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -704,8 +704,8 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
-      <a href="#registro" data-route="registro" class="active"><span class="icon">↗</span>Saída e retorno</a>
+      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Saída e Retorno</strong></span>
+        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Saída e Retorno</h1>
-        <p id="pageSubtitle">Registre a utilização dos veículos com verificação de KM.</p>
+        <h1 id="pageTitle">Veículos Cadastrados</h1>
+        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -972,7 +972,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos" hidden="">
+      <section id="veiculos">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1113,7 +1113,7 @@
             <td><strong>KANGOO</strong></td>
             <td><span class="status-badge status-ok">Próprio</span></td>
             <td>ADRIANO</td>
-            <td><b>0</b> km</td>
+            <td><b>6.700</b> km</td>
             <td>10.000 km</td>
             <td><span class="status-badge status-ok">EM DIA</span></td>
             <td style="text-align:right">
@@ -1170,14 +1170,14 @@
             <td>
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">TYZ-4G83</div>
+          <div class="placa-code">TYZ-9G83</div>
         </div>
       </td>
             <td><strong>SAVEIRO C. DUPLA</strong></td>
             <td><span class="status-badge status-alerta">Alugado</span></td>
             <td>FÁBIO</td>
             <td><b>12.293</b> km</td>
-            <td>20.000 km</td>
+            <td>19.993 km</td>
             <td><span class="status-badge status-ok">EM DIA</span></td>
             <td style="text-align:right">
               <div class="acoes" style="justify-content:flex-end;">
@@ -1486,7 +1486,7 @@
       </section>
 
       <!-- 3. SAÍDA E RETORNO (REGISTRAR UTILIZAÇÃO) -->
-      <section id="registro">
+      <section id="registro" hidden="">
         <div class="section-header">
           <div>
             <h2 id="tituloRegistro">Registrar Saída e Retorno</h2>
@@ -1830,7 +1830,25 @@
                 <th style="text-align:right">Ações</th>
               </tr>
             </thead>
-            <tbody id="listaHistoricoTabela"><tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted);">Nenhum registro encontrado.</td></tr></tbody>
+            <tbody id="listaHistoricoTabela">
+        <tr>
+          <td><strong>03/10/2026</strong></td>
+          <td>KANGOO</td>
+          <td><span class="plate-tag">BAA-6A34</span></td>
+          <td>ADÉLIO</td>
+          <td>03:29</td>
+          <td>22:29</td>
+          <td>6.000</td>
+          <td>6.700</td>
+          <td><strong style="color:var(--green-dark)">+700 km</strong></td>
+          <td style="text-align:right">
+            <div class="acoes" style="justify-content:flex-end;">
+              <button class="btn-sm secondary" onclick="editarRegistroViagem(1791070208251)">✏️</button>
+              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1791070208251)">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
           </table>
         </div>
       </section>
@@ -1872,7 +1890,7 @@
           <tr>
             <td><strong>ADÉLIO</strong></td>
             <td>ARGO <span class="plate-tag">RVQ-0G22</span></td>
-            <td><b>0</b> utilização(ões)</td>
+            <td><b>1</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('ADÉLIO')">🗑️ Excluir</button>
             </td>
@@ -2187,8 +2205,8 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
-    <a href="#registro" data-route="registro" class="active"><span class="icon">⊕</span>Registrar</a>
+    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
+    <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
   </nav>
@@ -2202,7 +2220,7 @@
       </div>
       <div class="modal-body">
         <form id="formVeiculoModal" onsubmit="salvarVeiculoModal(event)" class="grid-form" __gcruniqueid="8">
-          <input type="hidden" id="modalVeiculoIndex" value="22">
+          <input type="hidden" id="modalVeiculoIndex" value="7">
 
           <div class="field full-width">
             <label for="modalModelo">Modelo do Veículo *</label>
@@ -2245,7 +2263,7 @@
           <div class="field full-width">
             <label for="modalKmRevisao">KM da Próxima Revisão no Odômetro *</label>
             <input type="number" id="modalKmRevisao" min="0" step="1" required="" placeholder="Ex.: 45000" oninput="aoMudarKmRevisaoModal()" __gcruniqueid="15">
-            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>35.890 km</b> (daqui a <b>2.925 km</b> rodados a partir de agora).</small>
+            <small id="resumoCalculoRevisaoModal" style="margin-top:4px;font-size:12px;color:var(--green-dark);font-weight:600;display:block;">💡 A revisão será aos <b>19.993 km</b> (daqui a <b>7.700 km</b> rodados a partir de agora).</small>
           </div>
 
           <div class="form-actions">
@@ -2330,7 +2348,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-03T23:30:08.251Z",
+  "exportadoEm": "2026-10-04T06:12:11.963Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2416,10 +2434,10 @@
     },
     {
       "modelo": "SAVEIRO C. DUPLA",
-      "placa": "TYZ-4G83",
+      "placa": "TYZ-9G83",
       "condutor": "FÁBIO",
       "kmAtual": 12293,
-      "kmRevisao": 20000
+      "kmRevisao": 19993
     },
     {
       "modelo": "SAVEIRO C. DUPLA",
@@ -2521,13 +2539,13 @@
     }
   ],
   "placasAlugados": [
-    "TYZ-4G83",
     "TEE-0547",
     "TDF-3E47",
     "TYZ-9G82",
     "TYT-6A92",
     "SIF-3D08",
-    "ABC-1255"
+    "ABC-1255",
+    "TYZ-9G83"
   ]
 }</script>
 
