@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="sincronizacao" class="">
+<body data-page="historico" class="">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -707,10 +707,10 @@
       <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
-      <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
+      <a href="#historico" data-route="historico" class="active"><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
+        <span>Frota / <strong id="crumb">Histórico Completo</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">GitHub &amp; Backup</h1>
-        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
+        <h1 id="pageTitle">Histórico Completo</h1>
+        <p id="pageSubtitle">Relatório geral de utilizações, condutores e distâncias percorridas.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -797,14 +797,14 @@
           <div class="stat-card">
             <div class="stat-icon">↗</div>
             <div>
-              <strong id="countTrips">1</strong>
+              <strong id="countTrips">0</strong>
               <small>Utilizações registradas</small>
             </div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">🏁</div>
             <div>
-              <strong id="countTotalKm">700 km</strong>
+              <strong id="countTotalKm">0 km</strong>
               <small>KM total rodados</small>
             </div>
           </div>
@@ -848,18 +848,7 @@
               <h3>⏱️ Últimas Utilizações</h3>
               <a href="#historico">Histórico completo ↗</a>
             </div>
-            <div id="dashboardRecentTrips">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0f4f0;">
-            <div>
-              <strong>KANGOO</strong> <span class="plate-tag">BAA-6A34</span>
-              <div style="font-size:11px;color:var(--muted)">Motorista: <b>ADÉLIO</b> em 03/10/2026</div>
-            </div>
-            <div style="text-align:right">
-              <span style="font-weight:700;color:var(--green-dark);">+700 km</span>
-              <div style="font-size:10px;color:var(--muted)">03:29 - 22:29</div>
-            </div>
-          </div>
-        </div>
+            <div id="dashboardRecentTrips"><p style="color:var(--muted)">Nenhuma utilização registrada.</p></div>
           </div>
         </div>
 
@@ -1791,7 +1780,7 @@
       </section>
 
       <!-- 5. HISTÓRICO COMPLETO -->
-      <section id="historico" hidden="">
+      <section id="historico">
         <div class="section-header">
           <div>
             <h2>Histórico de Utilizações</h2>
@@ -1830,25 +1819,7 @@
                 <th style="text-align:right">Ações</th>
               </tr>
             </thead>
-            <tbody id="listaHistoricoTabela">
-        <tr>
-          <td><strong>03/10/2026</strong></td>
-          <td>KANGOO</td>
-          <td><span class="plate-tag">BAA-6A34</span></td>
-          <td>ADÉLIO</td>
-          <td>03:29</td>
-          <td>22:29</td>
-          <td>6.000</td>
-          <td>6.700</td>
-          <td><strong style="color:var(--green-dark)">+700 km</strong></td>
-          <td style="text-align:right">
-            <div class="acoes" style="justify-content:flex-end;">
-              <button class="btn-sm secondary" onclick="editarRegistroViagem(1791070208251)">✏️</button>
-              <button class="btn-sm btn-danger" onclick="excluirRegistroViagem(1791070208251)">🗑️</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
+            <tbody id="listaHistoricoTabela"><tr><td colspan="10" style="text-align:center;padding:24px;color:var(--muted);">Nenhum registro encontrado.</td></tr></tbody>
           </table>
         </div>
       </section>
@@ -2059,17 +2030,17 @@
               
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">RFQ-3B33</div>
+          <div class="placa-code">SUF-8G01</div>
         </div>
       
-              <h3 style="margin:0">DOBLO</h3>
+              <h3 style="margin:0">SAVEIRO</h3>
               <span class="status-badge status-ok">Próprio</span>
               <span class="status-badge status-ok">EM DIA</span>
             </div>
             <div class="pasta-meta">
-              <span>Condutor padrão: <b>FERNANDO</b></span>
-              <span>KM Atual: <b>15 km</b></span>
-              <span>Próxima revisão: <b>9.315 km</b></span>
+              <span>Condutor padrão: <b>GALPÃO</b></span>
+              <span>KM Atual: <b>12.293 km</b></span>
+              <span>Próxima revisão: <b>20.000 km</b></span>
               <span>Total acumulado nesta pasta: <b>0 km</b></span>
             </div>
           </div>
@@ -2100,7 +2071,7 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao">
+      <section id="sincronizacao" hidden="">
         <div class="section-header">
           <div>
             <h2>GitHub &amp; Sincronização de Dados</h2>
@@ -2348,7 +2319,7 @@
   <script id="dadosIncorporados" type="application/json">{
   "versao": 2,
   "aplicativo": "Controle de Veículos",
-  "exportadoEm": "2026-10-04T06:17:20.975Z",
+  "exportadoEm": "2026-10-04T06:19:45.317Z",
   "condutores": [
     "ADÉLIO",
     "ADRIANO",
@@ -2367,21 +2338,7 @@
     "WELLINGTON",
     "ITALOAUGUSTO"
   ],
-  "registros": [
-    {
-      "id": 1791070208251,
-      "veiculo": "KANGOO",
-      "placa": "BAA-6A34",
-      "veiculoIndex": 4,
-      "condutor": "ADÉLIO",
-      "data": "2026-10-03",
-      "horaSaida": "03:29",
-      "horaRetorno": "22:29",
-      "kmSaida": 6000,
-      "kmChegada": 6700,
-      "kmRodados": 700
-    }
-  ],
+  "registros": [],
   "veiculos": [
     {
       "modelo": "DOBLO",
