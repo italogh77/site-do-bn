@@ -691,7 +691,7 @@
     @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
-<body data-page="veiculos" class="">
+<body data-page="sincronizacao" class="">
   <div class="shade" onclick="toggleMenu()"></div>
 
   <!-- MENU LATERAL -->
@@ -704,13 +704,13 @@
     <div class="navlabel">Menu Principal</div>
     <nav aria-label="Navegação principal">
       <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Visão geral</a>
-      <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Veículos da frota</a>
+      <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Veículos da frota</a>
       <a href="#registro" data-route="registro" class=""><span class="icon">↗</span>Saída e retorno</a>
       <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões e alertas</a>
       <a href="#historico" data-route="historico" class=""><span class="icon">↶</span>Histórico completo</a>
       <a href="#condutores" data-route="condutores" class=""><span class="icon">♙</span>Condutores</a>
       <a href="#pastas" data-route="pastas" class=""><span class="icon">▱</span>Pastas por veículo</a>
-      <a href="#sincronizacao" data-route="sincronizacao" class=""><span class="icon">☁</span>GitHub e Backup</a>
+      <a href="#sincronizacao" data-route="sincronizacao" class="active"><span class="icon">☁</span>GitHub e Backup</a>
     </nav>
 
     <div class="storage">
@@ -734,7 +734,7 @@
     <!-- Barra Superior Desktop -->
     <div class="topbar">
       <div class="topbar-left">
-        <span>Frota / <strong id="crumb">Veículos Cadastrados</strong></span>
+        <span>Frota / <strong id="crumb">GitHub &amp; Backup</strong></span>
       </div>
       <div class="topbar-right">
         <button class="btn btn-sm secondary" id="btnSyncNuvem" onclick="sincronizarDadosDaNuvem(false, true)" title="Puxar dados atualizados de outros aparelhos na nuvem" style="font-size:12px;display:inline-flex;align-items:center;gap:6px;min-height:34px;">
@@ -766,8 +766,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div>
-        <h1 id="pageTitle">Veículos Cadastrados</h1>
-        <p id="pageSubtitle">Gerencie os veículos da frota, com placas, condutores e revisões.</p>
+        <h1 id="pageTitle">GitHub &amp; Backup</h1>
+        <p id="pageSubtitle">Sincronize suas alterações diretamente com o repositório GitHub.</p>
       </div>
       <div class="hero-actions">
         <a class="primary" href="#registro">＋ Registrar saída / retorno</a>
@@ -972,7 +972,7 @@
       </section>
 
       <!-- 2. VEÍCULOS DA FROTA -->
-      <section id="veiculos">
+      <section id="veiculos" hidden="">
         <div class="section-header">
           <div>
             <h2>Veículos da Frota</h2>
@@ -1645,15 +1645,15 @@
             <td>
         <div class="placa-badge">
           <div class="placa-top">BRASIL</div>
-          <div class="placa-code">TDF-3E47</div>
+          <div class="placa-code">TDF-3E97</div>
         </div>
       </td>
             <td><strong>STRADA</strong></td>
             <td>NORBERTO</td>
             <td><b>35.147</b> km</td>
-            <td>40.000 km</td>
+            <td>40.147 km</td>
             <td style="font-weight:700;color:var(--ink)">
-              ⏳ Faltam 4.853 km
+              ⏳ Faltam 5.000 km
             </td>
             <td style="width:140px;">
               <div class="prog-bar-wrap">
@@ -1997,7 +1997,7 @@
         
           <tr>
             <td><strong>NORBERTO</strong></td>
-            <td>STRADA <span class="plate-tag">TDF-3E47</span></td>
+            <td>STRADA <span class="plate-tag">TDF-3E97</span></td>
             <td><b>0</b> utilização(ões)</td>
             <td style="text-align:right">
               <button class="btn-sm btn-danger" onclick="excluirCondutor('NORBERTO')">🗑️ Excluir</button>
@@ -2100,7 +2100,7 @@
       </section>
 
       <!-- 8. GITHUB E BACKUP (SINCRONIZAÇÃO COMPLETA) -->
-      <section id="sincronizacao" hidden="">
+      <section id="sincronizacao">
         <div class="section-header">
           <div>
             <h2>GitHub &amp; Sincronização de Dados</h2>
@@ -2205,7 +2205,7 @@
   <!-- NAVEGAÇÃO MÓVEL (BARRA INFERIOR) -->
   <nav class="bottom-nav">
     <a href="#inicio" data-route="inicio" class=""><span class="icon">⌂</span>Início</a>
-    <a href="#veiculos" data-route="veiculos" class="active"><span class="icon">▤</span>Frota</a>
+    <a href="#veiculos" data-route="veiculos" class=""><span class="icon">▤</span>Frota</a>
     <a href="#registro" data-route="registro" class=""><span class="icon">⊕</span>Registrar</a>
     <a href="#revisoes" data-route="revisoes" class=""><span class="icon">◷</span>Revisões</a>
     <button onclick="toggleMenu()"><span class="icon">☰</span>Mais</button>
